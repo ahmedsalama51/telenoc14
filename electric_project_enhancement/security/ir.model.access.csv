@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acccess_work_order_class,work_order_class,model_work_order_class,,1,1,1,1
 acccess_work_order_type,work_order_type,model_work_order_type,,1,1,1,1
 acccess_work_order_type_tag,work_order_type_tag,model_work_order_type_tag,,1,1,1,1
+acccess_receive_cable_rule_root,work_receive_cable_rule_root,model_receive_cable_rule,,1,1,1,1
+acccess_receive_cable_rule_root_line,work_receive_cable_rule_root_line,model_receive_cable_rule_line,,1,1,1,1

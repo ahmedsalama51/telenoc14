@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-       <record id="electric_view_task_form2_inherit" model="ir.ui.view">
-           <field name="name">electric.project.task.form.inherit</field>
-           <field name="model">project.task</field>
-           <field name="inherit_id" ref="project.view_task_form2"/>
-           <field name="arch" type="xml">
+        <record id="electric_view_task_form2_inherit" model="ir.ui.view">
+            <field name="name">electric.project.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page name="work_order" string="Work Order">
+                        <group>
+                            <group>
+                                <field name="work_order_class_id"/>
+                            </group>
+                            <group>
+                                <field name="work_order_type_id"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button string="Detailed Operations" type="object" name="action_view_stock_move_lines"
+                            class="oe_stat_button" icon="fa-exchange" groups="stock.group_stock_user"/>
+                    <button string="Operations" type="object" name="action_view_stock_moves"
+                            class="oe_stat_button" icon="fa-arrows" groups="stock.group_stock_user"/>
+                </xpath>
 
-               <xpath expr="//notebook" position="inside">
-                   <page name="work_order" string="Work Order">
-                       <group>
-                           <group>
-                               <field name="work_order_class_id"/>
-                           </group>
-                           <group>
-                               <field name="work_order_type_id"/>
-                           </group>
-                       </group>
-                   </page>
-               </xpath>
-
-           </field>
-       </record>
+            </field>
+        </record>
 
     </data>
 </odoo>

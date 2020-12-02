@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+        <record id="sequence_code_receive_cable_rule" model="ir.sequence">
+            <field name="name">Receive Cable Rules</field>
+            <field name="code">receive.cable.rule.code</field>
+            <field eval="4" name="padding" />
+            <field name="prefix">RCV</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

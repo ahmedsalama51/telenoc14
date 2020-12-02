@@ -11,6 +11,31 @@ class ProjectTaskInherit(models.Model):
 	                                      help="تصنيف المعاملة")
 	work_order_type_id = fields.Many2one('work.order.type', "Work Type",
 	                                     help="نوع المعاملة")
+	move_ids = fields.One2many('stock.move', 'task_id', "Operations")
+	move_line_ids = fields.One2many('stock.move.line', 'task_id', "Detailed Operations")
+	operation_count = fields.Integer("Operation Count", compute='compute_operations')
+	details_operation_count = fields.Integer("Detailed Operation Count", compute='compute_operations')
+	
+	@api.onchange('move_ids', 'move_line_ids')
+	def compute_operations(self):
+		"""
+		compute related fields
+		"""
+		for task in self:
+			task.operation_count = len(task.move_ids)
+			task.details_operation_count = len(task.move_line_ids)
+	
+	def action_view_stock_move_lines(self):
+		self.ensure_one()
+		action = self.env["ir.actions.actions"]._for_xml_id("stock.stock_move_line_action")
+		action['domain'] = [('task_id', '=', self.id)]
+		return action
+	
+	def action_view_stock_moves(self):
+		self.ensure_one()
+		action = self.env["ir.actions.actions"]._for_xml_id("stock.stock_move_action")
+		action['domain'] = [('task_id', '=', self.id)]
+		return action
 
 
 class WorkOrderClass(models.Model):

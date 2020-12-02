@@ -17,6 +17,7 @@ class StockPickingInherit(models.Model):
 	
 	employee_id = fields.Many2one('hr.employee', "Employee")
 	employee_mandatory = fields.Boolean(related='picking_type_id.employee_mandatory')
+	task_id = fields.Many2one('project.task', 'Task', related='move_lines.task_id', readonly=True)
 		
 # Ahmed Salama Code End.
 

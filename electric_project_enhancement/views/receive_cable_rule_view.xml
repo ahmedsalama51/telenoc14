@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Menu items-->
+        <menuitem id="menu_receive_cable_rule_root_sale"
+                  name="Receive Cable Rules"
+                  parent="sale.sale_menu_root"
+                  sequence="5"/>
+
+        <record id="receive_cable_rule_form_view" model="ir.ui.view">
+            <field name="name">receive.cable.rule.form.view</field>
+            <field name="model">receive.cable.rule</field>
+            <field name="arch" type="xml">
+                <form string="Receive Cable Rule">
+                    <header>
+                        <button name="action_done" type="object" string="Done" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','draft')]}"/>
+                        <button name="action_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': [('state','!=','draft')]}"/>
+                        <button name="action_draft" type="object"
+                                string="Set to Draft" attrs="{'invisible': [('state','not in',('done', 'cancel'))]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Number"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="active" invisible="1"/>
+                                <field name="employee_id" widget="res_partner_many2one"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="done_date" attrs="{'invisible': [('state','!=','done')]}"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <field name="line_ids">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="quantity"/>
+                                <field name="receive_incoming_qty"/>
+                                <field name="previous_qty"/>
+                                <field name="balance_qty"/>
+                                <field name="product_uom"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <field name="company_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="receive_cable_rule_tree_view" model="ir.ui.view">
+            <field name="name">receive.cable.rule.tree.view</field>
+            <field name="model">receive.cable.rule</field>
+            <field name="arch" type="xml">
+                <tree string="Receive Cable Rules"
+                      decoration-success="state == 'done'"
+                      decoration-muted="state == 'cancel'">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="done_date"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="receive_cable_rule_search_view" model="ir.ui.view">
+            <field name="name">receive.cable.rule.search.view</field>
+            <field name="model">receive.cable.rule</field>
+            <field name="arch" type="xml">
+                <search string="Receive Cable Rules">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="product_id"/>
+                    <separator/>
+                    <filter string="Receive Date" name="date" date="date"/>
+                    <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_by_employee" string="Employee" context="{'group_by':'employee_id'}"/>
+                        <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter name="group_by_date" string="Date" context="{'group_by':'date'}"/>
+                        <filter name="group_by_done_date" string="Done Date" context="{'group_by':'done_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="receive_cable_rule_action" model="ir.actions.act_window">
+            <field name="name">Receive Cable Rules</field>
+            <field name="res_model">receive.cable.rule</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_receive_cable_rule"
+                  name="Receive Cable Rules"
+                  action="receive_cable_rule_action"
+                  parent="menu_receive_cable_rule_root_sale" sequence="1"/>
+
+    </data>
+</odoo>

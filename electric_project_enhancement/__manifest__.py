@@ -32,10 +32,13 @@
     'version': '.1',
     'depends': ['project', 'sale_stock', 'hr'],
     'data': [
+        'data/receive_cabel_rule_data.xml',
+        
         'security/ir.model.access.csv',
         
         'views/project_task_view_changes.xml',
         'views/stock_picking_view_changes.xml',
+        'views/receive_cable_rule_view.xml',
     ],
     'installable': True,
     'application': True,
