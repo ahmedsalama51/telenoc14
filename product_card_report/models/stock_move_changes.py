@@ -21,8 +21,8 @@ class StockMoveInherit(models.Model):
 				move.write({'date': move.date_deadline})
 				move.move_line_ids.write({'date': move.date_deadline})
 		return moves_todo
-	
-		
+
+
 class StockMoveLineInherit(models.Model):
 	_inherit = 'stock.move.line'
 	
@@ -59,7 +59,8 @@ class StockMoveLineInherit(models.Model):
 	                         help='Cost from previous moves + current cost')
 	signed_done_qty = fields.Float('Qty Done(+/-)', readonly=True,
 	                               help='Quantity done amount with sign to use on total')
-	price_unit = fields.Float(related='move_id.price_unit')
+	price_unit = fields.Float('Unit Price', readonly=True,
+	                          help='Price used to compute line amount')
 	
 	@api.model
 	def start_compute_historical_qty(self):
@@ -138,5 +139,6 @@ class StockMoveLineInherit(models.Model):
 			sml.signed_done_qty = signed_done_qty
 			sml.curr_qty = after_qty
 			sml.curr_cost = after_cost
+			sml.price_unit = price
 
 # Ahmed Salama Code End.

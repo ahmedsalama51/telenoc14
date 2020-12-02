@@ -30,7 +30,7 @@
     This module add new report Product Card added to inventory reports
 """,
     'version': '.3',
-    'depends': ['stock', 'sale', 'sale_stock'],
+    'depends': ['stock', 'sale', 'sale_stock', 'sale_management'],
     'data': [
         'data/report_paperformat.xml',
         'data/product_card_wizard_states.xml',
