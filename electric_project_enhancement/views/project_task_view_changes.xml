@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <record id="electric_view_task_form2_inherit" model="ir.ui.view">
+           <field name="name">electric.project.task.form.inherit</field>
+           <field name="model">project.task</field>
+           <field name="inherit_id" ref="project.view_task_form2"/>
+           <field name="arch" type="xml">
+
+               <xpath expr="//notebook" position="inside">
+                   <page name="work_order" string="Work Order">
+                       <group>
+                           <group>
+                               <field name="work_order_class_id"/>
+                           </group>
+                           <group>
+                               <field name="work_order_type_id"/>
+                           </group>
+                       </group>
+                   </page>
+               </xpath>
+
+           </field>
+       </record>
+
+    </data>
+</odoo>

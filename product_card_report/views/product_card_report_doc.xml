@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="product_card_report_doc">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <!-- Major Parameters-->
+                    <t t-set="totals" t-value="data['get_sum_move_lines_history']"/>
+                    <t t-set="total_debit" t-value="0.0"/>
+                    <t t-set="total_credit" t-value="0.0"/>
+                    <t t-set="total_value" t-value="0.0"/>
+                    <t  t-set="symbol" t-value="o.company_id.currency_id.symbol"/>
+                    <center>
+                        <h2>Product Movements on locations:
+                            <t t-if="'location_ids' in data and data['location_ids']">
+                                <span style="color:darkblue" t-esc="data['location_ids']"/>
+                            </t>
+                        </h2>
+                    </center>
+
+                    <div class="row">
+                        <div class="col-1"/>
+                        <div class="col-3">
+                            <strong>From Date:</strong>
+                            <span style="color:darkblue" t-esc="data['date_from']"/>
+                        </div>
+                        <div class="col-3">
+                            <strong>To Date:</strong>
+                            <span style="color:darkblue" t-esc="data['date_to']"/>
+                        </div>
+                        <div class="col-4">
+                            <strong>States:</strong>
+                            <span style="color:darkblue" t-esc="data['states']"/>
+                        </div>
+                        <div class="col-1"/>
+                    </div>
+                    <br/>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr class="table-active text-center" style="border: 1px solid black">
+                                <th style="border: 1px solid black">Code</th>
+                                <th style="border: 1px solid black">Name</th>
+                                <th style="border: 1px solid black">Starting Balance</th>
+                                <th style="border: 1px solid black">Cost</th>
+                                <th style="border: 1px solid black">Starting Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center">
+                                <td style="border: 1px solid black">
+                                    <span style="color:darkblue" t-esc="data['product'].code"/>
+                                </td>
+                                <td style="border: 1px solid black" calss="text-left">
+                                    <span style="color:darkblue" t-esc="data['product'].display_name"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span style="color:darkblue" t-esc="totals['start_balance']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span style="color:darkblue" t-esc="totals['current_cost']"/>
+                                    <span style="color:darkblue" t-esc="symbol"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span style="color:darkblue" t-esc="totals['start_value']"/>
+                                    <span style="color:darkblue" t-esc="symbol"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- MAin View row-->
+                    <h3>Details:</h3>
+                    <t t-if="data['get_move_lines']">
+                        <table class="table table-condensed table-border">
+                            <thead>
+                                <tr class="table-active text-center">
+                                    <th style="border: 1px solid black">Date</th>
+                                    <th style="border: 1px solid black">Ref</th>
+                                    <th style="border: 1px solid black">Type</th>
+                                    <th style="border: 1px solid black">Location</th>
+                                    <th style="border: 1px solid black">In</th>
+                                    <th style="border: 1px solid black">Out</th>
+                                    <th style="border: 1px solid black">Balance</th>
+                                    <th style="border: 1px solid black">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="data['get_move_lines']" t-as="move">
+                                    <t t-if="move['move_type'] == 'in'">
+                                        <t t-set="row_style" t-value="'text-align:center;color:green'" />
+                                    </t>
+                                    <t t-if="move['move_type'] == 'out'">
+                                        <t t-set="row_style" t-value="'text-align:center;color:red'" />
+                                    </t>
+                                    <tr t-att-style="row_style">
+
+                                        <td style="border: 1px solid black"><span t-esc="move['date']"/></td>
+                                        <td style="border: 1px solid black"><span t-esc="move['number']"/></td>
+                                        <td style="border: 1px solid black"><span t-esc="move['type']"/></td>
+                                        <td style="border: 1px solid black"><span t-esc="move['location']"/></td>
+                                        <td style="border: 1px solid black">
+                                            <span t-esc="move['debit']"/>
+                                            <t t-set="total_debit" t-value="total_debit+move['debit']"/>
+                                        </td>
+                                        <td style="border: 1px solid black">
+                                            <span t-esc="move['credit']"/>
+                                            <t t-set="total_credit" t-value="total_credit+move['credit']"/>
+                                        </td>
+                                        <td style="border: 1px solid black">
+                                            <span t-esc="move['balance']"/>
+                                        </td>
+                                        <td style="border: 1px solid black">
+                                            <span t-esc="move['value']"/>
+                                            <span t-esc="symbol"/>
+                                        </td>
+                                    </tr>
+                                </t>
+
+
+                            </tbody>
+                            <ttail>
+                                <tr style="text-align:center;">
+                                    <th colspan="4" class="table-active" style="border: 1px solid black">
+                                        <span  style="color:darkblue">Final Amounts</span>
+                                    </th>
+                                    <th class="table-active" style="border: 1px solid black">
+                                        <span style="color:darkblue" t-esc="total_debit"/>
+                                    </th>
+                                    <th class="table-active" style="border: 1px solid black">
+                                        <span style="color:darkblue" t-esc="total_credit"/>
+                                    </th>
+                                    <t t-set="final_balance" t-value="totals['start_balance'] + total_debit - total_credit"/>
+                                    <th class="table-active" style="border: 1px solid black">
+                                        <span  style="color:darkblue" t-esc="final_balance"/>
+                                    </th>
+                                    <th class="table-active" style="border: 1px solid black">
+                                        <span  style="color:darkblue" t-esc="data['get_move_lines'][-1]['value']"/>
+                                        <span t-esc="symbol"/>
+                                    </th>
+                                </tr>
+                            </ttail>
+
+                        </table>
+                    </t>
+                    <t t-else="">
+                        <p class="text-center" style="color:red">--- No records found for this product using those filters ----</p>
+                    </t>
+                    <br/>
+                </div>
+            </t>
+        </template>
+        <template id="product_card_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="15"/>
+                <t t-set="data_report_orientation" t-value="Landscape"/>
+                <t t-set="data_report_header_spacing" t-value="12"/>
+                <t t-set="data_report_dpi" t-value="100"/>
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="product_card_report.product_card_report_doc" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
+
+
+

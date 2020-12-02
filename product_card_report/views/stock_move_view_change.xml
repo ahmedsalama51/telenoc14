@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_card_view_move_line_tree_inherit" model="ir.ui.view">
+            <field name="name">product_card.stock.move.line.tree.inherit</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='qty_done']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_uom_id']" position="before">
+                    <field name="signed_done_qty" optional="show"/>
+                    <field name="price_unit" optional="show" readonly="1"/>
+                    <field name="pre_qty" optional="show"/>
+                    <field name="pre_cost" optional="show"/>
+                    <field name="curr_qty" optional="show"/>
+                    <field name="curr_cost" optional="show"/>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-success">signed_done_qty &gt; 0</attribute>
+                    <attribute name="decoration-info">signed_done_qty &lt; 0</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_card_view_move_line_form_inherit" model="ir.ui.view">
+            <field name="name">product_card.stock.move.line.form.inherit</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='qty_done']" position="before">
+                    <field name="move_id" readonly="1"/>
+                </xpath>
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="signed_done_qty"/>
+                    <field name="price_unit" readonly="1"/>
+                    <field name="pre_qty"/>
+                    <field name="pre_cost"/>
+                    <field name="curr_qty"/>
+                    <field name="curr_cost"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_card_view_move_form_inherit" model="ir.ui.view">
+            <field name="name">product_card.stock.move.form.inherit</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="price_unit" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

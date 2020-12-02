@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="report_product_card_state_draft" model="product.card.report.wizard.states">
+            <field name="name">New</field>
+            <field name="value">draft</field>
+        </record>
+        <record id="report_product_card_state_cancel" model="product.card.report.wizard.states">
+            <field name="name">Cancelled</field>
+            <field name="value">cancel</field>
+        </record>
+        <record id="report_product_card_state_waiting" model="product.card.report.wizard.states">
+            <field name="name">Waiting Another Move</field>
+            <field name="value">waiting</field>
+        </record>
+        <record id="report_product_card_state_confirmed" model="product.card.report.wizard.states">
+            <field name="name">Waiting Availability</field>
+            <field name="value">confirmed</field>
+        </record>
+        <record id="report_product_card_state_partially_available" model="product.card.report.wizard.states">
+            <field name="name">Partially Available</field>
+            <field name="value">partially_available</field>
+        </record>
+        <record id="report_product_card_state_assigned" model="product.card.report.wizard.states">
+            <field name="name">Available</field>
+            <field name="value">assigned</field>
+        </record>
+        <record id="report_product_card_state_done" model="product.card.report.wizard.states">
+            <field name="name">Done</field>
+            <field name="value">done</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="report_product_card"
+                string="Product Card"
+                model="product_card_report.product_card_report"
+                report_type="qweb-pdf"
+                file="product_card_report.product_card_report"
+                name="product_card_report.product_card_report"
+                print_report_name="'Product Card - %s' % object.product_id and object.product_id.name or object.date_from"
+                paperformat="product_card_report.paperformat_euro_landscape" />
+    </data>
+</odoo>

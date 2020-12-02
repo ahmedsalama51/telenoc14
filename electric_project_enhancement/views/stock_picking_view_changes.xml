@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <!-- Picking Type -->
+       <record id="electric_view_picking_type_form_inherit" model="ir.ui.view">
+           <field name="name">electric.stock.picking.type.form.inherit</field>
+           <field name="model">stock.picking.type</field>
+           <field name="inherit_id" ref="stock.view_picking_type_form"/>
+           <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='show_reserved']" position="after">
+                   <field name="employee_mandatory"/>
+               </xpath>
+
+           </field>
+       </record>
+        <!-- Picking form -->
+       <record id="electric_view_picking_form_inherit" model="ir.ui.view">
+           <field name="name">electric.stock.picking.form.inherit</field>
+           <field name="model">stock.picking</field>
+           <field name="inherit_id" ref="stock.view_picking_form"/>
+           <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='partner_id']" position="after">
+                   <field name="employee_mandatory" invisible="1" readonly="1"/>
+                   <field name="employee_id" attrs="{'invisible':[('employee_mandatory','=',False)],
+                   'required':[('employee_mandatory','=',True)]}"/>
+               </xpath>
+               <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='product_id']" position="before">
+                   <field name="task_id"/>
+               </xpath>
+               <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='product_uom_qty']" position="after">
+                   <field name="qty_available" optional="show" string="Available"/>
+               </xpath>
+               <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='quantity_done']" position="after">
+                   <field name="task_incoming_qty" optional="show"/>
+                   <field name="task_outgoing_qty" optional="show"/>
+                   <field name="task_balance_qty" optional="show"/>
+               </xpath>
+
+           </field>
+       </record>
+
+
+    </data>
+</odoo>
