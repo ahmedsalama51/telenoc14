@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 class StockMoveInherit(models.Model):
 	_inherit = 'stock.move'
 	
-	task_id = fields.Many2one('project.task', "Work Order")
+	task_id = fields.Many2one('project.task', "Work Order", required=True)
 	task_incoming_qty = fields.Float("Incoming Qty", compute='_get_task_qty')
 	task_outgoing_qty = fields.Float("Outgoing Qty", compute='_get_task_qty')
 	task_balance_qty = fields.Float("Balance Qty", compute='_get_task_qty')
@@ -29,7 +29,6 @@ class StockMoveInherit(models.Model):
 				                              ('task_id', '=', ml.task_id.id),
 				                              ('state', '=', 'done'),
 				                              ('date', '<=', ml.date)])
-				print("OTHERS:: ", other_ml_ids)
 				task_incoming_qty = sum(x.quantity_done for x in other_ml_ids.
 				                        filtered(lambda mm: mm.id != ml.id and mm.picking_type_id and
 				                                            mm.picking_type_id.code == 'incoming'))
@@ -38,7 +37,7 @@ class StockMoveInherit(models.Model):
 				                                            mm.picking_type_id.code == 'outgoing'))
 			ml.task_incoming_qty = task_incoming_qty
 			ml.task_outgoing_qty = task_outgoing_qty
-			ml.task_balance_qty = task_incoming_qty - task_outgoing_qty
+			ml.task_balance_qty = task_incoming_qty - task_outgoing_qty + ml.quantity_done
 
 
 class StockMoveLineInherit(models.Model):
@@ -82,5 +81,13 @@ class StockMoveLineInherit(models.Model):
 		if self.move_id and self.move_id.task_id:
 			result['task_id'] = self.move_id.task_id.id
 		return result
+	
+	@api.model
+	def create(self, vals):
+		if vals.get('move_id'):
+			move_id = self.env['stock.move'].browse(vals.get('move_id'))
+			if move_id.task_id:
+				vals['task_id'] = move_id.task_id.id
+		return super(StockMoveLineInherit, self).create(vals)
 
 # Ahmed Salama Code End.

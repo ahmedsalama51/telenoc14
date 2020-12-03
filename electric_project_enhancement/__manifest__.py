@@ -36,6 +36,9 @@
         
         'security/ir.model.access.csv',
         
+        'reports/report_stock_picking_operation_changes.xml',
+        'reports/report_stock_picking_delivery_slip_changes.xml',
+        
         'views/project_task_view_changes.xml',
         'views/stock_picking_view_changes.xml',
         'views/receive_cable_rule_view.xml',

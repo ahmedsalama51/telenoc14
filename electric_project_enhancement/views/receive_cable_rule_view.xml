@@ -34,6 +34,7 @@
                             <group>
                                 <field name="active" invisible="1"/>
                                 <field name="employee_id" widget="res_partner_many2one"/>
+                                <field name="location_id"/>
                             </group>
                             <group>
                                 <field name="date"/>
@@ -47,8 +48,10 @@
                                 <field name="quantity"/>
                                 <field name="receive_incoming_qty"/>
                                 <field name="previous_qty"/>
+                                <field name="total_after_qty"/>
                                 <field name="balance_qty"/>
                                 <field name="product_uom"/>
+                                <field name="note" optional="show"/>
                                 <field name="product_uom_category_id" invisible="1"/>
                                 <field name="company_id" invisible="1"/>
                             </tree>
@@ -91,6 +94,7 @@
                     <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
                     <group expand="0" string="Group By...">
                         <filter name="group_by_employee" string="Employee" context="{'group_by':'employee_id'}"/>
+                        <filter name="group_by_location" string="Location" context="{'group_by':'location_id'}"/>
                         <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
                         <separator/>
                         <filter name="group_by_date" string="Date" context="{'group_by':'date'}"/>
@@ -103,6 +107,7 @@
             <field name="name">Receive Cable Rules</field>
             <field name="res_model">receive.cable.rule</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_group_by_location':1}</field>
         </record>
         <menuitem id="menu_receive_cable_rule"
                   name="Receive Cable Rules"

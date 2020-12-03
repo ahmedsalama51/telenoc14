@@ -17,6 +17,9 @@ class ReceiveCableRule(models.Model):
 	active = fields.Boolean("Active", default=True, track_visibility='onchange')
 	employee_id = fields.Many2one("hr.employee", "Receiver", track_visibility='onchange', readonly=1,
 	                              states={'draft': [('readonly', False)]})
+	location_id = fields.Many2one('stock.location', "Receive Location",
+	                              check_company=True, readonly=True, required=True,
+	                              states={'draft': [('readonly', False)]})
 	state = fields.Selection(_STATES, "State", default='draft')
 	date = fields.Datetime("Date", default=fields.Datetime.now(), readonly=1, track_visibility='onchange',
 	                       states={'draft': [('readonly', False)]}, help="Received Date")
@@ -47,7 +50,7 @@ class ReceiveCableRule(models.Model):
 			rec.state = 'done'
 			rec.done_date = fields.Datetime.now()
 			for line in rec.line_ids:
-				line.balance_qty = line.receive_incoming_qty - (line.quantity + line.receive_incoming_qty)
+				line.balance_qty = line.receive_incoming_qty - (line.quantity + line.previous_qty)
 	
 	def action_cancel(self):
 		"""
@@ -70,6 +73,7 @@ class ReceiveCableRuleLine(models.Model):
 	# TODO : Need to use location on filtration of oncoming shipments
 	
 	receive_id = fields.Many2one('receive.cable.rule', "Receive")
+	location_id = fields.Many2one(related='receive_id.location_id')
 	name = fields.Char(related='receive_id.name')
 	state = fields.Selection(related='receive_id.state')
 	date = fields.Datetime(related='receive_id.date')
@@ -91,6 +95,9 @@ class ReceiveCableRuleLine(models.Model):
 	balance_qty = fields.Float("Balance Qty", readonly=1,
 	                           help="Balance = all incoming shipment for this product"
 	                                " - (all previous received for it + current received qty)")
+	total_after_qty = fields.Float("Total After Receive", compute='_get_qty',
+	                               help="Total After Received")
+	note = fields.Text("Notes")
 	
 	@api.onchange('product_id')
 	def onchange_product_id(self):
@@ -110,13 +117,18 @@ class ReceiveCableRuleLine(models.Model):
 				incoming_ids = ml_obj.search([('product_id', '=', line.product_id.id),
 				                              ('state', '=', 'done'),
 				                              ('picking_type_id.code', '=', 'incoming'),
+				                              ('location_dest_id', '=', line.location_id.id),
 				                              ('date', '<=', line.date)])
 				previous_qty = receive_obj.search([('product_id', '=', line.product_id.id),
 				                                   ('state', '=', 'done'),
+				                                   ('location_id', '=', line.location_id.id),
 				                                   ('date', '<=', line.date)])
 				receive_incoming_qty = sum(x.quantity_done for x in incoming_ids)
-				previous_qty = sum(x.quantity_done for x in previous_qty.filtered(lambda mm: mm.id != line.id))
+				previous_qty = sum(x.quantity for x in previous_qty.filtered(lambda mm: mm.id != line.id))
 			line.receive_incoming_qty = receive_incoming_qty
 			line.previous_qty = previous_qty
+			line.total_after_qty = previous_qty + line.quantity
+			line.balance_qty = receive_incoming_qty - (line.quantity + previous_qty)
+
 
 # Ahmed Salama Code End.
