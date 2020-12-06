@@ -6,36 +6,8 @@ _logger = logging.getLogger(__name__)
 # Ahmed Salama Code Start ---->
 
 
-class StockMoveInherit(models.Model):
-	_inherit = 'stock.move'
-	
-	def _action_done(self, cancel_backorder=False):
-		"""
-		# Force use date from previous action as scheduled_date on move and move lines
-		:param cancel_backorder:
-		:return: SUPER moves
-		"""
-		moves_todo = super(StockMoveInherit, self)._action_done(cancel_backorder)
-		for move in moves_todo:
-			if move.date_deadline:
-				move.write({'date': move.date_deadline})
-				move.move_line_ids.write({'date': move.date_deadline})
-		return moves_todo
-
-
 class StockMoveLineInherit(models.Model):
 	_inherit = 'stock.move.line'
-	
-	# TODO:: Stop this method and replace it with confirm for current fields/ Create for pre fields
-	# @api.onchange('move_id', 'qty_done')
-	# @api.depends('move_id.price_unit', 'move_id.picking_type_id', 'move_id.inventory_id')
-	# def _get_product_historical_qty(self):
-	# 	"""
-	# 	Used to compute and store previous details
-	# 	"""
-	# 	_logger.info("\n -----------------------------------------------------\n"
-	# 	             "Get historical qty and cost for %s" % len(self))
-	# 	self.execute_update_history()
 	
 	@api.model
 	def create(self, vals):
@@ -43,8 +15,6 @@ class StockMoveLineInherit(models.Model):
 		Used to compute and store previous details
 		"""
 		line = super(StockMoveLineInherit, self).create(vals)
-		# Force use date from move
-		line.date = line.move_id.date
 		#  compute and store previous details
 		line.execute_update_history()
 		return line

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="receive_cable_rule_balance_doc">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <!-- Major Parameters-->
+                    <t t-set="total_incoming" t-value="0.0"/>
+                    <t t-set="total_balance" t-value="0.0"/>
+                    <center>
+                        <h2>Received Cable Balance</h2>
+                    </center>
+
+                    <div class="row">
+                        <div class="col-1"/>
+                        <div class="col-3">
+                            <strong>Date:</strong>
+                            <span style="color:darkblue" t-esc="date"/>
+                        </div>
+                        <div class="col-3">
+                            <strong>Product Count:</strong>
+                            <span style="color:darkblue" t-esc="prod_count"/>
+                        </div>
+                        <div class="col-1"/>
+                    </div>
+                    <br/>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr class="table-active text-center" style="border: 1px solid black">
+                                <th style="border: 1px solid black">Num.</th>
+                                <th style="border: 1px solid black">Product</th>
+                                <th style="border: 1px solid black">Current Qty</th>
+                                <th style="border: 1px solid black">UOM</th>
+                                <th style="border: 1px solid black">Received From Checklist</th>
+                                <th style="border: 1px solid black">Previous Cables</th>
+                                <th style="border: 1px solid black">Total Received Cables</th>
+                                <th style="border: 1px solid black">Cable Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="count" t-value="1"/>
+                            <tr class="text-center" t-foreach="line_ids" t-as="line">
+                                <td style="border: 1px solid black">
+                                    <span t-esc="count"/>
+                                    <t t-set="count" t-value="count+1"/>
+                                </td>
+                                <td style="border: 1px solid black" calss="text-left">
+                                    <span t-esc="line['name']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="line['quantity']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="line['uom_id']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span  t-esc="line['receive_incoming_qty']"/>
+                                    <t t-set="total_incoming" t-value="total_incoming+line['receive_incoming_qty']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span  t-esc="line['previous_qty']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span  t-esc="line['total_after_qty']"/>
+                                </td>
+                                <td style="border: 1px solid black" class="table-active">
+                                    <span  t-esc="line['balance_qty']"/>
+                                    <t t-set="total_balance" t-value="total_balance+line['balance_qty']"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfooter>
+                            <tr class="table-active">
+                                <th style="border: 1px solid black" colspan="4">
+                                    <span> TOTALS</span>
+                                </th>
+                                <th style="border: 1px solid black" class="text-center">
+                                    <span t-esc="total_incoming"/>
+                                </th>
+                                <th style="border: 1px solid black" colspan="2"/>
+                                <th style="border: 1px solid black" class="text-center">
+                                    <span t-esc="total_balance"/>
+                                </th>
+                            </tr>
+                        </tfooter>
+                    </table>
+                </div>
+            </t>
+        </template>
+        <template id="report_receive_cable_rule_balance">
+            <t t-call="web.html_container">
+                <t t-call="electric_project_enhancement.receive_cable_rule_balance_doc" t-lang="request.env.user.partner_id.lang"/>
+            </t>
+        </template>
+
+    </data>
+</odoo>
+
+
+

@@ -20,31 +20,18 @@
 #################################################################################
 
 {
-    'name': "Telenoc Electric Project Enhancement",
+    'name': "Force Date",
     'author': 'Telenoc, Ahmed Salama',
-    'category': 'Project',
+    'category': 'Inventory',
     'summary': """Product Card Report""",
     'website': 'http://www.telenoc.org',
     'license': 'AGPL-3',
     'description': """
-    This module add new new futures and models
+    This module add force confirmation date on sale order and picking to avoid capture current date
 """,
-    'version': '.1',
-    'depends': ['project', 'sale_stock', 'hr'],
-    'data': [
-        'data/receive_cabel_rule_data.xml',
-        
-        'security/ir.model.access.csv',
-        
-        'reports/report_stock_picking_operation_changes.xml',
-        'reports/report_stock_picking_delivery_slip_changes.xml',
-        'reports/report_receive_cable_rule_balance.xml',
-        
-        'views/project_task_view_changes.xml',
-        'views/stock_picking_view_changes.xml',
-        'views/receive_cable_rule_view.xml',
-        'views/report_receive_cable_rule_balance.xml',
-    ],
+    'version': '.3',
+    'depends': ['stock', 'sale', 'sale_stock'],
+    'data': [],
     'installable': True,
     'application': True,
     'auto_install': False,

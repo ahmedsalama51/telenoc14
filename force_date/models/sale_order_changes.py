@@ -19,6 +19,7 @@ class SaleOrderInherit(models.Model):
 		
 		for order in self.filtered(lambda order: order.partner_id not in order.message_partner_ids):
 			order.message_subscribe([order.partner_id.id])
+		# EDITES: Stop change date order on confirm
 		self.write({
 			'state': 'sale',
 			# 'date_order': fields.Datetime.now()

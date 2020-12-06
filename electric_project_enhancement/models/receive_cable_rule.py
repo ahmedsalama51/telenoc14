@@ -65,6 +65,41 @@ class ReceiveCableRule(models.Model):
 			rec.done_date = False
 			for line in rec.line_ids:
 				line.balance_qty = 0.0
+	
+	@api.model
+	def action_cable_balance_report(self):
+		"""
+		Collect all product lines to get it's last receive line order by balance amount
+		:return: report
+		"""
+		receive_obj = self.env['receive.cable.rule']
+		line_obj = self.env['receive.cable.rule.line']
+		line_ids = []
+		done_active_lines = line_obj.search([('receive_id.active', '=', True), ('receive_id.state', '=', 'done')])
+		products = done_active_lines.mapped('product_id')
+		for prod in products:
+			last_prod_line = done_active_lines.search([('product_id', '=', prod.id)], order='date DESC', limit=1)
+			if last_prod_line:
+				receive_obj += last_prod_line.receive_id
+				line_ids.append({
+					'product_id': prod.id,
+					'location_id': last_prod_line.location_id and last_prod_line.location_id.name or '',
+					'name': prod.display_name,
+					'quantity': last_prod_line.quantity,
+					'uom_id': last_prod_line.product_uom and last_prod_line.product_uom.name or '',
+					'receive_incoming_qty': last_prod_line.receive_incoming_qty,
+					'previous_qty': last_prod_line.previous_qty,
+					'total_after_qty': last_prod_line.total_after_qty,
+					'balance_qty': last_prod_line.balance_qty,
+				})
+		data = {'date': str(fields.Date.today()),
+		        'prod_count': len(products),
+		        'doc_model': self.env['receive.cable.rule'],
+		        'doc_ids': receive_obj.ids,
+		        'docs': receive_obj,
+		        'line_ids': sorted(line_ids, key=lambda i: i['balance_qty'], reverse=True)}
+		return self.env.ref('electric_project_enhancement.report_receive_cable_rule_balance_act'). \
+			with_context(landscape=True).report_action(self, data=data)
 
 
 class ReceiveCableRuleLine(models.Model):
@@ -84,18 +119,18 @@ class ReceiveCableRuleLine(models.Model):
 	product_id = fields.Many2one('product.product', 'Product', check_company=True, index=True, required=True,
 	                             domain="[('type', 'in', ['product', 'consu']),"
 	                                    " '|', ('company_id', '=', False), ('company_id', '=', company_id)]")
-	quantity = fields.Float('Received Qty', digits='Product Unit of Measure', default=0.0, required=True,)
+	quantity = fields.Float('Current Qty', digits='Product Unit of Measure', default=0.0, required=True,)
 	product_uom = fields.Many2one('uom.uom', 'UOM', required=True,
 	                              domain="[('category_id', '=', product_uom_category_id)]")
 	product_uom_category_id = fields.Many2one(related='product_id.uom_id.category_id')
-	receive_incoming_qty = fields.Float("Incoming Qty", compute='_get_qty',
+	receive_incoming_qty = fields.Float("Received From Checklist", compute='_get_qty',
 	                                    help="All incoming shipment for this product")
-	previous_qty = fields.Float("Previous Qty", compute='_get_qty',
+	previous_qty = fields.Float("Previous Cables", compute='_get_qty',
 	                            help="All previous received for it")
-	balance_qty = fields.Float("Balance Qty", readonly=1,
+	balance_qty = fields.Float("Cable Balance", readonly=1,
 	                           help="Balance = all incoming shipment for this product"
 	                                " - (all previous received for it + current received qty)")
-	total_after_qty = fields.Float("Total After Receive", compute='_get_qty',
+	total_after_qty = fields.Float("Total Received Cables", compute='_get_qty',
 	                               help="Total After Received")
 	note = fields.Text("Notes")
 	
@@ -129,6 +164,5 @@ class ReceiveCableRuleLine(models.Model):
 			line.previous_qty = previous_qty
 			line.total_after_qty = previous_qty + line.quantity
 			line.balance_qty = receive_incoming_qty - (line.quantity + previous_qty)
-
 
 # Ahmed Salama Code End.

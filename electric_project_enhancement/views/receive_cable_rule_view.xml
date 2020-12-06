@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!--Menu items-->
+        <!-- Root Menu-->
         <menuitem id="menu_receive_cable_rule_root_sale"
-                  name="Receive Cable Rules"
+                  name="Cable Rules"
                   parent="sale.sale_menu_root"
                   sequence="5"/>
-
+        <!-- Receive Cables-->
         <record id="receive_cable_rule_form_view" model="ir.ui.view">
             <field name="name">receive.cable.rule.form.view</field>
             <field name="model">receive.cable.rule</field>
@@ -113,6 +113,18 @@
                   name="Receive Cable Rules"
                   action="receive_cable_rule_action"
                   parent="menu_receive_cable_rule_root_sale" sequence="1"/>
+        <!-- Cable Balance Action Report-->
+        <record id="server_action_cable_balance_report" model="ir.actions.server">
+            <field name="name">Cable Balance Report</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_receive_cable_rule" />
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="binding_model_id" ref="electric_project_enhancement.model_receive_cable_rule"/>
+            <field name="code">
+                action = model.action_cable_balance_report()
+            </field>
+        </record>
 
     </data>
 </odoo>
