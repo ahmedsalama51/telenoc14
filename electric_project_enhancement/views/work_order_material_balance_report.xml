@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="work_order_material_balance_report_doc">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <!-- Major Parameters-->
+                    <t t-set="total_incoming" t-value="0.0"/>
+                    <t t-set="total_outgoing" t-value="0.0"/>
+                    <t t-set="total_needs" t-value="0.0"/>
+                    <t t-set="total_returns" t-value="0.0"/>
+                    <center>
+                        <h2>Work Order Material Balance</h2>
+                    </center>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>Work order Number:</strong>
+                            <span style="color:darkblue" t-esc="o.name"/>
+                        </div>
+                        <div class="col-2">
+                            <strong>Number:</strong>
+                            <span>         </span>
+                        </div>
+                        <div class="col-3">
+                            <strong>Type:</strong>
+                            <span style="color:darkblue" t-if="o.work_order_type_id" t-esc="o.work_order_type_id.name"/>
+                        </div>
+                        <div class="col-3">
+                            <strong>Class:</strong>
+                            <span style="color:darkblue" t-if="o.work_order_class_id" t-esc="o.work_order_class_id.name"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr class="table-active text-center" style="border: 1px solid black">
+                                <th style="border: 1px solid black">Product Code</th>
+                                <th style="border: 1px solid black">Product Name</th>
+                                <th style="border: 1px solid black">Unit</th>
+                                <th style="border: 1px solid black">Total Incoming</th>
+                                <th style="border: 1px solid black">Total Outgoing</th>
+                                <th style="border: 1px solid black">Needs</th>
+                                <th style="border: 1px solid black">Returns</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center" t-foreach="o.get_material_balance()" t-as="line">
+                                <td style="border: 1px solid black">
+                                    <span t-esc="line['product_code']"/>
+                                </td>
+                                <td style="border: 1px solid black" calss="text-left">
+                                    <span t-esc="line['product_name']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="line['unit']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="line['incoming']"/>
+                                    <t t-set="total_incoming" t-value="total_incoming + line['incoming']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="line['outgoing']"/>
+                                    <t t-set="total_outgoing" t-value="total_outgoing + line['outgoing']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="line['needs']"/>
+                                    <t t-set="total_needs" t-value="total_needs + line['needs']"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span t-esc="line['returns']"/>
+                                    <t t-set="total_returns" t-value="total_returns + line['returns']"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfooter>
+                            <tr class="table-active">
+                                <th style="border: 1px solid black;color:darkblue" colspan="3">
+                                    <span> TOTALS</span>
+                                </th>
+                                <th style="border: 1px solid black;color:darkblue" class="text-center">
+                                    <span t-esc="total_incoming"/>
+                                </th>
+                                <th style="border: 1px solid black;color:darkblue" class="text-center">
+                                    <span t-esc="total_outgoing"/>
+                                </th>
+                                <th style="border: 1px solid black;color:red" class="text-center">
+                                    <span t-esc="total_needs"/>
+                                </th>
+                                <th style="border: 1px solid black;color:green" class="text-center">
+                                    <span t-esc="total_returns"/>
+                                </th>
+                            </tr>
+                        </tfooter>
+                    </table>
+                </div>
+            </t>
+        </template>
+        <template id="work_order_material_balance_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="electric_project_enhancement.work_order_material_balance_report_doc"
+                       t-lang="o.partner_id.lang or request.env.user.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

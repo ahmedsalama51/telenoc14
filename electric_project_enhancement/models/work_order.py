@@ -36,6 +36,49 @@ class ProjectTaskInherit(models.Model):
 		action = self.env["ir.actions.actions"]._for_xml_id("stock.stock_move_action")
 		action['domain'] = [('task_id', '=', self.id)]
 		return action
+	
+	def get_material_balance(self):
+		"""
+		Get move lines balance for report Work Order Material Balance
+		:return: List of product details
+		"""
+		product_ids = self.move_line_ids.mapped('product_id')
+		material_balance = []
+		for prod in product_ids:
+			move_line_ids = self.move_line_ids.filtered(lambda m: m.product_id == prod and m.state == 'done')
+			incoming = sum(m.qty_done for m in move_line_ids.filtered(lambda ml: ml.move_id.picking_type_id.code == 'incoming'))
+			outgoing = sum(m.qty_done for m in move_line_ids.filtered(lambda ml: ml.move_id.picking_type_id.code == 'outgoing'))
+			balance = incoming - outgoing
+			material_balance.append({
+				'product_code': prod.default_code,
+				'product_name': prod.name,
+				'unit': prod.uom_id and prod.uom_id.name or '',
+				'incoming': incoming,
+				'outgoing': outgoing,
+				'needs': balance < 0 and balance or 0.0,
+				'returns': balance > 0 and balance or 0.0,
+			})
+		return material_balance
+	
+	def get_material_moves(self):
+		"""
+		Get move lines for report Work Order Material moves
+		:return: List of move line details
+		"""
+		material_moves = []
+		for move_line in self.move_line_ids. \
+				filtered(lambda ml: ml.move_id.picking_type_id.code in ['incoming', 'outgoing']). \
+				sorted(lambda ml: (ml.product_id, ml.date)):
+			material_moves.append({
+				'product_code': move_line.product_id.default_code,
+				'product_name': move_line.product_id.name,
+				'unit': move_line.product_id.uom_id and move_line.product_id.uom_id.name or '',
+				'type': move_line.move_id.picking_type_id.code,
+				'ref': move_line.reference,
+				'date': move_line.date,
+				'qty': move_line.qty_done,
+			})
+		return material_moves
 
 
 class WorkOrderClass(models.Model):

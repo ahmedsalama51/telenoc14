@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="work_order_material_moves_report_doc">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <!-- Major Parameters-->
+                    <t t-set="total_qty" t-value="0.0"/>
+                    <center>
+                        <h2>Work Order Material Moves</h2>
+                    </center>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>Work order Number:</strong>
+                            <span style="color:darkblue" t-esc="o.name"/>
+                        </div>
+                        <div class="col-2">
+                            <strong>Number:</strong>
+                            <span>         </span>
+                        </div>
+                        <div class="col-3">
+                            <strong>Type:</strong>
+                            <span style="color:darkblue" t-if="o.work_order_type_id" t-esc="o.work_order_type_id.name"/>
+                        </div>
+                        <div class="col-3">
+                            <strong>Class:</strong>
+                            <span style="color:darkblue" t-if="o.work_order_class_id" t-esc="o.work_order_class_id.name"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr class="table-active text-center" style="border: 1px solid black">
+                                <th style="border: 1px solid black">Product Code</th>
+                                <th style="border: 1px solid black">Product Name</th>
+                                <th style="border: 1px solid black">Unit</th>
+                                <th style="border: 1px solid black">Reference</th>
+                                <th style="border: 1px solid black">Date</th>
+                                <th style="border: 1px solid black">Move Type</th>
+                                <th style="border: 1px solid black">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t class="text-center" t-foreach="o.get_material_moves()" t-as="line">
+                                <t t-if="line['type'] == 'incoming'">
+                                    <t t-set="row_style" t-value="'text-align:center;color:green'" />
+                                </t>
+                                <t t-if="line['type'] == 'outgoing'">
+                                    <t t-set="row_style" t-value="'text-align:center;color:red'" />
+                                </t>
+                                <tr t-att-style="row_style">
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="line['product_code']"/>
+                                    </td>
+                                    <td style="border: 1px solid black" calss="text-left">
+                                        <span t-esc="line['product_name']"/>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="line['unit']"/>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="line['ref']"/>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="line['date']"/>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="line['type']"/>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span t-esc="line['qty']"/>
+                                        <t t-if="line['type'] == 'incoming'" t-set="total_qty" t-value="total_qty + line['qty']"/>
+                                        <t t-if="line['type'] == 'outgoing'" t-set="total_qty" t-value="total_qty - line['qty']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfooter>
+                            <tr class="table-active">
+                                <th style="border: 1px solid black;color:darkblue" colspan="6">
+                                    <span> TOTALS</span>
+                                </th>
+                                <th style="border: 1px solid black;color:green" class="text-center">
+                                    <span t-esc="total_qty"/>
+                                </th>
+                            </tr>
+                        </tfooter>
+                    </table>
+                </div>
+            </t>
+        </template>
+        <template id="work_order_material_moves_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="electric_project_enhancement.work_order_material_moves_report_doc"
+                       t-lang="o.partner_id.lang or request.env.user.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

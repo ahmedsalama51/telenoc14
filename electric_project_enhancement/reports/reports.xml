@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="report_receive_cable_rule_balance_act"
+                string="Receive Cable Rules Balance"
+                model="receive.cable.rule"
+                report_type="qweb-html"
+                file="electric_project_enhancement.report_receive_cable_rule_balance"
+                name="electric_project_enhancement.report_receive_cable_rule_balance"
+                print_report_name="'Receive Cable Rules Balance'"/>
+        <report
+                id="report_work_order_material_balance"
+                string="Work Order Material Balance"
+                model="project.task"
+                report_type="qweb-html"
+                file="electric_project_enhancement.work_order_material_balance_report"
+                name="electric_project_enhancement.work_order_material_balance_report"
+                print_report_name="'Work Order [%s] Material Balance' % object.name"/>
+        <report
+                id="report_work_order_material_moves"
+                string="Work Order Material Moves"
+                model="project.task"
+                report_type="qweb-html"
+                file="electric_project_enhancement.work_order_material_moves_report"
+                name="electric_project_enhancement.work_order_material_moves_report"
+                print_report_name="'Work Order [%s] Material Moves' % object.name"/>
+    </data>
+</odoo>

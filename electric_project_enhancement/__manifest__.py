@@ -38,12 +38,14 @@
         
         'reports/report_stock_picking_operation_changes.xml',
         'reports/report_stock_picking_delivery_slip_changes.xml',
-        'reports/report_receive_cable_rule_balance.xml',
+        'reports/reports.xml',
         
         'views/project_task_view_changes.xml',
         'views/stock_picking_view_changes.xml',
         'views/receive_cable_rule_view.xml',
         'views/report_receive_cable_rule_balance.xml',
+        'views/work_order_material_balance_report.xml',
+        'views/work_order_material_moves_report.xml',
     ],
     'installable': True,
     'application': True,

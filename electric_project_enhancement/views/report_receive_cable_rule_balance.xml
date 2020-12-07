@@ -30,7 +30,7 @@
                                 <th style="border: 1px solid black">Num.</th>
                                 <th style="border: 1px solid black">Product</th>
                                 <th style="border: 1px solid black">Current Qty</th>
-                                <th style="border: 1px solid black">UOM</th>
+                                <th style="border: 1px solid black">Unit</th>
                                 <th style="border: 1px solid black">Received From Checklist</th>
                                 <th style="border: 1px solid black">Previous Cables</th>
                                 <th style="border: 1px solid black">Total Received Cables</th>
