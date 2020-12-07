@@ -24,21 +24,29 @@ class StockMoveInherit(models.Model):
 		"""
 		moves_todo = super(StockMoveInherit, self)._action_done(cancel_backorder)
 		for move in moves_todo:
-			move.write({'date': move.date_expected})
-			move.move_line_ids.write({'date': move.date_expected})
+			if move.picking_id:
+				move_date = move.picking_id.scheduled_date
+			else:
+				move_date = move.date_deadline or move.date
+			print("MOVE: DATE", move_date)
+			if move_date:
+				move.write({'date': move_date})
+				move.move_line_ids.write({'date': move_date})
 		return moves_todo
 	
 		
 class StockMoveLineInherit(models.Model):
 	_inherit = 'stock.move.line'
-	
+
 	@api.model
 	def create(self, vals):
 		"""
 		Force use date from move
 		"""
-		line = super(StockMoveLineInherit, self).create(vals)
-		line.date = line.move_id.date
-		return line
+		move_id = self.env['stock.move'].browse(vals.get('move_id'))
+		vals['date'] = move_id.date
+			
+		
+		return super(StockMoveLineInherit, self).create(vals)
 
 # Ahmed Salama Code End.

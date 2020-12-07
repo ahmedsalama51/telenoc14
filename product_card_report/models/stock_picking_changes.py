@@ -27,20 +27,7 @@ class StockPickingInherit(models.Model):
 		for pick in self:
 			# compute and store previous details
 			pick.move_line_ids.execute_update_history()
-			pick.date_done = pick.date
 		return res
-	
-	@api.onchange('date')
-	def _compute_scheduled_date(self):
-		"""
-		Replace core code with new one to depend on previous action date
-		:return:
-		"""
-		for picking in self:
-			picking.scheduled_date = picking.date
-			picking.move_lines.write({
-				'date': picking.date
-			})
 	
 	def action_picking_bulk_validate(self):
 		"""
@@ -57,8 +44,8 @@ class StockPickingInherit(models.Model):
 			for pick in draft_pickings:
 				try:
 					pick.action_confirm()
+					print("%s done draft" % pick.id)
 					results += "<li style='color:green'>%s is Mark as todo successfully</li>" % pick.name
-					_logger.error(green + "%s is Mark as todo successfully" % pick.name + reset)
 				except Exception as e:
 					results += "<li style='color:red'>%s picking not Mark as todo due to:<br/>%s</li>" % (pick.name, e)
 					_logger.error(red + "%s picking not Mark as todo due to:\n %s" % (pick.name, e) + reset)
@@ -69,8 +56,6 @@ class StockPickingInherit(models.Model):
 				try:
 					pick.action_assign()
 					results += "<li style='color:green'>%s is check availability successfully</li>" % pick.name
-					_logger.error(green + "%s is check availability successfully" % pick.name + reset)
-				
 				except Exception as e:
 					results += "<li style='color:red'>%s picking not check availability due to:<br/> %s</li>" % (
 					pick.name, e)
@@ -78,26 +63,29 @@ class StockPickingInherit(models.Model):
 		# validate ready
 		if picking_ids:
 			transfer_obj = self.env['stock.immediate.transfer']
-			ready_pickings = picking_ids.filtered(lambda p: p.state == 'ready' and not p.show_check_availability)
+			ready_pickings = picking_ids.filtered(lambda p: p.state == 'assigned' and not p.show_check_availability)
+			print("ready_pickings: ", ready_pickings)
 			if ready_pickings:
 				# Bulk confirm to save time for ready pickings
 				try:
-					transfer_obj.create({'pick_ids': ready_pickings}).process()
-					results += "<li style='color:green'>%s is validated successfully</li>" \
-					           % ready_pickings.mapped('name')
+					# transfer_obj.create({'pick_ids': ready_pickings}).process()
+					return ready_pickings.button_validate()
+					# results += "<li style='color:green'>%s is validated successfully</li>" \
+					#            % ready_pickings.mapped('name')
 				except Exception as e:
 					results += "<li style='color:red'>%s picking not validate due to:\n %s</li>" % (
 					ready_pickings.mapped('name'), e)
 					_logger.error(red + "%s picking not validate due to:\n %s"
 					              % (ready_pickings.mapped('name'), e) + reset)
 			# Validate one by one remain
-			for pick in picking_ids.filtered(lambda p: p.state != 'done'):
-				try:
-					transfer_obj.create({'pick_ids': pick}).process()
-				except Exception as e:
-					results += "<li style='color:red'>%s picking not validate due to:\n %s</li>" % (pick.name, e)
-					_logger.error(red + "%s picking not validate due to:\n %s"
-					              % (pick.name, e) + reset)
+			# for pick in picking_ids.filtered(lambda p: p.state != 'done'):
+			# 	try:
+			# 		pick.button_validate()
+			# 		print("TRY: ", pick)
+			# 	except Exception as e:
+			# 		results += "<li style='color:red'>%s picking not validate due to:\n %s</li>" % (pick.name, e)
+			# 		_logger.error(red + "%s picking not validate due to:\n %s"
+			# 		              % (pick.name, e) + reset)
 		else:
 			results += "<li style='color:red'>No valid records found to use!!!</li>"
 		results += "</ul>"
