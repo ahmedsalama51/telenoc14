@@ -1,6 +1,17 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api, _
-from odoo.exceptions import Warning
+import logging
+from pytz import timezone, UTC
+
+from odoo import models, api
+from datetime import datetime
+_logger = logging.getLogger(__name__)
+grey = "\x1b[38;21m"
+yellow = "\x1b[33;21m"
+red = "\x1b[31;21m"
+bold_red = "\x1b[31;1m"
+reset = "\x1b[0m"
+green = "\x1b[32m"
+blue = "\x1b[34m"
 # Ahmed Salama Code Start ---->
 
 
@@ -11,24 +22,27 @@ class ProductCardReport(models.AbstractModel):
         move_obj = self.env['stock.move.line']
         product_obj = self.env['product.product']
         product = product_obj.sudo().browse(data['product_id'][0])
-        main_domain = [
-            ('product_id', '=', data.get('product_id')[0]),
-            ('location_dest_id', 'in', data.get('location_ids')),
-            ('date', '<', data.get('date_from')),  # TODO: Effected Date [date_done]
-            ('state', 'in', data.get('states_value'))  # TODO: TO be filtered using selection field and exclude cancel
-        ]
-        # Type in ----> وارد
-        in_moves = move_obj.sudo().search(main_domain)
+        main_domain = ['|',
+                       ('location_id', 'in', data.get('location_ids')),
+                       ('location_dest_id', 'in', data.get('location_ids')),
+                       ('product_id', '=', data.get('product_id')[0]),
+                       ('date', '<', data.get('date_from')),
+                       ('state', 'in', data.get('states_value'))
+                       ]
+        all_moves = move_obj.sudo().search(main_domain)
         total_value = total_in_qty = total_out_qty = 0.0
-        for move_line in in_moves:
-            total_in_qty += move_line.qty_done
-            total_value += move_line.qty_done * move_line.move_id.price_unit
-        # Type out ----> صادر
-        main_domain[1] = ('location_id', 'in', data.get('location_ids'))
-        out_moves = move_obj.sudo().search(main_domain)
-        for move_line in out_moves:
-            total_out_qty -= move_line.qty_done
-            total_value -= move_line.qty_done * move_line.product_id.standard_price
+        for move_line in all_moves:
+            # Type in ----> وارد
+            price = move_line.move_id.price_unit or move_line.product_id.standard_price
+            if move_line.location_dest_id.id in data['location_ids']:
+                total_in_qty += move_line.qty_done
+                if price:
+                    total_value += move_line.qty_done * price
+            # Type out ----> صادر
+            elif move_line.location_id.id in data['location_ids']:
+                total_out_qty -= move_line.qty_done
+                if price:
+                    total_value -= move_line.qty_done * price
         total_balance = total_in_qty + total_out_qty
         # TODO: Use value from main product cost
         # total_value = total_balance * product.standard_price
@@ -54,6 +68,7 @@ class ProductCardReport(models.AbstractModel):
                        ('date', '<=', data.get('date_to')),
                        ('state', 'in', data.get('states_value'))]
         moves = move_obj.sudo().search(main_domain, order="date asc")
+        _logger.info(blue + "All moves: %s " % moves + reset)
         move_list = []
         for i, move_line in enumerate(moves):
             if i == 0:
@@ -78,10 +93,15 @@ class ProductCardReport(models.AbstractModel):
                 location = move_line.location_id.complete_name
             
             balance = debit - credit
-            price = move_line.move_id.price_unit
+            price = move_line.move_id.price_unit or move_line.product_id.standard_price
             current_balance = prev_balance + balance
-            move_list.append({
-                'date': move_line.date,
+            # Getting correct date
+            old_tz = timezone('UTC')
+            tz = self.env.user.tz
+            tz = timezone(tz)
+            date = old_tz.localize(move_line.date).astimezone(tz)
+            move_dict = {
+                'date': datetime.strftime(date, '%d/%m/%Y %H:%M:%S'),
                 'number': move_line.picking_id.name,
                 'type': move_line.move_id.picking_type_id and
                         move_line.move_id.picking_type_id.code or 'incoming',
@@ -94,7 +114,9 @@ class ProductCardReport(models.AbstractModel):
                 'price_unit': price,
                 'value': move_line.curr_cost,
                 
-            })
+            }
+            _logger.info(yellow + "Dict moves: %s " % move_dict + reset)
+            move_list.append(move_dict)
         return move_list, moves
     
     @api.model

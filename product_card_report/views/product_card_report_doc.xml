@@ -40,6 +40,7 @@
                             <tr class="table-active text-center" style="border: 1px solid black">
                                 <th style="border: 1px solid black">Code</th>
                                 <th style="border: 1px solid black">Name</th>
+                                <th style="border: 1px solid black">IN/Out</th>
                                 <th style="border: 1px solid black">Starting Balance</th>
                                 <th style="border: 1px solid black">Cost</th>
                                 <th style="border: 1px solid black">Starting Value</th>
@@ -52,6 +53,11 @@
                                 </td>
                                 <td style="border: 1px solid black" calss="text-left">
                                     <span style="color:darkblue" t-esc="data['product'].display_name"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                    <span style="color:green" t-esc="totals['total_in_qty']"/>
+                                    <span style="color:darkblue">/</span>
+                                    <span style="color:red" t-esc="totals['total_out_qty']"/>
                                 </td>
                                 <td style="border: 1px solid black">
                                     <span style="color:darkblue" t-esc="totals['start_balance']"/>
@@ -77,6 +83,7 @@
                                     <th style="border: 1px solid black">Ref</th>
                                     <th style="border: 1px solid black">Type</th>
                                     <th style="border: 1px solid black">Location</th>
+                                    <th style="border: 1px solid black">Cost</th>
                                     <th style="border: 1px solid black">In</th>
                                     <th style="border: 1px solid black">Out</th>
                                     <th style="border: 1px solid black">Balance</th>
@@ -97,6 +104,10 @@
                                         <td style="border: 1px solid black"><span t-esc="move['number']"/></td>
                                         <td style="border: 1px solid black"><span t-esc="move['type']"/></td>
                                         <td style="border: 1px solid black"><span t-esc="move['location']"/></td>
+                                         <td style="border: 1px solid black">
+                                            <span t-esc="move['price_unit']"/>
+                                            <span t-esc="symbol"/>
+                                        </td>
                                         <td style="border: 1px solid black">
                                             <span t-esc="move['debit']"/>
                                             <t t-set="total_debit" t-value="total_debit+move['debit']"/>
@@ -119,7 +130,7 @@
                             </tbody>
                             <ttail>
                                 <tr style="text-align:center;">
-                                    <th colspan="4" class="table-active" style="border: 1px solid black">
+                                    <th colspan="5" class="table-active" style="border: 1px solid black">
                                         <span  style="color:darkblue">Final Amounts</span>
                                     </th>
                                     <th class="table-active" style="border: 1px solid black">
@@ -132,8 +143,8 @@
                                     <th class="table-active" style="border: 1px solid black">
                                         <span  style="color:darkblue" t-esc="final_balance"/>
                                     </th>
-                                    <th class="table-active" style="border: 1px solid black">
-                                        <span  style="color:darkblue" t-esc="data['get_move_lines'][-1]['value']"/>
+                                    <th class="table-active" style="border: 1px solid black;color:darkblue">
+                                        <span t-esc="data['get_move_lines'][-1]['value']"/>
                                         <span t-esc="symbol"/>
                                     </th>
                                 </tr>
