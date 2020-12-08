@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Root Menu-->
+        <menuitem id="menu_hr_supervisor_attendance_root_employee"
+                  name="Supervisor Attendance"
+                  parent="hr.menu_hr_root"
+                  sequence="5"/>
+        <menuitem id="menu_hr_supervisor_attendance_root_attendance"
+                  name="Supervisor Attendance"
+                  parent="hr_attendance.menu_hr_attendance_root"
+                  sequence="5"/>
+        <!-- Supervisor Attendances-->
+        <record id="hr_supervisor_attendance_form_view" model="ir.ui.view">
+            <field name="name">hr.supervisor.attendance.form.view</field>
+            <field name="model">hr.supervisor.attendance</field>
+            <field name="arch" type="xml">
+                <form string="Supervisor Attendance">
+                    <header>
+                        <button name="action_attended" type="object" string="Attend Done" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','draft')]}"/>
+                        <button name="action_overtime" type="object" string="Overtime Done" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','attended')]}"/>
+                        <button name="action_done" type="object" string="Confirm" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','overtime')]}" groups="hr.group_hr_manager"/>
+                        <button name="action_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': [('state','in',('cancel','done'))]}"/>
+                        <button name="action_draft" type="object" groups="hr.group_hr_manager"
+                                string="Set to Draft" attrs="{'invisible': [('state','not in',('done', 'cancel'))]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Number"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="active" invisible="1"/>
+                                <label for="employee_id"/>
+                                <div class="o_row">
+                                    <field name="employee_id"/>
+                                    <button type="object" name="load_supervisor_employees" class="btn btn-info"
+                                            string="Load Employees" icon="fa-refresh"
+                                            attrs="{'invisible':[('state','!=','draft')]}"/>
+                                </div>
+                                <label for="absent_count"/>
+                                <div class="o_row">
+                                    <field name="absent_count"/>
+                                    <span class="oe_read_only" style="color:#008784">Employee</span>
+                                </div>
+                                <field name="total_overtime" widget="float_time"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="employees" string="Attendance">
+                                <field name="line_ids" attrs="{'readonly':[('state','in',('done','cancel'))]}">
+                                    <tree editable="bottom"
+                                          decoration-success="state == 'done'"
+                                          decoration-info="state == 'attended'"
+                                          decoration-warning="state == 'overtime'"
+                                          decoration-muted="state == 'cancel'">
+                                        <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}"
+                                               domian="[('parent_id','=', parent.employee_id)]"/>
+                                        <field name="absent"
+                                               attrs="{'readonly':[('state','!=','draft')]}"/>
+                                        <field name="overtime" widget="float_time" sum="overtime"
+                                               attrs="{'readonly':[('absent','=',True),('state','!=','attended')]}"/>
+                                        <field name="note" optional="show"/>
+                                        <field name="date" optional="hide"/>
+                                        <field name="state" optional="hide" readonly="1"/>
+                                    </tree>
+                                </field>
+                                <field name="notes" placeholder="Attendance Notes...."/>
+                            </page>
+                            <page name="location" string="Location">
+                                <group>
+                                    <field name="location"/>
+                                    <field name="dimension"/>
+                                    <field name="location_url" widget="url"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="hr_supervisor_attendance_tree_view" model="ir.ui.view">
+            <field name="name">hr.supervisor.attendance.tree.view</field>
+            <field name="model">hr.supervisor.attendance</field>
+            <field name="arch" type="xml">
+                <tree string="Supervisors Attendance"
+                      decoration-success="state == 'done'"
+                      decoration-info="state == 'attended'"
+                      decoration-warning="state == 'overtime'"
+                      decoration-muted="state == 'cancel'">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="date"/>
+                    <field name="absent_count" sum="absent"/>
+                    <field name="total_overtime" sum="total_overtime"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_supervisor_attendance_search_view" model="ir.ui.view">
+            <field name="name">hr.supervisor.attendance.search.view</field>
+            <field name="model">hr.supervisor.attendance</field>
+            <field name="arch" type="xml">
+                <search string="Supervisors Attendance">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <separator/>
+                    <filter string="Attendance Date" name="date" date="date"/>
+                    <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_by_employee" string="Super Visor" context="{'group_by':'employee_id'}"/>
+                        <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter name="group_by_date" string="Date" context="{'group_by':'date:month'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="hr_supervisor_attendance_action" model="ir.actions.act_window">
+            <field name="name">Attendance</field>
+            <field name="res_model">hr.supervisor.attendance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_group_by_date':1}</field>
+        </record>
+        <menuitem id="menu_hr_supervisor_attendance_employee"
+                  name="Attendance"
+                  action="hr_supervisor_attendance_action"
+                  parent="menu_hr_supervisor_attendance_root_employee" sequence="1"/>
+        <menuitem id="menu_hr_supervisor_attendance_attendance"
+                  name="Attendance"
+                  action="hr_supervisor_attendance_action"
+                  parent="menu_hr_supervisor_attendance_root_attendance" sequence="1"/>
+        <!-- Supervisor Attendance Line-->
+        <record id="hr_supervisor_attendance_line_tree_view" model="ir.ui.view">
+            <field name="name">hr.supervisor.attendance.line.tree.view</field>
+            <field name="model">hr.supervisor.attendance.line</field>
+            <field name="arch" type="xml">
+                <tree string="Supervisors Attendance Lines"
+                      decoration-success="state == 'done'"
+                      decoration-info="state == 'attended'"
+                      decoration-warning="state == 'overtime'"
+                      decoration-muted="state == 'cancel'" create="0" edit="0" delete="0">
+                    <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="date" readonly="1"/>
+                    <field name="absent"
+                           attrs="{'readonly':[('state','!=','draft')]}"/>
+                    <field name="overtime" widget="float_time" sum="overtime"
+                           attrs="{'readonly':[('absent','=',True),('state','!=','attended')]}"/>
+                    <field name="note" optional="show"/>
+                    <field name="state" optional="hide" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_supervisor_attendance_line_search_view" model="ir.ui.view">
+            <field name="name">hr.supervisor.attendance.line.search.view</field>
+            <field name="model">hr.supervisor.attendance.line</field>
+            <field name="arch" type="xml">
+                <search string="Supervisors Attendance Line">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <separator/>
+                    <filter string="Attendance Date" name="date" date="date"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_by_date" string="Date" context="{'group_by':'date:month'}"/>
+                        <separator/>
+                        <filter name="group_by_attendance" string="Attendance" context="{'group_by':'super_attend_id'}"/>
+                        <filter name="group_by_employee" string="Employee" context="{'group_by':'employee_id'}"/>
+                        <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_supervisor_attendance_line_action" model="ir.actions.act_window">
+            <field name="name">Attendance Lines</field>
+            <field name="res_model">hr.supervisor.attendance.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_group_by_date':1, 'search_default_group_by_employee':1}</field>
+        </record>
+        <menuitem id="menu_hr_supervisor_attendance_line_employee"
+                  name="Attendance Lines"
+                  sequence="2"
+                  action="hr_supervisor_attendance_line_action"
+                  parent="menu_hr_supervisor_attendance_root_employee"/>
+        <menuitem id="menu_hr_supervisor_attendance_line_attendance"
+                  name="Attendance Lines"
+                  action="hr_supervisor_attendance_line_action"
+                  parent="menu_hr_supervisor_attendance_root_attendance" sequence="2"/>
+
+
+
+    </data>
+</odoo>
