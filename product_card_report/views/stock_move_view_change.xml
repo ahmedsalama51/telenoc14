@@ -16,10 +16,15 @@
                     <field name="pre_cost" optional="show"/>
                     <field name="curr_qty" optional="show"/>
                     <field name="curr_cost" optional="show"/>
+                    <field name="move_type" optional="show"/>
+                    <field name="last_move_ref" optional="hide"/>
+                    <field name="special_case" optional="hide"/>
                 </xpath>
                 <xpath expr="//tree" position="attributes">
-                    <attribute name="decoration-success">signed_done_qty &gt; 0</attribute>
-                    <attribute name="decoration-info">signed_done_qty &lt; 0</attribute>
+                    <attribute name="decoration-success">move_type == 'Incoming'</attribute>
+                    <attribute name="decoration-info">move_type == 'Outgoing'</attribute>
+                    <attribute name="decoration-warning">move_type == 'Internal'</attribute>
+                    <attribute name="decoration-primary">move_type == 'Adjust'</attribute>
                 </xpath>
             </field>
         </record>
@@ -38,6 +43,9 @@
                     <field name="pre_cost"/>
                     <field name="curr_qty"/>
                     <field name="curr_cost"/>
+                    <field name="move_type" readonly="1"/>
+                    <field name="last_move_ref" readonly="1"/>
+                    <field name="special_case" readonly="1"/>
                 </xpath>
             </field>
         </record>
@@ -48,6 +56,18 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='product_id']" position="after">
                     <field name="price_unit" readonly="1"/>
+                    <field name="picking_type_id" readonly="1"/>
+                    <field name="inventory_id" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_card_stock_move_line_view_search_inherit" model="ir.ui.view">
+            <field name="name">product_card.stock.move.line.search.inherit</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='by_date']" position="after">
+                    <filter string="Move Type" name="by_move_type" domain="[]" context="{'group_by': 'move_type'}"/>
                 </xpath>
             </field>
         </record>

@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="group_hr_supervisor" model="res.groups">
-        <field name="name">Supervisor</field>
-        <field name="comment">The user will have access to create and edit supervisor attendance.</field>
+
+    <record id="group_hr_department_head" model="res.groups">
+        <field name="name">Department Head</field>
+        <field name="comment">The user will have lowest access on hr.</field>
         <field name="category_id" ref="base.module_category_human_resources_employees"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+    <record id="hr.group_hr_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('hr_supervisor_attendance.group_hr_department_head'))]"/>
+    </record>
+    <record id="group_hr_supervisor_attendance_rule" model="res.groups">
+        <field name="name">Supervisor Attendance Editor</field>
+        <field name="comment">The user will have access to create and edit supervisor attendance.</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
         <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>

@@ -2,7 +2,7 @@
 {
     'name': 'HR Supervisor Attendance',
     'summary': 'New Features for HR supervisor attendance',
-    'version': '1.1',
+    'version': '1.3',
     'license': "AGPL-3",
     'author': 'Telenoc, Ahmed Salama',
     'category': 'Human Resources/Attendances',

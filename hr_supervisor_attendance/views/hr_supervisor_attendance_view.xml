@@ -40,13 +40,15 @@
                         </div>
                         <group>
                             <group>
+                                <field name="edit_ability" invisible="1"/>
                                 <field name="active" invisible="1"/>
                                 <label for="employee_id"/>
                                 <div class="o_row">
-                                    <field name="employee_id"/>
+                                    <field name="employee_id" force_save="1"
+                                           attrs="{'readonly':['|',('edit_ability','=',False),('state','!=','draft')]}"/>
                                     <button type="object" name="load_supervisor_employees" class="btn btn-info"
-                                            string="Load Employees" icon="fa-refresh"
-                                            attrs="{'invisible':[('state','!=','draft')]}"/>
+                                            string="Re-Load Employees" icon="fa-refresh"
+                                            attrs="{'invisible':['|',('state','!=','draft'),('edit_ability','=',False)]}"/>
                                 </div>
                                 <label for="absent_count"/>
                                 <div class="o_row">
@@ -56,27 +58,27 @@
                                 <field name="total_overtime" widget="float_time"/>
                             </group>
                             <group>
-                                <field name="date"/>
+                                <field name="date" attrs="{'readonly':['|',('edit_ability','=',False),('state','!=','draft')]}"/>
                                 <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                         </group>
                         <notebook>
                             <page name="employees" string="Attendance">
                                 <field name="line_ids" attrs="{'readonly':[('state','in',('done','cancel'))]}">
-                                    <tree editable="bottom"
+                                    <tree editable="bottom" create="0"
                                           decoration-success="state == 'done'"
                                           decoration-info="state == 'attended'"
                                           decoration-warning="state == 'overtime'"
                                           decoration-muted="state == 'cancel'">
-                                        <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}"
-                                               domian="[('parent_id','=', parent.employee_id)]"/>
-                                        <field name="absent"
+                                        <field name="employee_id" force_save="1" width="3" domian="[('parent_id','=', parent.employee_id)]"
+                                               attrs="{'readonly':['|',('parent.edit_ability','=',False),('state','!=','draft')]}"/>
+                                        <field name="absent" width="1"
                                                attrs="{'readonly':[('state','!=','draft')]}"/>
-                                        <field name="overtime" widget="float_time" sum="overtime"
-                                               attrs="{'readonly':[('absent','=',True),('state','!=','attended')]}"/>
-                                        <field name="note" optional="show"/>
-                                        <field name="date" optional="hide"/>
-                                        <field name="state" optional="hide" readonly="1"/>
+                                        <field name="overtime" widget="float_time" sum="overtime" width="1"
+                                               attrs="{'readonly':['|',('absent','=',True),('state','!=','attended')]}"/>
+                                        <field name="note" optional="show" width="4"/>
+                                        <field name="date" optional="hide" width="2"/>
+                                        <field name="state" optional="hide" readonly="1" width="1"/>
                                     </tree>
                                 </field>
                                 <field name="notes" placeholder="Attendance Notes...."/>
@@ -110,10 +112,10 @@
                     <field name="name"/>
                     <field name="employee_id"/>
                     <field name="date"/>
-                    <field name="absent_count" sum="absent"/>
+                    <field name="absent_count" sum="absent" force_save="1"/>
                     <field name="total_overtime" sum="total_overtime"/>
                     <field name="company_id" groups="base.group_multi_company" optional="hide"/>
-                    <field name="state"/>
+                    <field name="state" force_save="1"/>
                 </tree>
             </field>
         </record>
@@ -151,6 +153,25 @@
                   action="hr_supervisor_attendance_action"
                   parent="menu_hr_supervisor_attendance_root_attendance" sequence="1"/>
         <!-- Supervisor Attendance Line-->
+        <record id="hr_supervisor_attendance_line_form_view" model="ir.ui.view">
+            <field name="name">hr.supervisor.attendance.line.form.view</field>
+            <field name="model">hr.supervisor.attendance.line</field>
+            <field name="arch" type="xml">
+                <form string="Supervisors Attendance Lines" create="0" edit="0" delete="0">
+                    <group col="4">
+                        <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="date" readonly="1"/>
+                        <field name="absent"
+                               attrs="{'readonly':[('state','!=','draft')]}"/>
+                        <field name="absent_value"/>
+                        <field name="overtime" widget="float_time"
+                               attrs="{'readonly':[('absent','=',True),('state','!=','attended')]}"/>
+                        <field name="note"/>
+                        <field name="state" readonly="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
         <record id="hr_supervisor_attendance_line_tree_view" model="ir.ui.view">
             <field name="name">hr.supervisor.attendance.line.tree.view</field>
             <field name="model">hr.supervisor.attendance.line</field>
@@ -160,14 +181,13 @@
                       decoration-info="state == 'attended'"
                       decoration-warning="state == 'overtime'"
                       decoration-muted="state == 'cancel'" create="0" edit="0" delete="0">
-                    <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                    <field name="date" readonly="1"/>
-                    <field name="absent"
-                           attrs="{'readonly':[('state','!=','draft')]}"/>
-                    <field name="overtime" widget="float_time" sum="overtime"
-                           attrs="{'readonly':[('absent','=',True),('state','!=','attended')]}"/>
-                    <field name="note" optional="show"/>
-                    <field name="state" optional="hide" readonly="1"/>
+                    <field name="employee_id" attrs="{'readonly':[('state','!=','draft')]}" width="3"/>
+                    <field name="date" width="2"/>
+                    <field name="absent" optional="hide"/>
+                    <field name="absent_value" sum="absent_value" force_save="1" string="Absent" width="1"/>
+                    <field name="overtime" widget="float_time" sum="overtime" width="1"/>
+                    <field name="note" optional="show" width="4"/>
+                    <field name="state" optional="hide" readonly="1" width="1"/>
                 </tree>
             </field>
         </record>
@@ -190,7 +210,6 @@
                 </search>
             </field>
         </record>
-
         <record id="hr_supervisor_attendance_line_action" model="ir.actions.act_window">
             <field name="name">Attendance Lines</field>
             <field name="res_model">hr.supervisor.attendance.line</field>

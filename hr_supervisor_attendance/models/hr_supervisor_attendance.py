@@ -36,7 +36,7 @@ class HRSupervisorAttendance(models.Model):
 	                             states={'draft': [('readonly', False)]})
 	name = fields.Char(default="/", readonly=1)
 	state = fields.Selection(_STATES, "State", default='draft')
-	date = fields.Datetime("Date", default=fields.Datetime.now, readonly=1,
+	date = fields.Datetime("Date", default=fields.Datetime.now(), readonly=1,
 	                       states={'draft': [('readonly', False)]})
 	line_ids = fields.One2many('hr.supervisor.attendance.line', 'super_attend_id', "Employees", readonly=1,
 	                           states={'draft': [('readonly', False)], 'attended': [('readonly', False)],
@@ -48,10 +48,12 @@ class HRSupervisorAttendance(models.Model):
 	dimension = fields.Char("Dimension", compute='get_location')
 	location_url = fields.Char(compute='get_location')
 	
-	# Totals
+	# Access Writes
+	edit_ability = fields.Boolean("Can Edit?", default=False, compute='edit_ability_check')
 	
+	# Totals
 	absent_count = fields.Integer("Total Absent", compute='amount_total')
-	total_overtime = fields.Integer("Total Overtime", compute='amount_total')
+	total_overtime = fields.Float("Total Overtime", compute='amount_total')
 	
 	# ------------------#
 	# High Level methods #
@@ -65,7 +67,26 @@ class HRSupervisorAttendance(models.Model):
 		:return: SUPER
 		"""
 		vals['name'] = self.env['ir.sequence'].sudo().next_by_code('hr.supervisor.attendance.code')
-		return super(HRSupervisorAttendance, self).create(vals)
+		attend = super(HRSupervisorAttendance, self).create(vals)
+		return attend
+	
+	@api.model
+	def default_get(self, fields):
+		"""
+		Load default employee on open for create
+		:param fields: default dict
+		:return: SUPER
+		"""
+		defaults = super(HRSupervisorAttendance, self).default_get(fields)
+		if not defaults.get('employee_id'):
+			employee_id = self.env.user.employee_id
+			if not employee_id:
+				raise Warning(_("Current user:%s ]\n have no related employee!!!, please check it first" % self.env.user.name))
+			defaults['employee_id'] = employee_id.id
+		employee_id = self.env['hr.employee'].browse(defaults.get('employee_id'))
+		defaults['line_ids'] = [(0, 0, {'employee_id': child.id, 'state': 'draft'})
+		                        for child in employee_id.child_ids]
+		return defaults
 	
 	# ---------------------#
 	# State Action methods #
@@ -114,6 +135,7 @@ class HRSupervisorAttendance(models.Model):
 	# Main methods #
 	# -------------#
 	
+	# @api.onchange('employee_id')
 	def load_supervisor_employees(self):
 		"""
 		Load employees that this supervisor is supervise on them
@@ -122,15 +144,22 @@ class HRSupervisorAttendance(models.Model):
 		if self.line_ids:
 			# Remove old lines to reload them
 			self.line_ids = [(5, 0)]
-		
+
 		if self.employee_id.child_ids:
 			# Create new lines
-			self.line_ids = [(0, 0, {
-				'super_attend_id': self.id,
-				'employee_id': child.id
-			}) for child in self.employee_id.child_ids]
+			self.line_ids = self._get_default_child_list()
 		else:
 			raise Warning(_("This Employee: %s]\n have no supervised employees!!! " % self.employee_id.name))
+	
+	def _get_default_child_list(self):
+		"""
+		GET LIST OF LINES
+		:return:
+		"""
+		if self.employee_id.child_ids:
+			# Create new lines
+			return [(0, 0, {'super_attend_id': self.id,
+			                'employee_id': child.id}) for child in self.employee_id.child_ids]
 	
 	@api.onchange('employee_id')
 	def get_location(self):
@@ -161,6 +190,17 @@ class HRSupervisorAttendance(models.Model):
 		for attend in self:
 			if attend.date and attend.line_ids:
 				attend.line_ids.write({'date': attend.date})
+	
+	def edit_ability_check(self):
+		"""
+		Give Ability to edit only to HR manger users
+		:return:
+		"""
+		for attend in self:
+			edit_ability = False
+			if self.env.user.has_group('hr.group_hr_manager'):
+				edit_ability = True
+			attend.edit_ability = edit_ability
 
 
 class HRSupervisorAttendanceLine(models.Model):
@@ -170,11 +210,11 @@ class HRSupervisorAttendanceLine(models.Model):
 	
 	name = fields.Char("Name", readonly=1)
 	super_attend_id = fields.Many2one('hr.supervisor.attendance', 'Supervisor Attendance', ondelete='cascade')
-	employee_id = fields.Many2one('hr.employee', "Employee", required=1)
-	state = fields.Selection(_STATES, "State", default='draft')
+	employee_id = fields.Many2one('hr.employee', "Employee", requied=True)
+	state = fields.Selection(_STATES, "State", default='draft', readonly=True)
 	absent = fields.Boolean("Absent", help="Checked if employee is absent", readonly=1, group_operator='bool_and',
-	                        states={'draft': [('readonly', False)], 'attended': [('readonly', False)],
-	                                'overtime': [('readonly', False)]})
+	                        states={'draft': [('readonly', False)]})
+	absent_value = fields.Integer("Absent Value", readonly=False)
 	overtime = fields.Float("Overtime", help="Add Overtime")
 	note = fields.Text("Note")
 	date = fields.Datetime('Date')
@@ -186,6 +226,8 @@ class HRSupervisorAttendanceLine(models.Model):
 		:param vals: create vals
 		:return: super
 		"""
+		if 'absent' in vals:
+			vals['absent_value'] = 1 and vals.get('absent') or 0
 		line = super(HRSupervisorAttendanceLine, self).create(vals)
 		if line.super_attend_id:
 			line.date = line.super_attend_id.date
@@ -206,15 +248,22 @@ class HRSupervisorAttendanceLine(models.Model):
 			# attend_date = old_tz.localize(attend.super_attend_id.date).astimezone(tz)
 			# ('date', '>=', attend_date.replace(hour=0, minute=0, second=0, microsecond=0)),
 			# ('date', '<=', attend_date.replace(hour=23, minute=59, second=59))]
-			domain = [('employee_id', '=', attend.employee_id.id),
-			          ('date', '>=', attend.super_attend_id.date.replace(hour=0, minute=0, second=0, microsecond=0)),
-			          ('date', '<=', attend.super_attend_id.date.replace(hour=23, minute=59, second=59))]
-			if isinstance(attend.id, int):
-				domain.append(('id', '!=', attend.id))
-			other_attendance = line_obj.search(domain)
-			_logger.info(red + "Constrain Domain:: %s" % domain + reset)
-			_logger.info(yellow + "other_attendance:: %s" % other_attendance + reset)
-			if other_attendance:
-				raise Warning(_("Employee: %s Can't have move than 1 attend on same day.\n others: %s" %
-				                (attend.employee_id.name, other_attendance.mapped('name'))))
+			if attend.employee_id:
+				domain = [('employee_id', '=', attend.employee_id.id),
+				          ('date', '>=', attend.super_attend_id.date.replace(hour=0, minute=0, second=0, microsecond=0)),
+				          ('date', '<=', attend.super_attend_id.date.replace(hour=23, minute=59, second=59))]
+				if isinstance(attend.id, int):
+					domain.append(('id', '!=', attend.id))
+				other_attendance = line_obj.search(domain)
+				_logger.info(red + "Constrain Domain:: %s" % domain + reset)
+				_logger.info(yellow + "other_attendance:: %s" % other_attendance + reset)
+				if other_attendance:
+					raise Warning(_("Employee: %s Can't have move than 1 attend on same day.\n others: %s" %
+					                (attend.employee_id.name, other_attendance.mapped('name'))))
+				
+	def write(self, vals):
+		if 'absent' in vals:
+			vals['absent_value'] = 1 and vals.get('absent') or 0
+		return super(HRSupervisorAttendanceLine, self).write(vals)
+		
 # Ahmed Salama Code End.
