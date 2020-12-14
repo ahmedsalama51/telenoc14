@@ -16,14 +16,14 @@ class ReceiveCableRule(models.Model):
 	name = fields.Char("Number", readonly=1, default='/')
 	active = fields.Boolean("Active", default=True, track_visibility='onchange')
 	employee_id = fields.Many2one("hr.employee", "Receiver", track_visibility='onchange', readonly=1,
-	                              states={'draft': [('readonly', False)]})
+	                              states={'draft': [('readonly', False)]}, tracking=True)
 	location_id = fields.Many2one('stock.location', "Receive Location",
 	                              check_company=True, readonly=True, required=True,
-	                              states={'draft': [('readonly', False)]})
-	state = fields.Selection(_STATES, "State", default='draft')
+	                              states={'draft': [('readonly', False)]}, tracking=True)
+	state = fields.Selection(_STATES, "State", default='draft', tracking=True)
 	date = fields.Datetime("Date", default=fields.Datetime.now(), readonly=1, track_visibility='onchange',
 	                       states={'draft': [('readonly', False)]}, help="Received Date")
-	done_date = fields.Datetime("Done Date", readonly=1, help="Set Done Date")
+	done_date = fields.Datetime("Done Date", readonly=1, help="Set Done Date", tracking=True)
 	company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company,
 	                             index=True, required=True, readonly=1,
 	                             states={'draft': [('readonly', False)]})

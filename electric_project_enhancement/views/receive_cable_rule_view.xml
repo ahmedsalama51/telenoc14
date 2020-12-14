@@ -19,7 +19,7 @@
                                 attrs="{'invisible': [('state','!=','draft')]}"/>
                         <button name="action_draft" type="object"
                                 string="Set to Draft" attrs="{'invisible': [('state','not in',('done', 'cancel'))]}"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,,done"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">

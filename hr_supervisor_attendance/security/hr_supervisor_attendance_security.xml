@@ -14,7 +14,6 @@
         <field name="name">Supervisor Attendance Editor</field>
         <field name="comment">The user will have access to create and edit supervisor attendance.</field>
         <field name="category_id" ref="base.module_category_hidden"/>
-        <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
         <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
 </odoo>

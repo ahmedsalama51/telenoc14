@@ -27,7 +27,7 @@
                                 attrs="{'invisible': [('state','in',('cancel','done'))]}"/>
                         <button name="action_draft" type="object" groups="hr.group_hr_manager"
                                 string="Set to Draft" attrs="{'invisible': [('state','not in',('done', 'cancel'))]}"/>
-                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,attended,overtime,done"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">

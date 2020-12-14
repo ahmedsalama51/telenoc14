@@ -30,7 +30,8 @@ class HRSupervisorAttendance(models.Model):
 	_order = 'date, employee_id'
 	
 	employee_id = fields.Many2one('hr.employee', "Supervisor", requied=True, readonly=1,
-	                              states={'draft': [('readonly', False)]}, default=lambda self: self.env.user.employee_id)
+	                              states={'draft': [('readonly', False)]},
+	                              default=lambda self: self.env.user.employee_id)
 	company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company,
 	                             index=True, required=True, readonly=1,
 	                             states={'draft': [('readonly', False)]})
@@ -55,9 +56,9 @@ class HRSupervisorAttendance(models.Model):
 	absent_count = fields.Integer("Total Absent", compute='amount_total')
 	total_overtime = fields.Float("Total Overtime", compute='amount_total')
 	
-	# ------------------#
-	# High Level methods #
-	# ------------------#
+	# --------------------------------------------------
+	# CRUD
+	# --------------------------------------------------
 	
 	@api.model
 	def create(self, vals):
@@ -81,16 +82,17 @@ class HRSupervisorAttendance(models.Model):
 		if not defaults.get('employee_id'):
 			employee_id = self.env.user.employee_id
 			if not employee_id:
-				raise Warning(_("Current user:%s ]\n have no related employee!!!, please check it first" % self.env.user.name))
+				raise Warning(
+					_("Current user:%s ]\n have no related employee!!!, please check it first" % self.env.user.name))
 			defaults['employee_id'] = employee_id.id
 		employee_id = self.env['hr.employee'].browse(defaults.get('employee_id'))
 		defaults['line_ids'] = [(0, 0, {'employee_id': child.id, 'state': 'draft'})
 		                        for child in employee_id.child_ids]
 		return defaults
 	
-	# ---------------------#
-	# State Action methods #
-	# ---------------------#
+	# --------------------------------------------------
+	# Actions
+	# --------------------------------------------------
 	
 	def action_attended(self):
 		"""
@@ -131,9 +133,10 @@ class HRSupervisorAttendance(models.Model):
 		for rec in self:
 			rec.state = 'draft'
 			rec.line_ids.write({'state': 'draft'})
-	# -------------#
-	# Main methods #
-	# -------------#
+	
+	# --------------------------------------------------
+	# Business methods
+	# --------------------------------------------------
 	
 	# @api.onchange('employee_id')
 	def load_supervisor_employees(self):
@@ -144,7 +147,7 @@ class HRSupervisorAttendance(models.Model):
 		if self.line_ids:
 			# Remove old lines to reload them
 			self.line_ids = [(5, 0)]
-
+		
 		if self.employee_id.child_ids:
 			# Create new lines
 			self.line_ids = self._get_default_child_list()
@@ -219,6 +222,9 @@ class HRSupervisorAttendanceLine(models.Model):
 	note = fields.Text("Note")
 	date = fields.Datetime('Date')
 	
+	# --------------------------------------------------
+	# CRUD
+	# --------------------------------------------------
 	@api.model
 	def create(self, vals):
 		"""
@@ -234,6 +240,14 @@ class HRSupervisorAttendanceLine(models.Model):
 			line.name = "%s-%s" % (line.super_attend_id.name, line.employee_id.name)
 		return line
 	
+	def write(self, vals):
+		if 'absent' in vals:
+			vals['absent_value'] = 1 and vals.get('absent') or 0
+		return super(HRSupervisorAttendanceLine, self).write(vals)
+	
+	# --------------------------------------------------
+	# Business methods
+	# --------------------------------------------------
 	@api.constrains('employee_id', 'date')
 	def employee_date_constrain(self):
 		"""
@@ -250,7 +264,8 @@ class HRSupervisorAttendanceLine(models.Model):
 			# ('date', '<=', attend_date.replace(hour=23, minute=59, second=59))]
 			if attend.employee_id:
 				domain = [('employee_id', '=', attend.employee_id.id),
-				          ('date', '>=', attend.super_attend_id.date.replace(hour=0, minute=0, second=0, microsecond=0)),
+				          (
+				          'date', '>=', attend.super_attend_id.date.replace(hour=0, minute=0, second=0, microsecond=0)),
 				          ('date', '<=', attend.super_attend_id.date.replace(hour=23, minute=59, second=59))]
 				if isinstance(attend.id, int):
 					domain.append(('id', '!=', attend.id))
@@ -260,10 +275,5 @@ class HRSupervisorAttendanceLine(models.Model):
 				if other_attendance:
 					raise Warning(_("Employee: %s Can't have move than 1 attend on same day.\n others: %s" %
 					                (attend.employee_id.name, other_attendance.mapped('name'))))
-				
-	def write(self, vals):
-		if 'absent' in vals:
-			vals['absent_value'] = 1 and vals.get('absent') or 0
-		return super(HRSupervisorAttendanceLine, self).write(vals)
-		
+
 # Ahmed Salama Code End.
