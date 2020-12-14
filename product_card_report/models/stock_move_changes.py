@@ -37,8 +37,12 @@ class StockMoveLineInherit(models.Model):
 	                        help='Quantity in the default UoM of the product from previous moves + current qty')
 	curr_cost = fields.Float('Current Cost', readonly=True, group_operator=False,
 	                         help='Cost from previous moves + current cost')
-	signed_done_qty = fields.Float('Qty Done(+/-)', readonly=True,
+	signed_done_qty = fields.Float('Qty Done(+/-)', readonly=True, group_operator='sum',
 	                               help='Quantity done amount with sign to use on total')
+	in_qty = fields.Float("Qty In", readonly=True, group_operator='sum',
+	                      help='Quantity done amount with sign +, which received to warehouse')
+	out_qty = fields.Float("Qty Out", readonly=True, group_operator='sum',
+	                       help='Quantity done amount with sign -, which sent from warehouse')
 	price_unit = fields.Float('Unit Price', readonly=True, group_operator=False,
 	                          help='Price used to compute line amount')
 	last_move_ref = fields.Char("Previous Ref")
@@ -185,7 +189,7 @@ class StockMoveLineInherit(models.Model):
 						special_case = True
 					if move_type == 'Internal' and sml.location_id == move_line_id.location_id:
 						_logger.info(red + "2222222222222222222222222" + reset)
-
+						
 						special_case = True
 				if special_case:
 					_logger.info(red + "Special Case: %s, previous: %s" % (sml.reference, move_line_id.reference) + reset)
@@ -212,6 +216,8 @@ class StockMoveLineInherit(models.Model):
 			sml.last_move_ref = last_move_ref
 			sml.move_type = move_type
 			sml.special_case = special_case
+			sml.in_qty = signed_done_qty > 0 and abs(signed_done_qty) or 0.0
+			sml.out_qty = signed_done_qty < 0 and abs(signed_done_qty) or 0.0
 	
 	def _compute_special_case(self, move_line_id, move_type, signed_done_qty, price, all_previous):
 		"""
@@ -231,7 +237,7 @@ class StockMoveLineInherit(models.Model):
 		elif move_type == 'Internal' and self.location_id == move_line_id.location_id:
 			location = self.location_dest_id
 		_logger.info(red + "Special location: %s" % location.id + reset)
-
+		
 		# this move is outgoing but pre is internal and should decrease from it's source
 		# STEP1: will get it's last move exclude internal moves
 		domain = [('product_id', '=', self.product_id.id),
@@ -246,10 +252,9 @@ class StockMoveLineInherit(models.Model):
 			if pre_move.date == self.date and pre_move.id > self.id:
 				_logger.info(red + "Special Removed  %s" % pre_move.reference + reset)
 				continue
-			elif pre_move.move_id.picking_type_id and\
+			elif pre_move.move_id.picking_type_id and \
 					pre_move.move_id.picking_type_id.code == 'internal' and location == pre_move.location_id:
 				_logger.info(red + "Special intern(-)  %s" % pre_move.reference + reset)
-
 				internal_moves += pre_move
 			else:
 				_logger.info(red + "Special LAST  %s" % pre_move.reference + reset)
@@ -257,7 +262,8 @@ class StockMoveLineInherit(models.Model):
 				break
 		if not last_move_id and internal_moves:
 			last_move_id = internal_moves[0]
-		_logger.info(red + "Special Case last_move_id: %s" % last_move_id.reference + reset)
+		if last_move_id:
+			_logger.info(red + "Special Case last_move_id: %s" % last_move_id.reference + reset)
 		
 		# we will count on last move value but deduct/increase internal amounts
 		after_qty = last_move_id and last_move_id.curr_qty or 0
@@ -270,10 +276,10 @@ class StockMoveLineInherit(models.Model):
 				int_signed_qty = 0.0
 				int_price = internal_move.move_id.price_unit or internal_move.product_id.standard_price
 				if internal_move.location_dest_id == location:
-						int_signed_qty = internal_move.qty_done
+					int_signed_qty = internal_move.qty_done
 				elif internal_move.location_id == location:
-						int_signed_qty = -internal_move.qty_done
-						
+					int_signed_qty = -internal_move.qty_done
+				
 				_logger.info(red + "Special int_location:%s int_dest: %s int_signed_qty: %s"
 				             % (internal_move.location_id.id, internal_move.location_dest_id.id, int_signed_qty) + reset)
 				after_qty += int_signed_qty

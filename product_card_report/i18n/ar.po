@@ -6,15 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-25 14:04+0000\n"
-"PO-Revision-Date: 2020-11-25 16:11+0200\n"
+"POT-Creation-Date: 2020-12-12 07:12+0000\n"
+"PO-Revision-Date: 2020-12-12 10:50+0200\n"
 "Last-Translator: \n"
-"Language-Team: Ahmed Salama\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n"
-"%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"Plural-Forms: \n"
 "Language: ar\n"
 "X-Generator: Poedit 2.4.2\n"
 
@@ -24,8 +23,18 @@ msgid ""
 "'Product Card - %s' % object.product_id and object.product_id.name or "
 "object.date_from"
 msgstr ""
-"'كارت صنف - %s' % object.product_id and object.product_id.name or "
-"object.date_from"
+"'كارت صنف - %s' % object.product_id and object.product_id.name or object."
+"date_from"
+
+#. module: product_card_report
+#: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
+msgid "--- No records found for this product using those filters ----"
+msgstr ""
+
+#. module: product_card_report
+#: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
+msgid "<span style=\"color:darkblue\">Final Amounts</span>"
+msgstr ""
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
@@ -34,8 +43,29 @@ msgstr "<strong>من تاريخ:</strong>"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
+msgid "<strong>States:</strong>"
+msgstr ""
+
+#. module: product_card_report
+#: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "<strong>To Date:</strong>"
 msgstr "<strong>إلى تاريخ:</strong>"
+
+#. module: product_card_report
+#: model_terms:ir.ui.view,arch_db:product_card_report.res_config_settings_view_form_inherit
+msgid "Activate stock validate bulk action ."
+msgstr "تنشيط أمر التحقق لأكثر من عمليه"
+
+#. module: product_card_report
+#: model:res.groups,name:product_card_report.group_allow_separation
+msgid "Allow Separation Actions"
+msgstr "السماح بإجراءات الفصل"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_picking__allow_separate
+#: model:ir.model.fields,field_description:product_card_report.field_stock_picking_type__allow_separate
+msgid "Auto Separate?"
+msgstr "مسموح بالفصل؟"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
@@ -43,9 +73,30 @@ msgid "Balance"
 msgstr "الرصيد"
 
 #. module: product_card_report
+#: model_terms:ir.ui.view,arch_db:product_card_report.res_config_settings_view_form_inherit
+msgid "Bulk Action"
+msgstr "إجراء مجمع"
+
+#. module: product_card_report
+#: code:addons/product_card_report/models/stock_picking_changes.py:0
+#, python-format
+msgid "Bulk Action Results"
+msgstr "نتيجه الاجراء المجمع"
+
+#. module: product_card_report
+#: model:ir.actions.server,name:product_card_report.server_action_picking_bulk_validate
+msgid "Bulk Validate"
+msgstr "إجراء التحقق مجمعاً"
+
+#. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_view
 msgid "Cancel"
 msgstr "إلغاء"
+
+#. module: product_card_report
+#: model_terms:ir.ui.view,arch_db:product_card_report.bulk_message_wizard_form
+msgid "Close"
+msgstr "إغلاق"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
@@ -53,19 +104,48 @@ msgid "Code"
 msgstr "الكود"
 
 #. module: product_card_report
+#: model:ir.model,name:product_card_report.model_res_config_settings
+msgid "Config Settings"
+msgstr "ضبط الإعدادات"
+
+#. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "Cost"
 msgstr "التكلفة"
 
 #. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_move_line__pre_cost
+msgid "Cost from previous moves"
+msgstr "تكلفه الحركات السابقه"
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_move_line__curr_cost
+msgid "Cost from previous moves + current cost"
+msgstr "تكفه الحركات السابقه + الحركات الحاليه"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_bulk_message_wizard__create_uid
 #: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard__create_uid
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states__create_uid
 msgid "Created by"
 msgstr "إنشي بواسطه"
 
 #. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_bulk_message_wizard__create_date
 #: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard__create_date
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states__create_date
 msgid "Created on"
 msgstr "انشئ فى"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__curr_cost
+msgid "Current Cost"
+msgstr "التكلفة الحالية"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__curr_qty
+msgid "Current Qty"
+msgstr "الكميه الحاليه"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
@@ -90,19 +170,28 @@ msgstr "التواريخ"
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "Details:"
-msgstr ":البيانات"
+msgstr "البيانات"
 
 #. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_bulk_message_wizard__display_name
 #: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard__display_name
-#: model:ir.model.fields,field_description:product_card_report.field_report_inv_product_card_product_card_report__display_name
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states__display_name
+#: model:ir.model.fields,field_description:product_card_report.field_report_product_card_report_product_card_report__display_name
 msgid "Display Name"
 msgstr "الاسم"
 
 #. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_bulk_message_wizard__id
 #: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard__id
-#: model:ir.model.fields,field_description:product_card_report.field_report_inv_product_card_product_card_report__id
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states__id
+#: model:ir.model.fields,field_description:product_card_report.field_report_product_card_report_product_card_report__id
 msgid "ID"
 msgstr ""
+
+#. module: product_card_report
+#: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
+msgid "IN/Out"
+msgstr "من/إلى"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
@@ -110,30 +199,61 @@ msgid "In"
 msgstr "الوارد"
 
 #. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_picking__is_separated
+msgid "Is Separated?"
+msgstr "تم فصله؟"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_bulk_message_wizard____last_update
 #: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard____last_update
-#: model:ir.model.fields,field_description:product_card_report.field_report_inv_product_card_product_card_report____last_update
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states____last_update
+#: model:ir.model.fields,field_description:product_card_report.field_report_product_card_report_product_card_report____last_update
 msgid "Last Modified on"
 msgstr "آخر تعديل في"
 
 #. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_bulk_message_wizard__write_uid
 #: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard__write_uid
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states__write_uid
 msgid "Last Updated by"
 msgstr "آخر تحديث بواسطة"
 
 #. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_bulk_message_wizard__write_date
 #: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard__write_date
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states__write_date
 msgid "Last Updated on"
 msgstr "آخر تحديث في"
 
 #. module: product_card_report
-#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard__location_id
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard__location_ids
+#: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "Location"
-msgstr "المستودع"
+msgstr "الموقع"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_view
 msgid "Main Details"
 msgstr "البيانات الأساسيه"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_bulk_message_wizard__message
+msgid "Message"
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_picking_type__separate_location_id
+msgid ""
+"Middle location used to separate internal moves into 2 operations\n"
+"- from SRC location to (pre defined virtual location) auto validated\n"
+"- from (pre defined virtual location) to DEST location"
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__move_type
+#: model_terms:ir.ui.view,arch_db:product_card_report.product_card_stock_move_line_view_search_inherit
+msgid "Move Type"
+msgstr "نوع الحركه"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
@@ -144,6 +264,36 @@ msgstr "الاسم"
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "Out"
 msgstr "المصروف"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_res_config_settings__picking_bulk_validate
+msgid "Picking Bulk Validate"
+msgstr "أمر التحقق مجمع"
+
+#. module: product_card_report
+#: model:ir.model,name:product_card_report.model_stock_picking_type
+msgid "Picking Type"
+msgstr "نوع الاستلام"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__pre_cost
+msgid "Previous Cost"
+msgstr "تكلفه الكابات السابقة"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__pre_qty
+msgid "Previous Qty"
+msgstr "الكميه السابقة"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__last_move_ref
+msgid "Previous Ref"
+msgstr "الحركة السابقة"
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_move_line__price_unit
+msgid "Price used to compute line amount"
+msgstr "السعر المستخدم لحساب قيمه السطر"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_view
@@ -163,14 +313,81 @@ msgid "Product Card"
 msgstr "كارت الصنف"
 
 #. module: product_card_report
+#: model:ir.model,name:product_card_report.model_product_card_report_wizard_states
+msgid "Product Card Wizard States"
+msgstr ""
+
+#. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
-msgid "Product Movements on location:"
-msgstr "تحركات المنتج فى المستودع: "
+msgid "Product Movements on locations:"
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.model,name:product_card_report.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "تحركات المنتج (بنود حركة المخزون)"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__signed_done_qty
+msgid "Qty Done(+/-)"
+msgstr "الكميه(+/-)"
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_move_line__signed_done_qty
+msgid "Quantity done amount with sign to use on total"
+msgstr ""
+"الكميه التي تم الانتهاء منها بالقيمة الموجبة أو السالبة حسب نوع الحركة"
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_move_line__pre_qty
+msgid "Quantity in the default UoM of the product from previous moves"
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_move_line__curr_qty
+msgid ""
+"Quantity in the default UoM of the product from previous moves + current qty"
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.actions.server,name:product_card_report.ir_action_set_product_historical_qty
+msgid "Re-Compute Historical Fields"
+msgstr "إعادة حساب حقول الكميات"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "Ref"
 msgstr "الرقم"
+
+#. module: product_card_report
+#: model_terms:ir.ui.view,arch_db:product_card_report.product_card_view_picking_form
+msgid "Separate"
+msgstr "فصل"
+
+#. module: product_card_report
+#: model:ir.actions.server,name:product_card_report.server_action_picking_separate
+msgid "Separate Internals"
+msgstr "فصل الحركات الداخليه"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_picking_type__separate_location_id
+msgid "Separate Location"
+msgstr "موقع الفصل الوسيط"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_picking__separated_picking_id
+msgid "Separated Picking"
+msgstr "الأمر المفصول"
+
+#. module: product_card_report
+#: model_terms:ir.ui.view,arch_db:product_card_report.product_card_view_picking_type_form
+msgid "Separation"
+msgstr "الفصل"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__special_case
+msgid "Special Cases"
+msgstr "حالات خاصه"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
@@ -183,14 +400,73 @@ msgid "Starting Value"
 msgstr "القيمه الماليه"
 
 #. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states__name
+msgid "State"
+msgstr "الحاله"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard__state_ids
+msgid "States"
+msgstr "الحالات"
+
+#. module: product_card_report
+#: model:res.groups,comment:product_card_report.group_allow_separation
+msgid "The user will have access Separate internal pickings."
+msgstr "مستخدم يمكنه استخدام أوامر فصل الحركات."
+
+#. module: product_card_report
+#: model:ir.model,name:product_card_report.model_stock_picking
+msgid "Transfer"
+msgstr "الشحنة"
+
+#. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "Type"
 msgstr "النوع"
 
 #. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__price_unit
+msgid "Unit Price"
+msgstr "السعر"
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_picking__allow_separate
+#: model:ir.model.fields,help:product_card_report.field_stock_picking_type__allow_separate
+msgid ""
+"Used to separate internal pickings into 2 pickings\n"
+"- from SRC location to (pre defined virtual location) auto validated\n"
+"- from (pre defined virtual location) to DEST location"
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_picking__is_separated
+msgid ""
+"Used to show if this picking which allowed to separated is separated or not "
+"yet."
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_picking__separated_picking_id
+msgid "Used to show other separated part"
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states__value
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "Value"
 msgstr "القيمه"
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_res_config_settings__picking_bulk_validate
+msgid ""
+"When Activate this action, system will add bulk action to validate multi "
+"pickings on same time."
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.model,name:product_card_report.model_bulk_message_wizard
+msgid "bulk.message.wizard"
+msgstr ""
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_view
@@ -203,6 +479,6 @@ msgid "product.card.report.wizard"
 msgstr ""
 
 #. module: product_card_report
-#: model:ir.model,name:product_card_report.model_report_inv_product_card_product_card_report
+#: model:ir.model,name:product_card_report.model_report_product_card_report_product_card_report
 msgid "report.product_card_report.product_card_report"
 msgstr ""

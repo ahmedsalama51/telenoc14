@@ -1,16 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
-        <!--Server Actions-->
-        <record id="server_action_picking_bulk_validate" model="ir.actions.server">
-            <field name="name">Bulk Validate</field>
-            <field name="type">ir.actions.server</field>
-            <field name="model_id" ref="model_stock_picking" />
-            <field name="binding_view_types">list</field>
-            <field name="state">code</field>
-            <field name="code">
-                action = model.action_picking_bulk_validate()
+    <data>
+        <!-- Picking Type view -->
+        <record id="product_card_view_picking_type_form" model="ir.ui.view">
+            <field name="name">product_card.stock.picking.type.form.inherit</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[2]//group[3]" position="after">
+                    <group string="Separation" name="separation" attrs="{'invisible': [('code', '!=', 'internal')]}">
+                        <field name="allow_separate" />
+                        <field name="separate_location_id" attrs="{'invisible': [('allow_separate', '=', False)],
+                        'required': [('allow_separate', '=', True)]}" context="{'default_usage':'transit'}"/>
+                    </group>
+                </xpath>
             </field>
         </record>
+
+        <!-- Picking view -->
+        <record id="product_card_view_picking_form" model="ir.ui.view">
+            <field name="name">product_card.stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group//group[2]" position="inside">
+                    <field name="allow_separate" attrs="{'invisible': [('picking_type_code', '!=', 'internal')],
+                    'readonly': [('state', '!=', 'draft')]}" force_save="1"/>
+                    <field name="separated_picking_id" attrs="{'invisible': [('separated_picking_id', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <field name="is_separated" invisible="1"/>
+                    <button name="action_separate" string=" Separate" type="object"
+                            attrs="{'invisible': ['|',('allow_separate', '=', False),('is_separated','=',True)]}"
+                            icon="fa-object-ungroup" class="btn-info" groups="product_card_report.group_allow_separation"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="server_action_picking_bulk_validate" model="ir.actions.server">
+            <field name="name">Validate</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = model.action_picking_bulk_validate()
+            </field>
+            <!--<field name="binding_model_id" ref="product_card_report.model_stock_picking"/>-->
+            <field name="binding_view_types">list</field>
+        </record>
+
+        <record id="server_action_picking_separate" model="ir.actions.server">
+            <field name="name">Separate Internals</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_stock_picking"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = model.action_bulk_separate()
+            </field>
+            <field name="binding_model_id" ref="product_card_report.model_stock_picking"/>
+            <field name="binding_view_types">list</field>
+        </record>
+
     </data>
 </odoo>

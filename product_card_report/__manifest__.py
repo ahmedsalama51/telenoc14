@@ -29,16 +29,18 @@
     'description': """
     This module add new report Product Card added to inventory reports
 """,
-    'version': '.5',
-    'depends': ['stock', 'sale', 'sale_stock', 'sale_management'],
+    'version': '0.8',
+    'depends': ['stock', 'sale', 'sale_stock'],
     'data': [
         'data/report_paperformat.xml',
         'data/product_card_wizard_states.xml',
         'data/stock_move_line_data.xml',
     
         'security/ir.model.access.csv',
+        'security/product_card_security.xml',
     
         'wizard/product_card_report_wizard_view.xml',
+        'wizard/bulk_actions_results.xml',
     
         'report/product_card_report_view.xml',
     

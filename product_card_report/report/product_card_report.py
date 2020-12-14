@@ -4,6 +4,7 @@ from pytz import timezone, UTC
 
 from odoo import models, api
 from datetime import datetime
+
 _logger = logging.getLogger(__name__)
 grey = "\x1b[38;21m"
 yellow = "\x1b[33;21m"
@@ -12,6 +13,8 @@ bold_red = "\x1b[31;1m"
 reset = "\x1b[0m"
 green = "\x1b[32m"
 blue = "\x1b[34m"
+
+
 # Ahmed Salama Code Start ---->
 
 
@@ -103,8 +106,7 @@ class ProductCardReport(models.AbstractModel):
             move_dict = {
                 'date': datetime.strftime(date, '%d/%m/%Y %H:%M:%S'),
                 'number': move_line.picking_id.name,
-                'type': move_line.move_id.picking_type_id and
-                        move_line.move_id.picking_type_id.code or 'incoming',
+                'type': move_line.move_type,
                 # TODO:: if it have no picking it should be inventory action/ TO BE CHECKED ON THE FUTURE
                 'move_type': move_type,
                 'location': location,
@@ -135,7 +137,8 @@ class ProductCardReport(models.AbstractModel):
                 data,
                 product=product,
                 states=data['form']['states'],
-                location_ids=self.env['stock.location'].sudo().browse(data['form']['location_ids']).mapped('complete_name'),
+                location_ids=self.env['stock.location'].sudo().browse(data['form']['location_ids']).mapped(
+                    'complete_name'),
                 get_move_lines=moves_details[0],
                 get_sum_move_lines_history=self._get_sum_move_lines_history(data['form']),
                 date_from=data['form']['date_from'],

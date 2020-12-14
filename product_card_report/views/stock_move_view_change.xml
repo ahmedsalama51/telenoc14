@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Move line view-->
         <record id="product_card_view_move_line_tree_inherit" model="ir.ui.view">
             <field name="name">product_card.stock.move.line.tree.inherit</field>
             <field name="model">stock.move.line</field>
@@ -11,6 +12,8 @@
                 </xpath>
                 <xpath expr="//field[@name='product_uom_id']" position="before">
                     <field name="signed_done_qty" optional="show"/>
+                    <field name="in_qty" optional="show"/>
+                    <field name="out_qty" optional="show"/>
                     <field name="price_unit" optional="show" readonly="1"/>
                     <field name="pre_qty" optional="show"/>
                     <field name="pre_cost" optional="show"/>
@@ -49,6 +52,18 @@
                 </xpath>
             </field>
         </record>
+        <record id="product_card_stock_move_line_view_search_inherit" model="ir.ui.view">
+            <field name="name">product_card.stock.move.line.search.inherit</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='by_date']" position="after">
+                    <filter string="Move Type" name="by_move_type" domain="[]" context="{'group_by': 'move_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--   Move view-->
         <record id="product_card_view_move_form_inherit" model="ir.ui.view">
             <field name="name">product_card.stock.move.form.inherit</field>
             <field name="model">stock.move</field>
@@ -61,15 +76,6 @@
                 </xpath>
             </field>
         </record>
-        <record id="product_card_stock_move_line_view_search_inherit" model="ir.ui.view">
-            <field name="name">product_card.stock.move.line.search.inherit</field>
-            <field name="model">stock.move.line</field>
-            <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
-            <field name="arch" type="xml">
-                <xpath expr="//filter[@name='by_date']" position="after">
-                    <filter string="Move Type" name="by_move_type" domain="[]" context="{'group_by': 'move_type'}"/>
-                </xpath>
-            </field>
-        </record>
+
     </data>
 </odoo>
