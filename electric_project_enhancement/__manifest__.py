@@ -29,7 +29,7 @@
     'description': """
     This module add new new futures and models
 """,
-    'version': '.1',
+    'version': '.3',
     'depends': ['project', 'sale_stock', 'hr'],
     'data': [
         'data/receive_cabel_rule_data.xml',

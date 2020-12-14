@@ -25,10 +25,10 @@
                     <field name="task_balance_qty" optional="show"/>
                 </xpath>
                 <xpath expr="//field[@name='product_id']" position="attributes">
-                    <attribute name="options">{'no_create_edit': True, 'no_create': True}</attribute>
+                    <attribute name="options">{'no_create': True, 'no_open': True,'no_quick_create': True}</attribute>
                 </xpath>
                 <xpath expr="//field[@name='product_id']" position="before">
-                    <field name="task_id" optional="show" options="{'no_create_edit': True ,'no_create': True}"/>
+                    <field name="task_id" optional="show" options="{'no_create_edit': True,'no_create': True, 'no_open': True,'no_quick_create': True}"/>
                 </xpath>
             </field>
         </record>
@@ -43,8 +43,11 @@
                     <field name="task_outgoing_qty" optional="show"/>
                     <field name="task_balance_qty" optional="show"/>
                 </xpath>
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create': True, 'no_open': True,'no_quick_create': True}</attribute>
+                </xpath>
                 <xpath expr="//field[@name='product_id']" position="before">
-                    <field name="task_id" optional="show"/>
+                    <field name="task_id" options="{'no_create_edit': True,'no_create': True, 'no_open': True,'no_quick_create': True}"/>
                 </xpath>
             </field>
         </record>
@@ -70,11 +73,14 @@
                     <field name="employee_id" attrs="{'invisible':[('employee_mandatory','=',False)],
                    'required':[('employee_mandatory','=',True)]}"/>
                 </xpath>
+                <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create': True, 'no_open': True,'no_quick_create': True}</attribute>
+                </xpath>
                 <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='product_id']" position="before">
-                    <field name="task_id"/>
+                    <field name="task_id" options="{'no_create_edit': True,'no_create': True, 'no_open': True,'no_quick_create': True}"/>
                 </xpath>
                 <xpath expr="//field[@name='move_ids_without_package']//form//field[@name='product_id']" position="before">
-                    <field name="task_id"/>
+                    <field name="task_id" options="{'no_create_edit': True,'no_create': True, 'no_open': True,'no_quick_create': True}"/>
                 </xpath>
                 <xpath expr="//field[@name='move_ids_without_package']//tree//field[@name='product_uom_qty']" position="after">
                     <field name="qty_available" optional="show" string="Available"/>

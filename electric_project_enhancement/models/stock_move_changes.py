@@ -10,10 +10,12 @@ class StockMoveInherit(models.Model):
 	_inherit = 'stock.move'
 	
 	task_id = fields.Many2one('project.task', "Work Order", required=True)
-	task_incoming_qty = fields.Float("Incoming Qty", compute='_get_task_qty')
-	task_outgoing_qty = fields.Float("Outgoing Qty", compute='_get_task_qty')
-	task_balance_qty = fields.Float("Balance Qty", compute='_get_task_qty')
-	
+	task_incoming_qty = fields.Float("Incoming Qty", compute='_get_task_qty',
+	                                 help="Get previous moves with same product and work order, with type incoming")
+	task_outgoing_qty = fields.Float("Outgoing Qty", compute='_get_task_qty',
+	                                 help="Get previous moves with same product and work order, with type outgoing")
+	task_balance_qty = fields.Float("Balance Qty", compute='_get_task_qty',
+	                                help="Get balance of previous moves with same product and work order")
 	qty_available = fields.Float(related='product_id.qty_available', readonly=1)
 	
 	@api.onchange('state', 'product_id', 'task_id')
@@ -45,9 +47,12 @@ class StockMoveLineInherit(models.Model):
 	
 	task_id = fields.Many2one('project.task', "Work Order")
 	
-	task_incoming_qty = fields.Float("Incoming Qty", compute='_get_task_qty')
-	task_outgoing_qty = fields.Float("Outgoing Qty", compute='_get_task_qty')
-	task_balance_qty = fields.Float("Balance Qty", compute='_get_task_qty')
+	task_incoming_qty = fields.Float("Incoming Qty", compute='_get_task_qty',
+	                                 help="Get previous moves with same product and work order, with type incoming")
+	task_outgoing_qty = fields.Float("Outgoing Qty", compute='_get_task_qty',
+	                                 help="Get previous moves with same product and work order, with type outgoing")
+	task_balance_qty = fields.Float("Balance Qty", compute='_get_task_qty',
+	                                help="Get balance of previous moves with same product and work order")
 	
 	qty_available = fields.Float(related='product_id.qty_available', readonly=1)
 	

@@ -86,8 +86,12 @@ class HRSupervisorAttendance(models.Model):
 					_("Current user:%s ]\n have no related employee!!!, please check it first" % self.env.user.name))
 			defaults['employee_id'] = employee_id.id
 		employee_id = self.env['hr.employee'].browse(defaults.get('employee_id'))
-		defaults['line_ids'] = [(0, 0, {'employee_id': child.id, 'state': 'draft'})
-		                        for child in employee_id.child_ids]
+		# Collect Childs
+		line_ids = [(0, 0, {'employee_id': child.id, 'state': 'draft'})
+		            for child in employee_id.child_ids]
+		# append currrent user
+		line_ids.append((0, 0, {'employee_id': employee_id.id, 'state': 'draft'}))
+		defaults['line_ids'] = line_ids
 		return defaults
 	
 	# --------------------------------------------------
@@ -157,12 +161,16 @@ class HRSupervisorAttendance(models.Model):
 	def _get_default_child_list(self):
 		"""
 		GET LIST OF LINES
-		:return:
+		:return: LINES
 		"""
 		if self.employee_id.child_ids:
-			# Create new lines
-			return [(0, 0, {'super_attend_id': self.id,
-			                'employee_id': child.id}) for child in self.employee_id.child_ids]
+			# Collect child details
+			line_ids = [(0, 0, {'super_attend_id': self.id,
+			                    'employee_id': child.id}) for child in self.employee_id.child_ids]
+			# append employee himself
+			line_ids.append((0, 0, {'super_attend_id': self.id,
+			                        'employee_id': self.employee_id.id}))
+			return line_ids
 	
 	@api.onchange('employee_id')
 	def get_location(self):
@@ -265,7 +273,7 @@ class HRSupervisorAttendanceLine(models.Model):
 			if attend.employee_id:
 				domain = [('employee_id', '=', attend.employee_id.id),
 				          (
-				          'date', '>=', attend.super_attend_id.date.replace(hour=0, minute=0, second=0, microsecond=0)),
+					          'date', '>=', attend.super_attend_id.date.replace(hour=0, minute=0, second=0, microsecond=0)),
 				          ('date', '<=', attend.super_attend_id.date.replace(hour=23, minute=59, second=59))]
 				if isinstance(attend.id, int):
 					domain.append(('id', '!=', attend.id))
