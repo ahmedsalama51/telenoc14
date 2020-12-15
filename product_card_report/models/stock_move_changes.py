@@ -50,9 +50,12 @@ class StockMoveLineInherit(models.Model):
 	special_case = fields.Boolean("Special Cases")
 	
 	@api.model
-	def start_compute_historical_qty(self):
+	def update_all_product_historical_qty(self):
+		"""
+		Used to re-compute and check for previous moves(All moves checked)
+		"""
 		_logger.info(green + "\n -----------------------------------------------------\n"
-		                     " start compute historical qty and cost" + reset)
+		                     " start compute all moves lines historical qty and cost" + reset)
 		all_moves = self.env['stock.move.line'].search([])
 		all_moves.set_product_historical_qty()
 		_logger.info(green + "\n -----------------------------------------------------\n"
@@ -60,7 +63,7 @@ class StockMoveLineInherit(models.Model):
 	
 	def set_product_historical_qty(self):
 		"""
-		Used to re-compute and check for previous moves
+		Used to re-compute and check for previous moves(Only checked)
 		"""
 		sml_obj = self.env['stock.move.line']
 		records = self
@@ -102,8 +105,18 @@ class StockMoveLineInherit(models.Model):
 				move_type = 'Incoming'
 			elif sml.move_id.picking_type_id and sml.move_id.picking_type_id.code == "internal":
 				# internal ---> use current destination in filters
-				location_id = sml.location_dest_id
 				move_type = 'Internal'
+				if sml.location_id.usage == 'internal':
+					location_id = sml.location_id
+					_logger.info(blue + "--- USED INTERNAL SRC LOCATION: %s" % location_id.name + reset)
+				elif sml.location_dest_id.usage == 'internal':
+					location_id = sml.location_dest_id
+					_logger.info(blue + "--- USED INTERNAL DEST LOCATION: %s" % location_id.name + reset)
+				else:
+					_logger.info(red + "--- non of LOCATION is ready to use" + reset)
+					# Slip this line
+					continue
+				
 			else:
 				# Inventory use internal location as it's
 				if sml.location_id.usage == 'internal':
@@ -121,7 +134,7 @@ class StockMoveLineInherit(models.Model):
 			# _logger.info(yellow + "--- Domain: %s" % domain + reset)
 			all_pre_move = sml_obj.search(domain, order="date DESC, id DESC")
 			# _logger.info(yellow + "--- all_pre_move: %s" % all_pre_move.mapped('reference') + reset)
-			_logger.info(yellow + "--- LOCATION: %s" % location_id + reset)
+			_logger.info(yellow + "--- LOCATION: %s" % location_id.name + reset)
 			pre_moves = sml_obj
 			for h_move in all_pre_move:
 				if h_move.date == sml.date and h_move.id > sml.id:
@@ -136,9 +149,6 @@ class StockMoveLineInherit(models.Model):
 						# ADD search for previous Incoming/Internals and it's dest location in current location
 						pre_moves += h_move
 					elif h_move.move_id.picking_type_id.code == "internal":
-						# _logger.info(yellow + "--- %s_move: %s, location: %s, dest location: %s"
-						#              % (h_move.move_id.picking_type_id.code, h_move.reference,
-						#                 h_move.location_id.id, h_move.location_dest_id.id) + reset)
 						if h_move.location_dest_id == location_id or h_move.location_id == location_id:
 							# ADD search for previous Incoming/Internals and it's dest location in current location
 							pre_moves += h_move
@@ -155,16 +165,30 @@ class StockMoveLineInherit(models.Model):
 			# Compute Signed Done Qty
 			if move_type == 'Outgoing':
 				# outgoing so qty will decrease
+				_logger.info(bold_red + " outgoing so qty will decrease" + reset)
 				signed_done_qty = -sml.qty_done
-			elif move_type == 'Adjust' and sml.location_id.usage == 'internal':
-				# it's inventory adjust with - so it will deduct from location
-				signed_done_qty = -sml.qty_done
-			elif move_type == 'internal' and sml.location_destt_id.usage != 'internal':
-				# it's internal with - so it will deduct from location
-				signed_done_qty = -sml.qty_done
+			elif move_type == 'Adjust':
+				if sml.location_id.usage == 'internal':
+					_logger.info(bold_red + " it's inventory adjust with - so it will deduct from location" + reset)
+					# it's inventory adjust with - so it will deduct from location
+					signed_done_qty = -sml.qty_done
+				elif sml.location_dest_id.usage == 'internal':
+					_logger.info(bold_red + "it's inventory adjust with - so it will increase to location" + reset)
+					# it's inventory adjust with - so it will increase to location
+					signed_done_qty = sml.qty_done
+			elif move_type == 'Internal':
+				if sml.location_id.usage == 'internal':
+					# it's internal with - so it will deduct from location
+					_logger.info(bold_red + "it's internal with - so it will deduct from location" + reset)
+					signed_done_qty = -sml.qty_done
+				elif sml.location_dest_id.usage == 'internal':
+					# it's internal with - so it will increase to location
+					_logger.info(bold_red + "it's internal with - so it will increase to location" + reset)
+					signed_done_qty = sml.qty_done
 			else:
 				# inventory +/- qty will add to for now --> TODO:: NEED TO CHECK for inventory adjust of - qty
-				# incoming or internal qty will add to for now , SPECIAL CASE WILL HANDLE SEPERATE
+				# incoming or internal qty will add to for now , SPECIAL CASE WILL HANDLE SEPARATE
+				_logger.info(bold_red + "it's doesn't found any of above so the qty will be + as it's in" + reset)
 				signed_done_qty = sml.qty_done
 			_logger.info(yellow + "signed_done_qty: %s" % signed_done_qty + reset)
 			price = sml.move_id.price_unit or sml.product_id.standard_price
@@ -184,12 +208,8 @@ class StockMoveLineInherit(models.Model):
 					if move_type == 'Incoming' and sml.location_dest_id == move_line_id.location_id:
 						special_case = True
 					if move_type == 'Internal' and sml.location_dest_id == move_line_id.location_id:
-						_logger.info(red + "111111111111111111111" + reset)
-						
 						special_case = True
 					if move_type == 'Internal' and sml.location_id == move_line_id.location_id:
-						_logger.info(red + "2222222222222222222222222" + reset)
-						
 						special_case = True
 				if special_case:
 					_logger.info(red + "Special Case: %s, previous: %s" % (sml.reference, move_line_id.reference) + reset)

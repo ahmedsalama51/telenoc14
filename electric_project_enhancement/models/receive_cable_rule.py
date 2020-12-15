@@ -12,6 +12,7 @@ class ReceiveCableRule(models.Model):
 	_description = "Receive Cable Rules"
 	_inherit = ['mail.thread', 'mail.activity.mixin']
 	_order = 'date DESC'
+	_check_company_auto = True
 	
 	name = fields.Char("Number", readonly=1, default='/')
 	active = fields.Boolean("Active", default=True, track_visibility='onchange')
@@ -31,6 +32,9 @@ class ReceiveCableRule(models.Model):
 	line_ids = fields.One2many('receive.cable.rule.line', 'receive_id', "Lines",
 	                           readonly=1, states={'draft': [('readonly', False)]})
 	
+	# --------------------------------------------------
+	# CRUD
+	# --------------------------------------------------
 	@api.model
 	def create(self, vals):
 		"""
@@ -40,6 +44,10 @@ class ReceiveCableRule(models.Model):
 		"""
 		vals['name'] = self.env['ir.sequence'].sudo().next_by_code('receive.cable.rule.code')
 		return super(ReceiveCableRule, self).create(vals)
+	
+	# --------------------------------------------------
+	# Actions
+	# --------------------------------------------------
 	
 	def action_done(self):
 		"""
@@ -66,6 +74,9 @@ class ReceiveCableRule(models.Model):
 			for line in rec.line_ids:
 				line.balance_qty = 0.0
 	
+	# --------------------------------------------------
+	# Business methods
+	# --------------------------------------------------
 	@api.model
 	def action_cable_balance_report(self):
 		"""
@@ -134,6 +145,9 @@ class ReceiveCableRuleLine(models.Model):
 	                               help="Total After Received")
 	note = fields.Text("Notes")
 	
+	# --------------------------------------------------
+	# Business methods
+	# --------------------------------------------------
 	@api.onchange('product_id')
 	def onchange_product_id(self):
 		self.product_uom = self.product_id.uom_id.id

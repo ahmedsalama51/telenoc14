@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 07:12+0000\n"
-"PO-Revision-Date: 2020-12-12 10:50+0200\n"
+"POT-Creation-Date: 2020-12-15 15:28+0000\n"
+"PO-Revision-Date: 2020-12-15 17:31+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr ""
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "<span style=\"color:darkblue\">Final Amounts</span>"
-msgstr ""
+msgstr "<span style=\"color:darkblue\">المبالغ النهائية</span>"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
@@ -44,7 +44,7 @@ msgstr "<strong>من تاريخ:</strong>"
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
 msgid "<strong>States:</strong>"
-msgstr ""
+msgstr "<strong>الحالات:</strong>"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_doc
@@ -82,11 +82,6 @@ msgstr "إجراء مجمع"
 #, python-format
 msgid "Bulk Action Results"
 msgstr "نتيجه الاجراء المجمع"
-
-#. module: product_card_report
-#: model:ir.actions.server,name:product_card_report.server_action_picking_bulk_validate
-msgid "Bulk Validate"
-msgstr "إجراء التحقق مجمعاً"
 
 #. module: product_card_report
 #: model_terms:ir.ui.view,arch_db:product_card_report.product_card_report_view
@@ -248,6 +243,9 @@ msgid ""
 "- from SRC location to (pre defined virtual location) auto validated\n"
 "- from (pre defined virtual location) to DEST location"
 msgstr ""
+"الموقع الوسيط المستخدم للفصل بين حركتين داخليتين\n"
+"- من الموقع المرسل منه الى الموقع الوسيط(تمت للنهايه) كما الحركه الاصليه\n"
+"- من الموقع الوسيط إلى الموقع المرسل منه وتحتاج للاتمام."
 
 #. module: product_card_report
 #: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__move_type
@@ -331,6 +329,26 @@ msgstr "تحركات المنتج (بنود حركة المخزون)"
 #: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__signed_done_qty
 msgid "Qty Done(+/-)"
 msgstr "الكميه(+/-)"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__in_qty
+msgid "Qty In"
+msgstr "الواردد"
+
+#. module: product_card_report
+#: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__out_qty
+msgid "Qty Out"
+msgstr "المصروف"
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_move_line__in_qty
+msgid "Quantity done amount with sign +, which received to warehouse"
+msgstr ""
+
+#. module: product_card_report
+#: model:ir.model.fields,help:product_card_report.field_stock_move_line__out_qty
+msgid "Quantity done amount with sign -, which sent from warehouse"
+msgstr ""
 
 #. module: product_card_report
 #: model:ir.model.fields,help:product_card_report.field_stock_move_line__signed_done_qty
@@ -449,6 +467,11 @@ msgstr ""
 #: model:ir.model.fields,help:product_card_report.field_stock_picking__separated_picking_id
 msgid "Used to show other separated part"
 msgstr ""
+
+#. module: product_card_report
+#: model:ir.actions.server,name:product_card_report.server_action_picking_bulk_validate
+msgid "Validate"
+msgstr "إجراء التحقق مجمعاً"
 
 #. module: product_card_report
 #: model:ir.model.fields,field_description:product_card_report.field_product_card_report_wizard_states__value

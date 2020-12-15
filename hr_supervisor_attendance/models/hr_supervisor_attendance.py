@@ -28,6 +28,7 @@ class HRSupervisorAttendance(models.Model):
 	_description = "HR Supervisor Attendance"
 	_inherit = ['mail.thread', 'mail.activity.mixin']
 	_order = 'date, employee_id'
+	_check_company_auto = True
 	
 	employee_id = fields.Many2one('hr.employee', "Supervisor", requied=True, readonly=1,
 	                              states={'draft': [('readonly', False)]},
