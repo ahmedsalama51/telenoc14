@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Employee Requests-->
+        <record id="hr_hr_employee_request_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.request.form.view</field>
+            <field name="model">hr.employee.request</field>
+            <field name="arch" type="xml">
+                <form string="Employee Request">
+                    <header>
+                        <field name="show_first_approve" invisible="1"/>
+                        <field name="show_second_approve" invisible="1"/>
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','draft')]}"/>
+                        <button name="action_done" type="object" string="Full Approve" class="oe_highlight"
+                                attrs="{'invisible': [('show_second_approve','=',False)]}"/>
+                        <button name="action_done" type="object" string="First Approve" class="oe_highlight"
+                                attrs="{'invisible': [('show_first_approve','=',False)]}"/>
+
+                        <button name="action_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': [('state','in',('cancel','done'))]}"/>
+                        <button name="action_draft" type="object" groups="hr.group_hr_manager"
+                                string="Set to Draft" attrs="{'invisible': [('state','not in',('done', 'cancel'))]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="show_success_badge" invisible="1"/>
+                        <widget name="web_ribbon" title="Full Approved" bg_color="bg-success"
+                                attrs="{'invisible': [('show_success_badge', '=', False)]}"/>
+                        <widget name="web_ribbon" title="Full Approved" bg_color="bg-success"
+                                attrs="{'invisible': [('show_success_badge', '=', False)]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Number" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="active" invisible="1"/>
+                                <field name="type_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="employee_id" force_save="1"
+                                       attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="identification_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="department_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="job_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="req_date_start" invisible="1"/>
+                                <field name="req_date_end" invisible="1"/>
+                                <field name="date_start" attrs="{'invisible':[('req_date_start','=',False)],
+                                                                 'readonly':[('state','!=','draft')],
+                                                                  'required':[('req_date_start','=',True)]}"/>
+                                <field name="date_end" attrs="{'invisible':[('req_date_end','=',False)],
+                                                                 'readonly':[('state','!=','draft')],
+                                                                  'required':[('req_date_end','=',True)]}"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <field name="req_request_details" invisible="1"/>
+                        <field name="request_details" placeholder="Details....."
+                        attrs="{'invisible':[('req_request_details','=',False)],
+                                 'readonly':[('state','!=','draft')],
+                                  'required':[('req_request_details','=',True)]}"/>
+                        <notebook attrs="{'invisible':[('line_ids','=', [])]}">
+                            <page string="Request Approvals" name="approvals" attrs="{'invisible':[('line_ids','=', [])]}">
+                                <field name="line_ids">
+                                    <tree editable="bottom">
+                                        <field name="line_id" invisible="1" force_save="1"/>
+                                        <field name="department_id" width="2" force_save="1"/>
+                                        <field name="note" width="4" force_save="1"/>
+                                        <field name="is_approved" width="1"/>
+                                        <field name="user_id" width="1" readonly="1" force_save="1"/>
+                                        <field name="approval_date" width="1" readonly="1" force_save="1"/>
+                                        <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="hr_hr_employee_request_tree_view" model="ir.ui.view">
+            <field name="name">hr.employee.request.tree.view</field>
+            <field name="model">hr.employee.request</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Request"
+                      decoration-success="show_success_badge == True"
+                      decoration-warning="show_success_badge == False and state == 'done'"
+                      decoration-info="state == 'confirmed'"
+                      decoration-muted="state == 'cancel'">
+                    <field name="name"/>
+                    <field name="type_id"/>
+                    <field name="employee_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                    <field name="state" optional="hide"/>
+                    <field name="show_success_badge" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_hr_employee_request_search_view" model="ir.ui.view">
+            <field name="name">hr.employee.request.search.view</field>
+            <field name="model">hr.employee.request</field>
+            <field name="arch" type="xml">
+                <search string="Employee Request">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="type_id"/>
+                    <separator/>
+                    <filter string="Start Date" name="date" date="date_start"/>
+                    <filter string="End Date" name="date" date="date_end"/>
+                    <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_by_type" string="Type" context="{'group_by':'type_id'}"/>
+                        <filter name="group_by_employee" string="Employee" context="{'group_by':'employee_id'}"/>
+                        <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter name="group_by_date_start" string="Date Start" context="{'group_by':'date_start:month'}"/>
+                        <filter name="group_by_date_end" string="Date End" context="{'group_by':'date_end:month'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="hr_hr_employee_request_action" model="ir.actions.act_window">
+            <field name="name">Employee Request</field>
+            <field name="res_model">hr.employee.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_group_by_type':1}</field>
+        </record>
+        <menuitem id="menu_hr_employee_requests"
+                  name="Requests"
+                  action="hr_employee_requests.hr_hr_employee_request_action"
+                  parent="hr_employee_requests.menu_hr_employee_requests_root"
+                  sequence="1"/>
+    </data>
+</odoo>

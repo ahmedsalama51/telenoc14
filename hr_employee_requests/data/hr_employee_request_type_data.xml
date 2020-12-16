@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="request_type_exit" model="hr.employee.request.type">
+            <field name="name">Exit Permission Request</field>
+            <field name="approval_cycle">two</field>
+            <field name="req_date_start">1</field>
+            <field name="req_date_end">1</field>
+            <field name="req_request_details">1</field>
+        </record>
+        <!--إخلاء الطرف-->
+        <record id="request_type_cleared" model="hr.employee.request.type">
+            <field name="name">Cleared Out</field>
+            <field name="approval_cycle">one</field>
+            <field name="req_date_start">1</field>
+            <field name="req_date_end">1</field>
+            <field name="req_request_details">1</field>
+        </record>
+        <record id="request_type_cleared_line_1" model="hr.employee.request.type.line">
+            <field name="type_id" ref="hr_employee_requests.request_type_cleared"/>
+            <field name="department_id" ref="hr.dep_management"/>
+            <field name="note">ليس لدى المذكور اى إلتزامات ولا مانع من إخلاء طرفه</field>
+        </record>
+        <record id="request_type_job_assign" model="hr.employee.request.type">
+            <field name="name">Job Assignment</field>
+            <field name="approval_cycle">two</field>
+            <field name="req_date_start">1</field>
+            <field name="req_date_end">1</field>
+            <field name="req_request_details">1</field>
+        </record>
+    </data>
+</odoo>

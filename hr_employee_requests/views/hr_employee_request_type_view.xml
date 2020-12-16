@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Root Menu-->
+        <menuitem id="menu_hr_employee_requests_root"
+                  name="Employee Requests"
+                  parent="hr.menu_hr_root"
+                  sequence="4"/>
+        <!-- Employee Request Types-->
+        <record id="hr_hr_employee_request_type_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.request.type.form.view</field>
+            <field name="model">hr.employee.request.type</field>
+            <field name="arch" type="xml">
+                <form string="Employee Request Type">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Type"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="active" invisible="1"/>
+                                <field name="approval_cycle" widget="radio" options="{'horizontal': true}"/>
+                                <field name="first_approve_group" required="1"/>
+                                <field name="second_approve_group"
+                                       attrs="{'invisible':[('approval_cycle','=','one')],
+                                                'required':[('approval_cycle','=','two')]}"/>
+                            </group>
+                            <group>
+                                <field name="req_date_start"/>
+                                <field name="req_date_end"/>
+                                <field name="req_request_details"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Approvals" name="approvals">
+                                <field name="line_ids">
+                                    <tree editable="bottom">
+                                        <field name="department_id" width="2"/>
+                                        <field name="note" width="4"/>
+                                        <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="hr_hr_employee_request_tree_type_view" model="ir.ui.view">
+            <field name="name">hr.employee.request.tree.type.view</field>
+            <field name="model">hr.employee.request.type</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Request Types">
+                    <field name="name"/>
+                    <field name="approval_cycle"/>
+                    <field name="req_date_start"/>
+                    <field name="req_date_end"/>
+                    <field name="req_request_details"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_hr_employee_request_type_search_view" model="ir.ui.view">
+            <field name="name">hr.employee.request.type.search.view</field>
+            <field name="model">hr.employee.request.type</field>
+            <field name="arch" type="xml">
+                <search string="Employee Request Type">
+                    <field name="name"/>
+                    <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_by_approval_cycle" string="Approval Cycle" context="{'group_by':'approval_cycle'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+         <record id="hr_hr_employee_request_type_action" model="ir.actions.act_window">
+            <field name="name">Request Types</field>
+            <field name="res_model">hr.employee.request.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_hr_employee_request_type"
+                  name="Request Types"
+                  action="hr_hr_employee_request_type_action"
+                  parent="hr_employee_requests.menu_hr_employee_requests_root"
+                  sequence="100"/>
+
+
+
+
+    </data>
+</odoo>
