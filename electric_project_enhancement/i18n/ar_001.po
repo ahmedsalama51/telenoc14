@@ -1,0 +1,887 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* electric_project_enhancement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-17 12:57+0000\n"
+"PO-Revision-Date: 2020-12-17 15:14+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: ar\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#. module: electric_project_enhancement
+#: model:ir.actions.report,print_report_name:electric_project_enhancement.report_receive_cable_rule_balance_act
+msgid "'Receive Cable Rules Balance'"
+msgstr "'الرصيد لدى شركه الكابلات"
+
+#. module: electric_project_enhancement
+#: model:ir.actions.report,print_report_name:electric_project_enhancement.report_work_order_material_balance
+msgid "'Work Order [%s] Material Balance' % object.name"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.actions.report,print_report_name:electric_project_enhancement.report_work_order_material_moves
+msgid "'Work Order [%s] Material Moves' % object.name"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "<span> TOTALS</span>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "<strong>Class:</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "<strong>Date:</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_delivery_document
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_picking
+msgid "<strong>Employee:</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_delivery_document
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_picking
+msgid "<strong>From</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_picking
+msgid "<strong>Lot/Serial Number</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid ""
+"<strong>Number:</strong>\n"
+"                            <span>         </span>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_picking
+msgid "<strong>Product Barcode</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "<strong>Product Count:</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_delivery_document
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_picking
+msgid "<strong>Product</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_delivery_document
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_picking
+msgid "<strong>Quantity</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_delivery_document
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_picking
+msgid "<strong>To</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "<strong>Type:</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_delivery_document
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_picking
+msgid "<strong>Work Order</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "<strong>Work order Number:</strong>"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__active
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_class__active
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule_line__receive_incoming_qty
+msgid "All incoming shipment for this product"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule_line__previous_qty
+msgid "All previous received for it"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_form_view
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_search_view
+msgid "Archived"
+msgstr "مؤرشفة"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_view_move_form_inherit
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_view_move_tree_inherit
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_view_picking_form_inherit
+msgid "Available"
+msgstr "متاح"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule_line__balance_qty
+msgid ""
+"Balance = all incoming shipment for this product - (all previous received for it "
+"+ current received qty)"
+msgstr ""
+"الرصيد = كل الشحنات الواردة لهذا المنتج - (كل الكابلات المستلمه سابقاً - الكابلات "
+"المستلمه حالياً)"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move__task_balance_qty
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move_line__task_balance_qty
+msgid "Balance Qty"
+msgstr "الرصيد لدى شركه الكابلات"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_report_picking
+msgid "Barcode"
+msgstr "المرجع"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__balance_qty
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "Cable Balance"
+msgstr "الرصيد من الكابلات"
+
+#. module: electric_project_enhancement
+#: model:ir.actions.server,name:electric_project_enhancement.server_action_cable_balance_report
+msgid "Cable Balance Report"
+msgstr "تقرير الرصيد لدى شركه الكابلات"
+
+#. module: electric_project_enhancement
+#: model:ir.ui.menu,name:electric_project_enhancement.menu_receive_cable_rule_root_sale
+msgid "Cable Rules"
+msgstr "الكابات"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields.selection,name:electric_project_enhancement.selection__receive_cable_rule__state__cancel
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_form_view
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__product_uom_category_id
+msgid "Category"
+msgstr "قسم"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type_tag__color
+msgid "Color"
+msgstr "لون"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__company_id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__company_id
+msgid "Company"
+msgstr "الشركه"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the same "
+"category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__create_uid
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__create_uid
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_class__create_uid
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type__create_uid
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type_tag__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__create_date
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__create_date
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_class__create_date
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type__create_date
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type_tag__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__quantity
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "Current Qty"
+msgstr "الكميه الحاليه"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_stock_move__qty_available
+#: model:ir.model.fields,help:electric_project_enhancement.field_stock_move_line__qty_available
+msgid ""
+"Current quantity of products.\n"
+"In a context with a single Stock Location, this includes goods stored at this "
+"Location, or any of its children.\n"
+"In a context with a single Warehouse, this includes goods stored in the Stock "
+"Location of this Warehouse, or any of its children.\n"
+"stored in the Stock Location of the Warehouse of this Shop, or any of its "
+"children.\n"
+"Otherwise, this includes goods stored in any Stock Location with 'internal' type."
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__date
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__date
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_search_view
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_project_task__details_operation_count
+msgid "Detailed Operation Count"
+msgstr "عدد العمليات"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_project_task__move_line_ids
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_view_task_form2_inherit
+msgid "Detailed Operations"
+msgstr "عمليات مفصلة"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_project_task__display_name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__display_name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__display_name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move__display_name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking_type__display_name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_class__display_name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type__display_name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type_tag__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields.selection,name:electric_project_enhancement.selection__receive_cable_rule__state__done
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_form_view
+msgid "Done"
+msgstr "منتهى"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__done_date
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_search_view
+msgid "Done Date"
+msgstr "تاريخ الإنتهاء"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields.selection,name:electric_project_enhancement.selection__receive_cable_rule__state__draft
+msgid "Draft"
+msgstr "جديد"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking__employee_id
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_view_picking_internal_search
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_search_view
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking__employee_mandatory
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking_type__employee_mandatory
+msgid "Employee Show and Required"
+msgstr "إظهار حقل الموظف وإلزام إدخاله"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_stock_move__task_balance_qty
+#: model:ir.model.fields,help:electric_project_enhancement.field_stock_move_line__task_balance_qty
+msgid "Get balance of previous moves with same product and work order"
+msgstr "حساب الرصيد السابق من العمليات لنفس المنتج ونفس أمر العمل"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_stock_move__task_incoming_qty
+#: model:ir.model.fields,help:electric_project_enhancement.field_stock_move_line__task_incoming_qty
+msgid "Get previous moves with same product and work order, with type incoming"
+msgstr "حساب السابق من العمليات لنفس المنتج ونفس أمر العمل للعمليات الوارده فقط"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_stock_move__task_outgoing_qty
+#: model:ir.model.fields,help:electric_project_enhancement.field_stock_move_line__task_outgoing_qty
+msgid "Get previous moves with same product and work order, with type outgoing"
+msgstr ""
+"حساب الرصيد السابق من العمليات لنفس المنتج ونفس أمر العمل للعمليات الصادرة فقط"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_search_view
+msgid "Group By..."
+msgstr "تجميع..."
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_project_task__id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move__id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move_line__id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking__id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking_type__id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_class__id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type__id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type_tag__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__message_needaction
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__message_has_error
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move__task_incoming_qty
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move_line__task_incoming_qty
+msgid "Incoming Qty"
+msgstr "مستلمه بإذونات إضافه"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_project_task____last_update
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule____last_update
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line____last_update
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move____last_update
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move_line____last_update
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking_type____last_update
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_class____last_update
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type____last_update
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type_tag____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__write_uid
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__write_uid
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_class__write_uid
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type__write_uid
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type_tag__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__write_date
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__write_date
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_class__write_date
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type__write_date
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type_tag__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__line_ids
+msgid "Lines"
+msgstr "السطور"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_search_view
+msgid "Location"
+msgstr "الموقع"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "Move Type"
+msgstr "نوع الحركه"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+msgid "Needs"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__note
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "Num."
+msgstr "رقم."
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__name
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__name
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_form_view
+msgid "Number"
+msgstr "عدد"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الاوامر"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_project_task__operation_count
+msgid "Operation Count"
+msgstr "عدد العمليات"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_project_task__move_ids
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_view_task_form2_inherit
+msgid "Operations"
+msgstr "العمليات"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move__task_outgoing_qty
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move_line__task_outgoing_qty
+msgid "Outgoing Qty"
+msgstr "العمليات الصادره"
+
+#. module: electric_project_enhancement
+#: model:ir.model,name:electric_project_enhancement.model_stock_picking_type
+msgid "Picking Type"
+msgstr "نوع الاستلام"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__previous_qty
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "Previous Cables"
+msgstr "الكابلات السابقه"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__product_id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__product_id
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "Product"
+msgstr "المنتج"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "Product Code"
+msgstr "الكود"
+
+#. module: electric_project_enhancement
+#: model:ir.model,name:electric_project_enhancement.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr "تحركات المنتج (بنود حركة المخزون)"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "Product Name"
+msgstr "المنتج"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "Quantity"
+msgstr "الكميه"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move__qty_available
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move_line__qty_available
+msgid "Quantity On Hand"
+msgstr "الكميه المتاحه"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__receive_id
+msgid "Receive"
+msgstr "المستلمه"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_form_view
+msgid "Receive Cable Rule"
+msgstr "الكابلات المستلمه"
+
+#. module: electric_project_enhancement
+#: model:ir.model,name:electric_project_enhancement.model_receive_cable_rule_line
+msgid "Receive Cable Rule Lines"
+msgstr "سطور استلامه الكابلات"
+
+#. module: electric_project_enhancement
+#: model:ir.actions.act_window,name:electric_project_enhancement.receive_cable_rule_action
+#: model:ir.model,name:electric_project_enhancement.model_receive_cable_rule
+#: model:ir.ui.menu,name:electric_project_enhancement.menu_receive_cable_rule
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_search_view
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_tree_view
+msgid "Receive Cable Rules"
+msgstr "إستلامة الكابلات"
+
+#. module: electric_project_enhancement
+#: model:ir.actions.report,name:electric_project_enhancement.report_receive_cable_rule_balance_act
+msgid "Receive Cable Rules Balance"
+msgstr "'الرصيد لدى شركه الكابلات"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_search_view
+msgid "Receive Date"
+msgstr "تاريخ الإستلام"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__location_id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__location_id
+msgid "Receive Location"
+msgstr "موقع الإستلام"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "Received Cable Balance"
+msgstr "'الرصيد لدى شركه الكابلات"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__date
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule_line__date
+msgid "Received Date"
+msgstr "تاريخ الإستلام"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__receive_incoming_qty
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "Received From Checklist"
+msgstr "مستلمه باذونات إضافة"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__employee_id
+msgid "Receiver"
+msgstr "المستلم"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__activity_user_id
+msgid "Responsible User"
+msgstr "المسؤل"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+msgid "Returns"
+msgstr "حركه استرجاع"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__done_date
+msgid "Set Done Date"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_form_view
+msgid "Set to Draft"
+msgstr "اعاده إلى جديد"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__state
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__state
+msgid "State"
+msgstr "الحاله"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_search_view
+msgid "Status"
+msgstr "الحاله"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model,name:electric_project_enhancement.model_stock_move
+msgid "Stock Move"
+msgstr "حركة المخزون"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type__tags_ids
+msgid "Tags"
+msgstr "العلامات التحليلية"
+
+#. module: electric_project_enhancement
+#: model:ir.model,name:electric_project_enhancement.model_project_task
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_picking__task_id
+msgid "Task"
+msgstr "المهمة"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule_line__total_after_qty
+msgid "Total After Received"
+msgstr "إجمالى المستلم"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+msgid "Total Incoming"
+msgstr "إجمال الوارد"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+msgid "Total Outgoing"
+msgstr "إجمالى الصادر"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__total_after_qty
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+msgid "Total Received Cables"
+msgstr "إجمالي المستلم"
+
+#. module: electric_project_enhancement
+#: model:ir.model,name:electric_project_enhancement.model_stock_picking
+msgid "Transfer"
+msgstr "الشحنة"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type__name
+msgid "Type"
+msgstr "النوع"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_type_tag__name
+msgid "Type Tag"
+msgstr "نوع العلامه"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule_line__product_uom
+msgid "UOM"
+msgstr "وحده القياس"
+
+#. module: electric_project_enhancement
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.receive_cable_rule_balance_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "Unit"
+msgstr "وحده"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_receive_cable_rule__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_receive_cable_rule__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_project_task__work_order_class_id
+msgid "Work Class"
+msgstr "فئه العمل"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move__task_id
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_stock_move_line__task_id
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_view_move_search_inherit
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.electric_view_task_form2_inherit
+msgid "Work Order"
+msgstr "أمر عمل"
+
+#. module: electric_project_enhancement
+#: model:ir.model,name:electric_project_enhancement.model_work_order_class
+msgid "Work Order Class"
+msgstr "فئه أمر العمل"
+
+#. module: electric_project_enhancement
+#: model:ir.actions.report,name:electric_project_enhancement.report_work_order_material_balance
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_balance_report_doc
+msgid "Work Order Material Balance"
+msgstr "موازنة مواد أمر العمل"
+
+#. module: electric_project_enhancement
+#: model:ir.actions.report,name:electric_project_enhancement.report_work_order_material_moves
+#: model_terms:ir.ui.view,arch_db:electric_project_enhancement.work_order_material_moves_report_doc
+msgid "Work Order Material Moves"
+msgstr "حركه مواد أمر العمل"
+
+#. module: electric_project_enhancement
+#: model:ir.model,name:electric_project_enhancement.model_work_order_type
+msgid "Work Order Type"
+msgstr "نوع أمر العمل"
+
+#. module: electric_project_enhancement
+#: model:ir.model,name:electric_project_enhancement.model_work_order_type_tag
+msgid "Work Order Type Tag"
+msgstr "علامه نوع أمر العمل"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_project_task__work_order_type_id
+msgid "Work Type"
+msgstr "نوع العمل"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,field_description:electric_project_enhancement.field_work_order_class__name
+msgid "class"
+msgstr "فئه"
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_project_task__work_order_class_id
+msgid "تصنيف المعاملة"
+msgstr ""
+
+#. module: electric_project_enhancement
+#: model:ir.model.fields,help:electric_project_enhancement.field_project_task__work_order_type_id
+msgid "نوع المعاملة"
+msgstr ""
