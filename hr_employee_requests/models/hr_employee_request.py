@@ -16,7 +16,10 @@ _STATES = [('draft', 'Draft'),
            ('confirmed', 'Confirm'),
            ('first_approve', 'First Approved'),
            ('done', 'Approved'),
+           ('dep_approvals', 'Dep. Approvals'),
            ('cancel', 'Cancel')]
+
+
 # Ahmed Salama Code Start ---->
 
 
@@ -44,7 +47,8 @@ class HrEmployeeRequest(models.Model):
 	                         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
 	
 	# Request Details
-	type_id = fields.Many2one('hr.employee.request.type', "Request Type", required=True, ondelete='cascade', tracking=True)
+	type_id = fields.Many2one('hr.employee.request.type', "Request Type",
+	                          required=True, ondelete='cascade', tracking=True)
 	approval_cycle = fields.Selection(related='type_id.approval_cycle')
 	req_date_start = fields.Boolean(related='type_id.req_date_start')
 	req_date_end = fields.Boolean(related='type_id.req_date_end')
@@ -125,12 +129,18 @@ class HrEmployeeRequest(models.Model):
 		"""
 		for rec in self:
 			if rec.type_id.approval_cycle == 'one':
-				rec.state = 'done'
+				if rec.line_ids and not all(app for app in rec.line_ids.mapped('is_approved')):
+					rec.state = 'dep_approvals'
+				else:
+					rec.state = 'done'
 			if rec.type_id.approval_cycle == 'two':
 				if rec.state == 'confirmed':
 					rec.state = 'first_approve'
 				elif rec.state == 'first_approve':
-					rec.state = 'done'
+					if rec.line_ids and not all(app for app in rec.line_ids.mapped('is_approved')):
+						rec.state = 'dep_approvals'
+					else:
+						rec.state = 'done'
 	
 	def action_cancel(self):
 		"""
@@ -177,9 +187,10 @@ class HrEmployeeRequest(models.Model):
 						'department_id': line.department_id.id,
 						'note': line.note,
 					}))
+				print("LINES:: ", line_ids)
 				req.line_ids = line_ids
 				req.message_notify(body="Load Type Approval Lines")
-				
+	
 	@api.onchange('state', 'approval_cycle', 'line_ids')
 	def show_approval_buttons(self):
 		for req in self:
@@ -198,7 +209,7 @@ class HrEmployeeRequest(models.Model):
 				elif all(app for app in req.line_ids.mapped('is_approved')):
 					show_success_badge = True
 			req.show_success_badge = show_success_badge
-			
+
 
 class HrEmployeeRequestLine(models.Model):
 	_name = 'hr.employee.request.line'
@@ -209,17 +220,31 @@ class HrEmployeeRequestLine(models.Model):
 	company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company,
 	                             index=True, required=True)
 	request_id = fields.Many2one('hr.employee.request', "Request", ondelete='cascade')
+	state = fields.Selection(related='request_id.state')
 	line_id = fields.Many2one('hr.employee.request.type.line', "Type Line", required=True)
 	department_id = fields.Many2one('hr.department', 'Department', readonly=True,
 	                                domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]")
+	manager_id = fields.Many2one(related='department_id.manager_id')
 	note = fields.Text("Note", readonly=True)
 	user_id = fields.Many2one('res.users', "Name")
 	is_approved = fields.Boolean("Approved")
+	approve_access = fields.Boolean("Approve Access?")  # , compute='get_approve_access'
 	approval_date = fields.Datetime("Approved Date")
 	
 	# --------------------------------------------------
 	# Business methods
 	# --------------------------------------------------
+	
+	# def get_approve_access(self):
+	# 	"""
+	# 	Check if this current user have access to approve this line
+	# 	"""
+	# 	for line in self:
+	# 		approve_access = False
+	# 		if line.department_id and self.env.user.employee_id \
+	# 				and self.env.user.employee_id == line.department_id.manager_id:
+	# 			approve_access = True
+	# 		line.approve_access = approve_access
 	
 	@api.onchange('is_approved')
 	def approve_log(self):
@@ -236,6 +261,7 @@ class HrEmployeeRequestLine(models.Model):
 	def write(self, vals):
 		"""
 		message post for the action happened on line
+		check state according to line approval rules
 		:param vals:
 		:return:
 		"""
@@ -246,8 +272,15 @@ class HrEmployeeRequestLine(models.Model):
 				                                  "<li>Approved: %s</li>"
 				                                  "<li>User: %s</li>"
 				                                  "<li>Date: %s</li>"
-				                                  "</ul>" % (line.department_id.name, line.is_approved and "Yes" or "No",
-				                                             line.user_id.name, line.approval_date))
+				                                  "</ul>" % (
+				                                  line.department_id.name, line.is_approved and "Yes" or "No",
+				                                  line.user_id.name, line.approval_date))
+				if all(app for app in line.request_id.line_ids.mapped('is_approved')):
+					line.request_id.state = 'done'
+				elif line.request_id.type_id.approval_cycle == 'one':
+					line.request_id.state = 'confirmed'
+				elif line.request_id.type_id.approval_cycle == 'two':
+					line.request_id.state = 'first_approve'
 		return True
 
 # Ahmed Salama Code End.

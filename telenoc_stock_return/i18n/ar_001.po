@@ -1,0 +1,615 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* telenoc_stock_return
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-19 17:25+0000\n"
+"PO-Revision-Date: 2020-12-19 19:28+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: ar\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_location__return_dest_location
+msgid "- Mark to use this location on destination of return object"
+msgstr "- تحديد لاستخدام هذا الموقع كوجهه في الاسترجاع المخزني"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_location__return_src_location
+msgid "- Mark to use this location on source of return object"
+msgstr "- تحديد لاستخدام هذا الموقع كمصدر في الاسترجاع المخزني"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_needaction
+msgid "Action Needed"
+msgstr "الإجراء المطلوب"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_internal_form_view
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_form_view
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__availability
+msgid "Available"
+msgstr "متاح"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return__state__cancel
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return_line__state__cancel
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_internal_form_view
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_form_view
+msgid "Cancel"
+msgstr "ملغى"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__product_uom_category_id
+msgid "Category"
+msgstr "القسم"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__company_id
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__company_id
+msgid "Company"
+msgstr "الشركه"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: telenoc_stock_return
+#: code:addons/telenoc_stock_return/models/stock_return.py:0
+#, python-format
+msgid ""
+"Couldn't validate picking due to Inventory restriction\n"
+"Please review picking and try to validate it first."
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__create_uid
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__create_date
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_view_location_search
+msgid "DST Return"
+msgstr "استرجاع"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__date
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__location_dest_id
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Destination Location"
+msgstr "الوجهه"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_location__display_name
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_move__display_name
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__display_name
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return__state__done
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return_line__state__done
+msgid "Done"
+msgstr "منتهى"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__done_date
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Done Date"
+msgstr "تاريخ الإنتهاء"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return__state__draft
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return_line__state__draft
+msgid "Draft"
+msgstr "جديد"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return_line__price_unit
+msgid ""
+"Get return price:\n"
+"-Case 1: Move that have same inverse source & destination locations with "
+"price > 0.\n"
+"-Case 2: Move that have current source location as destination on it "
+"with price > 0.\n"
+"-Case 3: Cost price from product (Current Cost)."
+msgstr ""
+"إيجاد سعر الاسترجاع:\n"
+"-الحالة الأولى: أيجاد حركه لها نفس المصدر والوجهة والسعر بها اكبر من 0.\n"
+"-الحالة الثانية: أيجاد حركه لها نفس الوجهة فقط والسعر بها اكبر من 0.\n"
+"-الحالة الثالثة: السعر من سعر تكلفه المنتج نفسه."
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Group By..."
+msgstr "تجميع..."
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_location__id
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_move__id
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_picking__id
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__id
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__message_needaction
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__message_has_error
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return__transfer_type__internal
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Internal"
+msgstr "تحويل داخلى"
+
+#. module: telenoc_stock_return
+#: model:ir.actions.act_window,name:telenoc_stock_return.stock_internal_action
+#: model:ir.ui.menu,name:telenoc_stock_return.menu_stock_internal
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_internal_form_view
+msgid "Internal Transfers"
+msgstr "تحويل داخلى"
+
+#. module: telenoc_stock_return
+#: model:ir.model,name:telenoc_stock_return.model_stock_location
+msgid "Inventory Locations"
+msgstr "مواقع المخزون"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_location__return_dest_location
+msgid "Is Return Destination Location?"
+msgstr "وجهه استرجاع؟"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_location__return_src_location
+msgid "Is Return Source Location?"
+msgstr "مصدر استرجاع؟"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_location____last_update
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_move____last_update
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_picking____last_update
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return____last_update
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__write_uid
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__write_date
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Location"
+msgstr "المكان"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: code:addons/telenoc_stock_return/models/stock_return.py:0
+#, python-format
+msgid "No Operation to validate!!!"
+msgstr "لا توجد عمليات لتأكيدها !!!"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__notes
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__note
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_internal_form_view
+msgid "Number"
+msgstr "رقم"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الاوامر"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي تحتوي علي خطا في التسليم"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__message_unread_counter
+msgid "Number of unread messages"
+msgstr "عدد الرسائل غير المقروءة"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__picking_id
+msgid "Operation"
+msgstr "العمليه"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__picking_type_id
+msgid "Operation Type"
+msgstr "نوع العمليه"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__price_description
+msgid "Price Details"
+msgstr "تفاصيل السعر"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__line_ids
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_internal_form_view
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_form_view
+msgid "Products"
+msgstr "المنتجات"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return_line__availability
+msgid ""
+"Quantity in stock that can still be reserved for this source location\n"
+"after deduct current quantity"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return__state__ready
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return_line__state__ready
+msgid "Ready"
+msgstr "جاهز"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__activity_user_id
+msgid "Responsible User"
+msgstr "المسؤل"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__quantity
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__return_id
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_form_view
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_view_picking_internal_search_inherit
+msgid "Return"
+msgstr "استرجاع"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Return Date"
+msgstr "تاريخ الإسترجاع"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_internal_form_view
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_form_view
+msgid "Return Notes....."
+msgstr "ملاحظات الاسترجاع..."
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_form_view
+msgid "Return Number"
+msgstr "رقم  الإسترجاع"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_view_picking_internal_search_inherit
+msgid "Return Operation"
+msgstr "عمليه الاسترجاع"
+
+#. module: telenoc_stock_return
+#: model:ir.actions.act_window,name:telenoc_stock_return.stock_return_action
+#: model:ir.ui.menu,name:telenoc_stock_return.menu_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_form_view
+msgid "Return Transfers"
+msgstr "إسترجاع"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields.selection,name:telenoc_stock_return.selection__stock_return__transfer_type__return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Returns"
+msgstr "المرتجعات"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_view_location_search
+msgid "SRC Return"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_internal_form_view
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_form_view
+msgid "Set to Draft"
+msgstr "اعاده إلى جديد"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__location_id
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__location_id
+msgid "Source Location"
+msgstr "مصدر"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_move__return_line_id
+msgid "Source return line that used to create this operation"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_picking__return_id
+msgid "Source return that used to create this operation"
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__state
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__state
+msgid "State"
+msgstr "الحاله"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+msgid "Status"
+msgstr "الحاله"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model,name:telenoc_stock_return.model_stock_move
+msgid "Stock Move"
+msgstr "حركة المخزون"
+
+#. module: telenoc_stock_return
+#: model:ir.model,name:telenoc_stock_return.model_stock_return
+msgid "Stock Return"
+msgstr "استرجاع"
+
+#. module: telenoc_stock_return
+#: model:res.groups,name:telenoc_stock_return.group_stock_return
+msgid "Stock Return Access"
+msgstr "إماكنيه التحكم بحركات الاغسترجاع"
+
+#. module: telenoc_stock_return
+#: model:ir.model,name:telenoc_stock_return.model_stock_return_line
+msgid "Stock Return Lines"
+msgstr "سطور حركه استرجاع"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_search_view
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_tree_view
+msgid "Stock Returns"
+msgstr "حركه استرجاع"
+
+#. module: telenoc_stock_return
+#: model:res.groups,comment:telenoc_stock_return.group_stock_return
+msgid "The user will have access to create and edit stock return."
+msgstr "هذا المستخدم يمكنه التحكم فى إنشاء وتعديل حركات الاسترجاع."
+
+#. module: telenoc_stock_return
+#: model:ir.model,name:telenoc_stock_return.model_stock_picking
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_picking__return_id
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_internal_form_view
+msgid "Transfer"
+msgstr "تحويل مخزني"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_move__return_line_id
+msgid "Transfer Line"
+msgstr "سطر تحويل"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__transfer_type
+msgid "Transfer Type"
+msgstr "نوع التحويل"
+
+#. module: telenoc_stock_return
+#: model:ir.ui.menu,name:telenoc_stock_return.menu_stock_transfer
+msgid "Transfers"
+msgstr "التحويلات المخزنية"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__product_uom
+msgid "UOM"
+msgstr "وحده القياس"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return_line__price_unit
+msgid "Unit Price"
+msgstr "السعر"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_unread
+msgid "Unread Messages"
+msgstr "الرسائل غير مقروءة"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "عداد الرسائل الغير مقرؤة"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_view_location_search
+msgid "Used as return destination location"
+msgstr "المكان المستخدم كوجهه في المرتجع المخزني"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_view_location_search
+msgid "Used as return source location"
+msgstr "المكان المستخدم كمصدر في المرتجع المخزني"
+
+#. module: telenoc_stock_return
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_internal_form_view
+#: model_terms:ir.ui.view,arch_db:telenoc_stock_return.stock_return_form_view
+msgid "Validate"
+msgstr "تأكيد"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,field_description:telenoc_stock_return.field_stock_return__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع الإلكتروني"
+
+#. module: telenoc_stock_return
+#: model:ir.model.fields,help:telenoc_stock_return.field_stock_return__website_message_ids
+msgid "Website communication history"
+msgstr ""

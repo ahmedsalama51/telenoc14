@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Return Menu-->
+        <menuitem name="Transfers"
+                  id="menu_stock_transfer" sequence="32"
+                  groups="telenoc_stock_return.group_stock_return"
+                  web_icon="telenoc_stock_return,static/description/icon.png"/>
+        <!-- Transfer Return -->
+        <record id="stock_return_form_view" model="ir.ui.view">
+            <field name="name">stock.return.form.view</field>
+            <field name="model">stock.return</field>
+            <field name="arch" type="xml">
+                <form string="Return Transfers">
+                    <header>
+                        <button name="action_transfer" type="object" string="Return" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','draft')]}"/>
+                        <button name="action_done" type="object" string="Validate" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','ready')]}" groups="stock.group_stock_manager"/>
+                        <button name="action_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': [('state','in',('done', 'cancel'))]}"/>
+                        <button name="action_draft" type="object"
+                                string="Set to Draft" attrs="{'invisible': [('state','not in',('done', 'cancel'))]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,ready,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Return Number"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="transfer_type" invisible="1"/>
+                                <field name="active" invisible="1"/>
+                                <field name="picking_type_id" />
+                                <field name="location_id" domain="[('return_src_location', '=', True)]"/>
+                                <field name="location_dest_id" domain="[('return_dest_location', '=', True)]"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="done_date" attrs="{'invisible': [('state','!=','done')]}"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="picking_id" attrs="{'invisible': [('state','in',('cancel', 'draft'))]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Products" name="products">
+                                <field name="line_ids" context="{'default_location_id':location_id, 'default_state':state}"
+                                       decoration-success="state == 'done'"
+                                       decoration-info="state == 'ready'"
+                                       decoration-muted="state == 'cancel'">
+                                    <tree editable="bottom">
+                                        <field name="product_id" width="2"/>
+                                        <field name="quantity" width="1"/>
+                                        <field name="availability" width="1"/>
+                                        <field name="product_uom" width="1"/>
+                                        <field name="price_unit" optional="show" width="1"/>
+                                        <field name="price_description" optional="show" width="3"/>
+                                        <field name="product_uom_category_id" invisible="1"/>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="location_id" optional="hide" readonly="1" force_store="1"  width="2"/>
+                                        <field name="state" optional="hide" width="1"/>
+                                        <field name="note" optional="show" width="1"/>
+                                    </tree>
+                                </field>
+                                <field name="notes" placeholder="Return Notes....."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="stock_return_tree_view" model="ir.ui.view">
+            <field name="name">stock.return.tree.view</field>
+            <field name="model">stock.return</field>
+            <field name="arch" type="xml">
+                <tree string="Stock Returns"
+                      decoration-success="state == 'done'"
+                      decoration-info="state == 'ready'"
+                      decoration-muted="state == 'cancel'">
+                    <field name="name"/>
+                    <field name="location_id"/>
+                    <field name="location_dest_id"/>
+                    <field name="date"/>
+                    <field name="done_date"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                    <field name="state"/>
+                    <field name="transfer_type" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="stock_return_search_view" model="ir.ui.view">
+            <field name="name">stock.return.search.view</field>
+            <field name="model">stock.return</field>
+            <field name="arch" type="xml">
+                <search string="Stock Returns">
+                    <field name="name"/>
+                    <separator/>
+                    <filter string="Return Date" name="date" date="date"/>
+                    <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
+                    <separator/>
+                    <filter string="Returns" name="is_return" domain="[('transfer_type','=','return')]"/>
+                    <filter string="Internal" name="is_internal" domain="[('transfer_type','=','internal')]"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_by_location" string="Location" context="{'group_by':'location_id'}"/>
+                        <filter name="group_by_dest_location" string="Destination Location" context="{'group_by':'location_dest_id'}"/>
+                        <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter name="group_by_date" string="Date" context="{'group_by':'date'}"/>
+                        <filter name="group_by_done_date" string="Done Date" context="{'group_by':'done_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="stock_return_action" model="ir.actions.act_window">
+            <field name="name">Return Transfers</field>
+            <field name="res_model">stock.return</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('stock_return_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('stock_return_form_view')})]"/>
+            <field name="domain">[('transfer_type','=','return')]</field>
+            <field name="context">{'search_default_group_by_location':1,'default_transfer_type': 'return'}</field>
+        </record>
+        <menuitem id="menu_stock_return"
+                  name="Return Transfers"
+                  action="stock_return_action"
+                  parent="menu_stock_transfer" sequence="1"/>
+        <!-- Internal Transfer -->
+        <record id="stock_internal_form_view" model="ir.ui.view">
+            <field name="name">stock.internal.form.view</field>
+            <field name="model">stock.return</field>
+            <field name="arch" type="xml">
+                <form string="Internal Transfers">
+                    <header>
+                        <button name="action_transfer" type="object" string="Transfer" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','draft')]}"/>
+                        <button name="action_done" type="object" string="Validate" class="oe_highlight"
+                                attrs="{'invisible': [('state','!=','ready')]}" groups="stock.group_stock_manager"/>
+                        <button name="action_cancel" type="object" string="Cancel"
+                                attrs="{'invisible': [('state','in',('done', 'cancel'))]}"/>
+                        <button name="action_draft" type="object"
+                                string="Set to Draft" attrs="{'invisible': [('state','not in',('done', 'cancel'))]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,ready,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Number"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="active" invisible="1"/>
+                                <field name="picking_type_id" />
+                                <field name="location_id" domain="[('usage', '=', 'internal')]"/>
+                                <field name="location_dest_id" domain="[('usage', '=', 'internal')]"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="done_date" attrs="{'invisible': [('state','!=','done')]}"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="picking_id" attrs="{'invisible': [('state','in',('cancel', 'draft'))]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Products" name="products">
+                                <field name="line_ids" context="{'default_location_id':location_id, 'default_state':state}"
+                                       decoration-success="state == 'done'"
+                                       decoration-info="state == 'ready'"
+                                       decoration-muted="state == 'cancel'">
+                                    <tree editable="bottom">
+                                        <field name="product_id" width="2"/>
+                                        <field name="quantity" width="1"/>
+                                        <field name="availability" width="1"/>
+                                        <field name="product_uom" width="1"/>
+                                        <field name="price_unit" optional="show" width="1"/>
+                                        <field name="price_description" optional="show" width="3"/>
+                                        <field name="product_uom_category_id" invisible="1"/>
+                                        <field name="company_id" invisible="1"/>
+                                        <field name="location_id" optional="hide" readonly="1" force_store="1"  width="2"/>
+                                        <field name="state" optional="hide" width="1"/>
+                                        <field name="note" optional="show" width="1"/>
+                                    </tree>
+                                </field>
+                                <field name="notes" placeholder="Return Notes....."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="stock_internal_action" model="ir.actions.act_window">
+            <field name="name">Internal Transfers</field>
+            <field name="res_model">stock.return</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('stock_return_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('stock_internal_form_view')})]"/>
+            <field name="domain">[('transfer_type','=','internal')]</field>
+            <field name="context">{'search_default_group_by_location':1,'default_transfer_type': 'internal'}</field>
+        </record>
+        <menuitem id="menu_stock_internal"
+                  name="Internal Transfers"
+                  action="stock_internal_action"
+                  parent="menu_stock_transfer" sequence="2"/>
+
+    </data>
+</odoo>

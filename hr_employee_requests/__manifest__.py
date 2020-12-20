@@ -2,7 +2,7 @@
 {
     'name': 'HR Employee Request Template',
     'summary': 'Add some types of templates for employee requests',
-    'version': '0.1',
+    'version': '0.2',
     'license': "AGPL-3",
     'author': 'Telenoc, Ahmed Salama',
     'category': 'Human Resources/Employee',

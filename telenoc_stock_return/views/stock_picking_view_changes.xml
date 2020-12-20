@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_return_view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock_return.stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="return_id" attrs="{'invisible':[('return_id','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="stock_return_view_picking_internal_search_inherit" model="ir.ui.view">
+            <field name="name">stock_return.stock.picking.search.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//separator[2]" position="before">
+                    <separator/>
+                    <filter name="return" string="Return" domain="[('return_id', '!=', False)]" help="Return Operation"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

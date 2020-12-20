@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_return_view_location_form" model="ir.ui.view">
+            <field name="name">stock_return.stock.location.form.inherit</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='return_location']" position="after">
+                    <field name="return_src_location"  attrs="{'invisible': [('usage', 'not in', ('inventory', 'internal'))]}"/>
+                    <field name="return_dest_location"  attrs="{'invisible': [('usage', 'not in', ('inventory', 'internal'))]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="stock_return_view_location_search" model="ir.ui.view">
+            <field name="name">stock_return.stock.location.search.inherit</field>
+            <field name="model">stock.location</field>
+            <field name="inherit_id" ref="stock.view_location_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='supplier']" position="after">
+                    <filter name="return_src_location" string="SRC Return"
+                            domain="[('return_src_location', '=', True)]" help="Used as return source location"/>
+                    <filter name="return_dest_location" string="DST Return"
+                            domain="[('return_dest_location', '=', True)]" help="Used as return destination location"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
