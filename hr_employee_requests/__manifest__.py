@@ -17,6 +17,9 @@
 
         'views/hr_employee_request_type_view.xml',
         'views/hr_employee_request_view.xml',
+        
+        'reports/reports.xml',
+        'reports/hr_employee_request_report.xml',
     ],
     'installable': True,
     'auto_install': False,

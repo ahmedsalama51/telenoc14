@@ -14,7 +14,7 @@
             <field name="approval_cycle">one</field>
             <field name="req_date_start">1</field>
             <field name="req_date_end">1</field>
-            <field name="req_request_details">1</field>
+            <field name="req_request_details">0</field>
         </record>
         <record id="request_type_cleared_line_1" model="hr.employee.request.type.line">
             <field name="type_id" ref="hr_employee_requests.request_type_cleared"/>

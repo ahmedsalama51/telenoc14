@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+                id="report_hr_employee_request"
+                model="hr.employee.request"
+                report_type="qweb-pdf"
+                string="Request Print"
+                name="hr_employee_requests.hr_employee_request_report"
+                file="hr_employee_requests.hr_employee_request_report"
+                print_report_name="'%s Request - %s' % (object.type_id.name, object.name)"
+
+        />
+
+    </data>
+</odoo>

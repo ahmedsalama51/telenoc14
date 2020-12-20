@@ -227,7 +227,7 @@ class HrEmployeeRequestLine(models.Model):
 	manager_id = fields.Many2one(related='department_id.manager_id')
 	note = fields.Text("Note", readonly=True)
 	user_id = fields.Many2one('res.users', "Name")
-	is_approved = fields.Boolean("Approved")
+	is_approved = fields.Boolean("Approved?")
 	approve_access = fields.Boolean("Approve Access?")  # , compute='get_approve_access'
 	approval_date = fields.Datetime("Approved Date")
 	

@@ -38,7 +38,7 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Approvals" name="approvals">
+                            <page string="Dep. Approvals" name="approvals">
                                 <field name="line_ids">
                                     <tree editable="bottom">
                                         <field name="department_id" width="2"/>

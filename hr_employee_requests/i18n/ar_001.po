@@ -4,18 +4,107 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0+e\n"
+"Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-17 13:16+0000\n"
-"PO-Revision-Date: 2020-12-17 15:24+0200\n"
+"POT-Creation-Date: 2020-12-20 14:31+0000\n"
+"PO-Revision-Date: 2020-12-20 16:33+0200\n"
 "Last-Translator: \n"
-"Language-Team: Ahmed Salama\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"Plural-Forms: \n"
 "Language: ar\n"
 "X-Generator: Poedit 2.4.2\n"
+
+#. module: hr_employee_requests
+#: model:ir.actions.report,print_report_name:hr_employee_requests.report_hr_employee_request
+msgid "'%s Request - %s' % (object.type_id.name, object.name)"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b style=\"font-family: ReemKufi;\">مصنع المدينه للبلاستك</b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid ""
+"<b>\n"
+"                                     اعتباراً من نهاية يوم\n"
+"                                </b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b><u>شئون العاملين</u></b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b>إسم الموظف : </b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b>الإداره : </b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b>التاريخ: </b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b>تاريخ إنتهاء العمل : </b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b>تاريخ بدء الإجازه : </b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid ""
+"<b>قد سلم جميع ما لديه من العهد المسلمة له من المصنع وبهذا أصبح المذكور خالي "
+"الطرف وليس بطرفه أي عهدة يطالب بها</b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b>مدير الإداره المالية</b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b>يشهد مصنع المدينه للبلاستك بأن السيد/ </b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_others_report_doc
+msgid ""
+"<span class=\"label label-danger text-danger\">No report view found for this "
+"request type...</span>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<span>     /     /     20م</span>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid ""
+"<span>م</span>\n"
+"                                 <b> حسب البيان الموضح بعاليه.</b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<u><b style=\"font-family: Jomhuria;font-size:35px;\">إخلاء طرف</b></u>"
+msgstr ""
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__message_needaction
@@ -48,12 +137,6 @@ msgid "Activity State"
 msgstr ""
 
 #. module: hr_employee_requests
-#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__activity_type_icon
-#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__activity_type_icon
-msgid "Activity Type Icon"
-msgstr ""
-
-#. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__approval_cycle
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__approval_cycle
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_type_search_view
@@ -63,12 +146,15 @@ msgstr "دورة الموافقة"
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__line_ids
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__line_ids
-#: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_type_form_view
 msgid "Approvals"
 msgstr "الموافقات"
 
 #. module: hr_employee_requests
-#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line__is_approved
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line__approve_access
+msgid "Approve Access?"
+msgstr "صلاحيا الموافقة؟"
+
+#. module: hr_employee_requests
 #: model:ir.model.fields.selection,name:hr_employee_requests.selection__hr_employee_request__state__done
 msgid "Approved"
 msgstr "تم الموافقة"
@@ -77,6 +163,11 @@ msgstr "تم الموافقة"
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line__approval_date
 msgid "Approved Date"
 msgstr "تاريخ الموافقة"
+
+#. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line__is_approved
+msgid "Approved?"
+msgstr "تم الموافقة؟"
 
 #. module: hr_employee_requests
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_form_view
@@ -90,7 +181,7 @@ msgstr "مؤرشفة"
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__message_attachment_count
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "عدد المرفقات"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields.selection,name:hr_employee_requests.selection__hr_employee_request__state__cancel
@@ -147,11 +238,23 @@ msgid "Date Start"
 msgstr "من تاريخ"
 
 #. module: hr_employee_requests
+#: model:ir.model.fields.selection,name:hr_employee_requests.selection__hr_employee_request__state__dep_approvals
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_form_view
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_type_form_view
+msgid "Dep. Approvals"
+msgstr "موافقات الأقسام"
+
+#. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__department_id
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line__department_id
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type_line__department_id
 msgid "Department"
 msgstr "القسم"
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_form_view
+msgid "Department Manger"
+msgstr "مدير القسم"
 
 #. module: hr_employee_requests
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_form_view
@@ -241,12 +344,6 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: hr_employee_requests
-#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request__activity_type_icon
-#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request_type__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
-
-#. module: hr_employee_requests
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_form_view
 msgid "Full Approve"
 msgstr "تام الموافقه"
@@ -312,7 +409,9 @@ msgstr ""
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request__message_has_error
+#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request__message_has_sms_error
 #: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request_type__message_has_error
+#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request_type__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -352,9 +451,19 @@ msgid "Last Updated on"
 msgstr "آخر تحديث في"
 
 #. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "MPF-HRS-019"
+msgstr ""
+
+#. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__message_main_attachment_id
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__message_main_attachment_id
 msgid "Main Attachment"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line__manager_id
+msgid "Manager"
 msgstr ""
 
 #. module: hr_employee_requests
@@ -450,14 +559,14 @@ msgid "Request Approval Line"
 msgstr "سطر الطلب"
 
 #. module: hr_employee_requests
-#: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_form_view
-msgid "Request Approvals"
-msgstr "موافقات الطلب"
-
-#. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__request_details
 msgid "Request Details"
 msgstr "تفاصيل الطلب"
+
+#. module: hr_employee_requests
+#: model:ir.actions.report,name:hr_employee_requests.report_hr_employee_request
+msgid "Request Print"
+msgstr "طباعه الطلب"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__type_id
@@ -482,6 +591,12 @@ msgstr "طلبات الموظفيين"
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__activity_user_id
 msgid "Responsible User"
 msgstr "المسؤل"
+
+#. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__message_has_sms_error
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__second_approve_group
@@ -534,6 +649,7 @@ msgstr "من تاريخ"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__state
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line__state
 msgid "State"
 msgstr "الحاله"
 
@@ -585,3 +701,35 @@ msgstr "الرسائل غير مقروءة"
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "عداد الرسائل الغير مقرؤة"
+
+#. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__website_message_ids
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request__website_message_ids
+#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request_type__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "الإسم"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "البيان"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "التوقيع"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "القسم"
+msgstr ""

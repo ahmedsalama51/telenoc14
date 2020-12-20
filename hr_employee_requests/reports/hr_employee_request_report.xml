@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Declare report to get template-->
+        <template id="hr_employee_request_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="35"/>
+                <t t-set="data_report_header_spacing" t-value="32"/>
+                <t t-set="data_report_dpi" t-value="100"/>
+                <t t-foreach="docs" t-as="o">
+                    <t t-set="lang" t-value="user.partner_id.lang or o.employee_id.user_id.partner_id.lang"/>
+                    <t t-if="o.type_id.id == %(hr_employee_requests.request_type_cleared)d">
+                        <t t-call="hr_employee_requests.request_type_cleared_report_doc" t-lang="lang"/>
+                    </t>
+                    <t t-else="">
+                        <t t-call="hr_employee_requests.request_others_report_doc" t-lang="lang"/>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <template id="request_type_cleared_report_doc">
+            <t t-call="web.basic_layout">
+                <style>
+                    @font-face {
+                        font-family: Amiri;
+                        src: url('/hr_employee_requests/static/src/fonts/Amiri-Regular.ttf') format('opentype');
+                    }
+                    @font-face {
+                        font-family: ReemKufi;
+                        src: url('/hr_employee_requests/static/src/fonts/ReemKufi-Regular.ttf') format('opentype');
+                    }
+                    @font-face {
+                        font-family: Jomhuria;
+                        src: url('/hr_employee_requests/static/src/fonts/Jomhuria-Regular.ttf') format('opentype');
+                    }
+                </style>
+                <div class="header text-right" style="font-family: Amiri; direction:rtl">
+                    <div class="row" name="header_slogan">
+                        <div class="col-4">
+                            <h2 class="mt32" style="text-align:right;font-size:25px;">
+                                <b style="font-family: ReemKufi;">مصنع المدينه للبلاستك</b>
+                            </h2>
+                            <p style="text-center;font-size:25px;font-family: ReemKufi;">MPF-HRS-019</p>
+                        </div>
+                        <div class="col-3">
+                            <center>
+                                <img t-att-src="'/hr_employee_requests/static/img/company_logo.jpg'"
+                                     style="max-height:120px;"/>
+                                <br/>
+                                <h2><u><b style="font-family: Jomhuria;font-size:35px;">إخلاء طرف</b></u></h2>
+                            </center>
+                        </div>
+                        <div class="col-4">
+                            <h3 class="mt32" style="text-align:left;vertical-align:middle;font-size:20px;">
+                                <b>التاريخ: </b>
+                                <!-- <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y/%m/%d')"/>-->
+                                <span>&#160; &#160; &#160;/&#160; &#160; &#160;/&#160; &#160; &#160;20م</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="page text-right" style="font-size:18px;font-family: Amiri; direction:rtl">
+                    <br/>
+                    <!--Header slogan-->
+                    <div class="row">
+                        <p>
+                            <b><u>شئون العاملين</u></b>
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <p>
+                                <b>إسم الموظف : </b>
+                                <span t-if="o.employee_id" t-esc="o.employee_id.name"/>
+                            </p>
+                        </div>
+                        <div class="col-2"/>
+                        <div class="col-5">
+                            <p>
+                                <b>الإداره : </b>
+                                <span t-if="o.job_id" t-esc="o.job_id.name"/>
+                            </p>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-5">
+                            <p>
+                                <b>تاريخ بدء الإجازه : </b>
+                                <span t-if="o.date_start" t-esc="o.date_start.strftime('%d / %m / %Y')"/>
+                                <span>م</span>
+                            </p>
+                        </div>
+                        <div class="col-2"/>
+                        <div class="col-5">
+                            <p>
+                                <b>تاريخ إنتهاء العمل : </b>
+                                <span t-if="o.date_end" t-esc="o.date_end.strftime('%d / %m / %Y')"/>
+                                <span>م</span>
+                            </p>
+                        </div>
+                    </div>
+                    <!--Signature table-->
+                    <t t-if="o.line_ids">
+                        <br/>
+                        <br/>
+                        <table class="table table-condensed table-border">
+                            <thead>
+                                <tr class="table-active text-center">
+                                    <th style="border: 1px solid black">القسم</th>
+                                    <th style="border: 1px solid black">البيان</th>
+                                    <th style="border: 1px solid black">الإسم</th>
+                                    <th style="border: 1px solid black">التوقيع</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.line_ids" t-as="line">
+                                    <tr>
+                                        <td style="border: 1px solid black">
+                                            <span t-if="line.department_id" t-esc="line.department_id.name"/>
+                                        </td>
+                                        <td style="border: 1px solid black"><span t-esc="line.note"/></td>
+                                        <td style="border: 1px solid black">
+                                            <span t-if="line.user_id and line.is_approved" t-esc="line.user_id.name"/>
+                                        </td>
+                                        <td style="border: 1px solid black">
+                                            <span t-if="line.user_id and line.is_approved and line.user_id.signature"
+                                                  t-raw="line.user_id.signature"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <!-- Footer slogan-->
+                    <div class="row">
+                        <div class="col-10">
+                            <p>
+                                <b>يشهد مصنع المدينه للبلاستك بأن السيد/ </b>
+                                <span t-if="o.employee_id" t-esc="o.employee_id.name"/>
+                            </p>
+                            <p>
+                                <b>قد سلم جميع ما لديه من العهد المسلمة له من المصنع وبهذا أصبح المذكور خالي الطرف وليس بطرفه أي عهدة يطالب بها</b>
+                            </p>
+                            <p>
+                                <b>
+                                     اعتباراً من نهاية يوم
+                                </b>
+                                <span t-if="o.date_end" t-esc="o.date_end.strftime('%d / %m / %Y')"/>
+                                <span>م</span>
+                                 <b> حسب البيان الموضح بعاليه.</b>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Signature-->
+                    <div class="row">
+                        <div class="col-8">
+                        </div>
+                        <div class="col-4">
+                            <p class="text-center" style="font-size:25px;">
+                                <b><u>مدير الإداره المالية</u></b>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <template id="request_others_report_doc">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <center style="vertical-align: middle;">
+                        <h2>
+                            <span class="label label-danger text-danger">No report view found for this request type...</span>
+                        </h2>
+                    </center>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>
