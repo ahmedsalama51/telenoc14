@@ -37,8 +37,8 @@
                                 <field name="transfer_type" invisible="1"/>
                                 <field name="active" invisible="1"/>
                                 <field name="picking_type_id" />
-                                <field name="location_id" domain="[('return_src_location', '=', True)]"/>
-                                <field name="location_dest_id" domain="[('return_dest_location', '=', True)]"/>
+                                <field name="location_id" domain="[('return_src_location', '=', True),('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                                <field name="location_dest_id" domain="[('return_dest_location', '=', True),('company_id', '=', False), ('company_id', '=', company_id)]"/>
                             </group>
                             <group>
                                 <field name="date"/>
@@ -165,8 +165,8 @@
                             <group>
                                 <field name="active" invisible="1"/>
                                 <field name="picking_type_id" />
-                                <field name="location_id" domain="[('usage', '=', 'internal')]"/>
-                                <field name="location_dest_id" domain="[('usage', '=', 'internal')]"/>
+                                <field name="location_id" domain="[('usage', '=', 'internal'),('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                                <field name="location_dest_id" domain="[('usage', '=', 'internal'),('company_id', '=', False), ('company_id', '=', company_id)]"/>
                             </group>
                             <group>
                                 <field name="date"/>

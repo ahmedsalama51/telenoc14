@@ -53,7 +53,8 @@ class HrEmployeeRequest(models.Model):
 	req_date_start = fields.Boolean(related='type_id.req_date_start')
 	req_date_end = fields.Boolean(related='type_id.req_date_end')
 	req_request_details = fields.Boolean(related='type_id.req_request_details')
-	
+	date = fields.Datetime("Date", default=fields.Datetime.now(), readonly=1,
+	                       states={'draft': [('readonly', False)]}, tracking=True)
 	date_start = fields.Datetime("Start Date", default=fields.Datetime.now(), readonly=1,
 	                             states={'draft': [('readonly', False)]}, tracking=True)
 	date_end = fields.Datetime("End Date", readonly=1,
@@ -228,23 +229,24 @@ class HrEmployeeRequestLine(models.Model):
 	note = fields.Text("Note", readonly=True)
 	user_id = fields.Many2one('res.users', "Name")
 	is_approved = fields.Boolean("Approved?")
-	approve_access = fields.Boolean("Approve Access?")  # , compute='get_approve_access'
+	approve_access = fields.Boolean("Approve Access?", compute='get_approve_access')
 	approval_date = fields.Datetime("Approved Date")
 	
 	# --------------------------------------------------
 	# Business methods
 	# --------------------------------------------------
 	
-	# def get_approve_access(self):
-	# 	"""
-	# 	Check if this current user have access to approve this line
-	# 	"""
-	# 	for line in self:
-	# 		approve_access = False
-	# 		if line.department_id and self.env.user.employee_id \
-	# 				and self.env.user.employee_id == line.department_id.manager_id:
-	# 			approve_access = True
-	# 		line.approve_access = approve_access
+	def get_approve_access(self):
+		"""
+		Check if this current user have access to approve this line
+		"""
+		for line in self:
+			approve_access = False
+			print("department_id: ", self.env.user.employee_id,line.department_id.manager_id)
+			if line.department_id and self.env.user.employee_id \
+					and self.env.user.employee_id == line.department_id.manager_id:
+				approve_access = True
+			line.approve_access = approve_access
 	
 	@api.onchange('is_approved')
 	def approve_log(self):
@@ -273,14 +275,15 @@ class HrEmployeeRequestLine(models.Model):
 				                                  "<li>User: %s</li>"
 				                                  "<li>Date: %s</li>"
 				                                  "</ul>" % (
-				                                  line.department_id.name, line.is_approved and "Yes" or "No",
-				                                  line.user_id.name, line.approval_date))
-				if all(app for app in line.request_id.line_ids.mapped('is_approved')):
+					                                  line.department_id.name, line.is_approved and "Yes" or "No",
+					                                  line.user_id.name, line.approval_date))
+				if line.is_approved and all(app for app in line.request_id.line_ids.mapped('is_approved')):
 					line.request_id.state = 'done'
-				elif line.request_id.type_id.approval_cycle == 'one':
-					line.request_id.state = 'confirmed'
-				elif line.request_id.type_id.approval_cycle == 'two':
-					line.request_id.state = 'first_approve'
+			# elif all(not app for app in line.request_id.line_ids.mapped('is_approved')):
+			# 	if line.request_id.type_id.approval_cycle == 'one':
+			# 		line.request_id.state = 'confirmed'
+			# 	elif line.request_id.type_id.approval_cycle == 'two':
+			# 		line.request_id.state = 'first_approve'
 		return True
 
 # Ahmed Salama Code End.

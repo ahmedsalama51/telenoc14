@@ -48,6 +48,10 @@ class StockMoveLineInherit(models.Model):
 	last_move_ref = fields.Char("Previous Ref")
 	move_type = fields.Char("Move Type")
 	special_case = fields.Boolean("Special Cases")
+	# main_uom_id = fields.Many2one('uom.uom', 'Main Uom')
+	category_id = fields.Many2one(related='product_uom_id.category_id')
+	main_price_unit = fields.Float('Price(Main UOM)', readonly=True, group_operator=False,
+	                               help='Price on main unit of measure used to compute line amount')
 	
 	@api.model
 	def update_all_product_historical_qty(self):
@@ -116,7 +120,7 @@ class StockMoveLineInherit(models.Model):
 					_logger.info(red + "--- non of LOCATION is ready to use" + reset)
 					# Slip this line
 					continue
-				
+			
 			else:
 				# Inventory use internal location as it's
 				if sml.location_id.usage == 'internal':
@@ -149,6 +153,9 @@ class StockMoveLineInherit(models.Model):
 						# ADD search for previous Incoming/Internals and it's dest location in current location
 						pre_moves += h_move
 					elif h_move.move_id.picking_type_id.code == "internal":
+						# _logger.info(yellow + "--- %s_move: %s, location: %s, dest location: %s"
+						#              % (h_move.move_id.picking_type_id.code, h_move.reference,
+						#                 h_move.location_id.id, h_move.location_dest_id.id) + reset)
 						if h_move.location_dest_id == location_id or h_move.location_id == location_id:
 							# ADD search for previous Incoming/Internals and it's dest location in current location
 							pre_moves += h_move
@@ -167,28 +174,26 @@ class StockMoveLineInherit(models.Model):
 				# outgoing so qty will decrease
 				_logger.info(bold_red + " outgoing so qty will decrease" + reset)
 				signed_done_qty = -sml.qty_done
-			elif move_type == 'Adjust':
-				if sml.location_id.usage == 'internal':
-					_logger.info(bold_red + " it's inventory adjust with - so it will deduct from location" + reset)
-					# it's inventory adjust with - so it will deduct from location
-					signed_done_qty = -sml.qty_done
-				elif sml.location_dest_id.usage == 'internal':
-					_logger.info(bold_red + "it's inventory adjust with - so it will increase to location" + reset)
-					# it's inventory adjust with - so it will increase to location
-					signed_done_qty = sml.qty_done
-			elif move_type == 'Internal':
-				if sml.location_id.usage == 'internal':
-					# it's internal with - so it will deduct from location
-					_logger.info(bold_red + "it's internal with - so it will deduct from location" + reset)
-					signed_done_qty = -sml.qty_done
-				elif sml.location_dest_id.usage == 'internal':
-					# it's internal with - so it will increase to location
-					_logger.info(bold_red + "it's internal with - so it will increase to location" + reset)
-					signed_done_qty = sml.qty_done
+			elif move_type == 'Adjust' and sml.location_id.usage == 'internal':
+				_logger.info(bold_red + " it's inventory adjust with - so it will deduct from location" + reset)
+				# it's inventory adjust with - so it will deduct from location
+				signed_done_qty = -sml.qty_done
+			elif move_type == 'Adjust' and sml.location_dest_id.usage == 'internal':
+				_logger.info(bold_red + "it's inventory adjust with - so it will increase to location" + reset)
+				# it's inventory adjust with - so it will increase to location
+				signed_done_qty = sml.qty_done
+			elif move_type == 'Internal' and sml.location_id.usage == 'internal':
+				# it's internal with - so it will deduct from location
+				_logger.info(bold_red + "it's internal with - so it will deduct from location" + reset)
+				signed_done_qty = -sml.qty_done
+			elif move_type == 'Internal' and sml.location_dest_id.usage == 'internal':
+				# it's internal with - so it will increase to location
+				_logger.info(bold_red + "it's internal with - so it will increase to location" + reset)
+				signed_done_qty = sml.qty_done
 			else:
 				# inventory +/- qty will add to for now --> TODO:: NEED TO CHECK for inventory adjust of - qty
 				# incoming or internal qty will add to for now , SPECIAL CASE WILL HANDLE SEPARATE
-				_logger.info(bold_red + "it's doesn't found any of above so the qty will be + as it's in" + reset)
+				_logger.info(bold_red + "it'sdoesn't found any of above" + reset)
 				signed_done_qty = sml.qty_done
 			_logger.info(yellow + "signed_done_qty: %s" % signed_done_qty + reset)
 			price = sml.move_id.price_unit or sml.product_id.standard_price
@@ -199,7 +204,8 @@ class StockMoveLineInherit(models.Model):
 				# _logger.info(yellow + "Pre moves: %s" % pre_moves.mapped('reference') + reset)
 				move_line_id = pre_moves[0]
 				_logger.info(yellow + "pre move: %s  qty: %s  cost: %s signed qty: %s "
-				             % (move_line_id.reference, move_line_id.curr_qty, move_line_id.curr_cost, signed_done_qty) + reset)
+				             % (move_line_id.reference, move_line_id.curr_qty, move_line_id.curr_cost,
+				                signed_done_qty) + reset)
 				# CHECK FOR SPECIAL CASES
 				special_case = False
 				if move_line_id.move_id.picking_type_id and move_line_id.move_id.picking_type_id.code == 'internal':
@@ -212,8 +218,11 @@ class StockMoveLineInherit(models.Model):
 					if move_type == 'Internal' and sml.location_id == move_line_id.location_id:
 						special_case = True
 				if special_case:
-					_logger.info(red + "Special Case: %s, previous: %s" % (sml.reference, move_line_id.reference) + reset)
-					pre_qty, pre_cost, after_qty, after_cost = sml._compute_special_case(move_line_id, move_type, signed_done_qty, price, pre_moves)
+					_logger.info(
+						red + "Special Case: %s, previous: %s" % (sml.reference, move_line_id.reference) + reset)
+					pre_qty, pre_cost, after_qty, after_cost = sml._compute_special_case(move_line_id, move_type,
+					                                                                     signed_done_qty, price,
+					                                                                     pre_moves)
 				else:
 					pre_qty = move_line_id.curr_qty
 					pre_cost = move_line_id.curr_cost
@@ -233,6 +242,7 @@ class StockMoveLineInherit(models.Model):
 			sml.curr_qty = after_qty
 			sml.curr_cost = after_cost
 			sml.price_unit = price
+			sml.main_price_unit = price * sml.product_uom_id.factor_inv
 			sml.last_move_ref = last_move_ref
 			sml.move_type = move_type
 			sml.special_case = special_case

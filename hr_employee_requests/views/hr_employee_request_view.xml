@@ -50,6 +50,7 @@
                             <group>
                                 <field name="req_date_start" invisible="1"/>
                                 <field name="req_date_end" invisible="1"/>
+                                <field name="date" required="1"/>
                                 <field name="date_start" attrs="{'invisible':[('req_date_start','=',False)],
                                                                  'readonly':[('state','!=','draft')],
                                                                   'required':[('req_date_start','=',True)]}"/>
@@ -103,6 +104,7 @@
                       decoration-info="state == 'confirmed'"
                       decoration-muted="state == 'cancel'">
                     <field name="name"/>
+                    <field name="date"/>
                     <field name="type_id"/>
                     <field name="employee_id"/>
                     <field name="date_start"/>
@@ -122,14 +124,16 @@
                     <field name="employee_id"/>
                     <field name="type_id"/>
                     <separator/>
-                    <filter string="Start Date" name="date" date="date_start"/>
-                    <filter string="End Date" name="date" date="date_end"/>
+                    <filter string="Date" name="date" date="date"/>
+                    <filter string="Start Date" name="start_date" date="date_start"/>
+                    <filter string="End Date" name="end_date" date="date_end"/>
                     <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
                     <group expand="0" string="Group By...">
                         <filter name="group_by_type" string="Type" context="{'group_by':'type_id'}"/>
                         <filter name="group_by_employee" string="Employee" context="{'group_by':'employee_id'}"/>
                         <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
                         <separator/>
+                        <filter name="group_by_date" string="Date" context="{'group_by':'date:month'}"/>
                         <filter name="group_by_date_start" string="Date Start" context="{'group_by':'date_start:month'}"/>
                         <filter name="group_by_date_end" string="Date End" context="{'group_by':'date_end:month'}"/>
                     </group>

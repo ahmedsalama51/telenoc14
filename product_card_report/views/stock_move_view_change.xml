@@ -19,6 +19,7 @@
                     <field name="pre_cost" optional="show"/>
                     <field name="curr_qty" optional="show"/>
                     <field name="curr_cost" optional="show"/>
+                    <field name="main_price_unit" optional="show"/>
                     <field name="move_type" optional="show"/>
                     <field name="last_move_ref" optional="hide"/>
                     <field name="special_case" optional="hide"/>

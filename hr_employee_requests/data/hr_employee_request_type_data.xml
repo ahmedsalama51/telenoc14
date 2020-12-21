@@ -16,11 +16,10 @@
             <field name="req_date_end">1</field>
             <field name="req_request_details">0</field>
         </record>
-        <record id="request_type_cleared_line_1" model="hr.employee.request.type.line">
-            <field name="type_id" ref="hr_employee_requests.request_type_cleared"/>
-            <field name="department_id" ref="hr.dep_management"/>
-            <field name="note">ليس لدى المذكور اى إلتزامات ولا مانع من إخلاء طرفه</field>
-        </record>
+<!--        <record id="request_type_cleared_line_1" model="hr.employee.request.type.line">-->
+<!--            <field name="type_id" ref="hr_employee_requests.request_type_cleared"/>-->
+<!--            <field name="note">ليس لدى المذكور اى إلتزامات ولا مانع من إخلاء طرفه</field>-->
+<!--        </record>-->
         <record id="request_type_job_assign" model="hr.employee.request.type">
             <field name="name">Job Assignment</field>
             <field name="approval_cycle">two</field>

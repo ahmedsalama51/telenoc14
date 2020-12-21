@@ -333,7 +333,7 @@ msgstr "الكميه(+/-)"
 #. module: product_card_report
 #: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__in_qty
 msgid "Qty In"
-msgstr "الواردد"
+msgstr "الوارد"
 
 #. module: product_card_report
 #: model:ir.model.fields,field_description:product_card_report.field_stock_move_line__out_qty

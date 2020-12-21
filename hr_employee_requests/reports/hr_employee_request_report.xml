@@ -23,16 +23,16 @@
             <t t-call="web.basic_layout">
                 <style>
                     @font-face {
-                        font-family: Amiri;
-                        src: url('/hr_employee_requests/static/src/fonts/Amiri-Regular.ttf') format('opentype');
+                    font-family: Amiri;
+                    src: url('/hr_employee_requests/static/src/fonts/Amiri-Regular.ttf') format('opentype');
                     }
                     @font-face {
-                        font-family: ReemKufi;
-                        src: url('/hr_employee_requests/static/src/fonts/ReemKufi-Regular.ttf') format('opentype');
+                    font-family: ReemKufi;
+                    src: url('/hr_employee_requests/static/src/fonts/ReemKufi-Regular.ttf') format('opentype');
                     }
                     @font-face {
-                        font-family: Jomhuria;
-                        src: url('/hr_employee_requests/static/src/fonts/Jomhuria-Regular.ttf') format('opentype');
+                    font-family: Jomhuria;
+                    src: url('/hr_employee_requests/static/src/fonts/Jomhuria-Regular.ttf') format('opentype');
                     }
                 </style>
                 <div class="header text-right" style="font-family: Amiri; direction:rtl">
@@ -55,7 +55,9 @@
                             <h3 class="mt32" style="text-align:left;vertical-align:middle;font-size:20px;">
                                 <b>التاريخ: </b>
                                 <!-- <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y/%m/%d')"/>-->
-                                <span>&#160; &#160; &#160;/&#160; &#160; &#160;/&#160; &#160; &#160;20م</span>
+                                <!--                                <span>&#160; &#160; &#160;/&#160; &#160; &#160;/&#160; &#160; &#160;20م</span>-->
+                                <span t-if="o.date" t-esc="o.date.strftime('%d / %m / %Y')"/>
+                                <span>م</span>
                             </h3>
                         </div>
                     </div>
@@ -145,11 +147,11 @@
                             </p>
                             <p>
                                 <b>
-                                     اعتباراً من نهاية يوم
+                                    اعتباراً من نهاية يوم
                                 </b>
                                 <span t-if="o.date_end" t-esc="o.date_end.strftime('%d / %m / %Y')"/>
                                 <span>م</span>
-                                 <b> حسب البيان الموضح بعاليه.</b>
+                                <b> حسب البيان الموضح بعاليه.</b>
                             </p>
                         </div>
                     </div>

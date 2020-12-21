@@ -5,7 +5,7 @@
         <report
                 id="report_hr_employee_request"
                 model="hr.employee.request"
-                report_type="qweb-pdf"
+                report_type="qweb-html"
                 string="Request Print"
                 name="hr_employee_requests.hr_employee_request_report"
                 file="hr_employee_requests.hr_employee_request_report"
