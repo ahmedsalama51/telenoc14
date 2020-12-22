@@ -10,6 +10,7 @@
         <record id="stock_return_form_view" model="ir.ui.view">
             <field name="name">stock.return.form.view</field>
             <field name="model">stock.return</field>
+            <field name="model">stock.return</field>
             <field name="arch" type="xml">
                 <form string="Return Transfers">
                     <header>
@@ -37,8 +38,8 @@
                                 <field name="transfer_type" invisible="1"/>
                                 <field name="active" invisible="1"/>
                                 <field name="picking_type_id" />
-                                <field name="location_id" domain="[('return_src_location', '=', True),('company_id', '=', False), ('company_id', '=', company_id)]"/>
-                                <field name="location_dest_id" domain="[('return_dest_location', '=', True),('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                                <field name="location_id" domain="[('return_src_location', '=', True),'|',('company_id', '=', False),('company_id', '=', company_id)]"/>
+                                <field name="location_dest_id" domain="[('return_dest_location', '=', True),'|',('company_id', '=', False),('company_id', '=', company_id)]"/>
                             </group>
                             <group>
                                 <field name="date"/>
