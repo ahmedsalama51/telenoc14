@@ -3,7 +3,7 @@
     <data>
         <template id="product_card_report_doc">
             <t t-call="web.internal_layout">
-                <div class="page">
+                <div class="page"  style="direction:rtl;text-align:right">
                     <!-- Major Parameters-->
                     <t t-set="totals" t-value="data['get_sum_move_lines_history']"/>
                     <t t-set="total_debit" t-value="0.0"/>
