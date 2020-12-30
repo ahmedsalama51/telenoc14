@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0+e\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-20 14:31+0000\n"
-"PO-Revision-Date: 2020-12-20 16:33+0200\n"
+"POT-Creation-Date: 2020-12-30 07:24+0000\n"
+"PO-Revision-Date: 2020-12-30 09:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,13 +31,18 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
 msgid ""
 "<b>\n"
-"                                     اعتباراً من نهاية يوم\n"
+"                                    اعتباراً من نهاية يوم\n"
 "                                </b>"
 msgstr ""
 
 #. module: hr_employee_requests
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
 msgid "<b><u>شئون العاملين</u></b>"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
+msgid "<b><u>مدير الإداره المالية</u></b>"
 msgstr ""
 
 #. module: hr_employee_requests
@@ -74,11 +79,6 @@ msgstr ""
 
 #. module: hr_employee_requests
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
-msgid "<b>مدير الإداره المالية</b>"
-msgstr ""
-
-#. module: hr_employee_requests
-#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
 msgid "<b>يشهد مصنع المدينه للبلاستك بأن السيد/ </b>"
 msgstr ""
 
@@ -91,14 +91,9 @@ msgstr ""
 
 #. module: hr_employee_requests
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
-msgid "<span>     /     /     20م</span>"
-msgstr ""
-
-#. module: hr_employee_requests
-#: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc
 msgid ""
 "<span>م</span>\n"
-"                                 <b> حسب البيان الموضح بعاليه.</b>"
+"                                <b> حسب البيان الموضح بعاليه.</b>"
 msgstr ""
 
 #. module: hr_employee_requests
@@ -135,6 +130,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__activity_state
 msgid "Activity State"
 msgstr ""
+
+#. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__activity_type_icon
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee__employee_requests_count
+msgid "Admin Decs Count"
+msgstr "عداد القرارات الإدارية"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__approval_cycle
@@ -187,7 +193,7 @@ msgstr "عدد المرفقات"
 #: model:ir.model.fields.selection,name:hr_employee_requests.selection__hr_employee_request__state__cancel
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_form_view
 msgid "Cancel"
-msgstr "إلغاء "
+msgstr "إلغاء"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__company_id
@@ -228,6 +234,12 @@ msgid ""
 msgstr ""
 
 #. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__date
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_search_view
+msgid "Date"
+msgstr "التايخ"
+
+#. module: hr_employee_requests
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_search_view
 msgid "Date End"
 msgstr "إلى تاريخ"
@@ -262,12 +274,13 @@ msgid "Details....."
 msgstr "البيانات..."
 
 #. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee__display_name
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__display_name
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line__display_name
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__display_name
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type_line__display_name
 msgid "Display Name"
-msgstr "الإسم"
+msgstr "الاسم المعروض"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields.selection,name:hr_employee_requests.selection__hr_employee_request__state__draft
@@ -275,6 +288,7 @@ msgid "Draft"
 msgstr "جديد"
 
 #. module: hr_employee_requests
+#: model:ir.model,name:hr_employee_requests.model_hr_employee
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__employee_id
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_search_view
 msgid "Employee"
@@ -300,6 +314,7 @@ msgid "Employee Request Types"
 msgstr "أنوع طلب الموظف"
 
 #. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee__employee_requests_ids
 #: model:ir.ui.menu,name:hr_employee_requests.menu_hr_employee_requests_root
 msgid "Employee Requests"
 msgstr "طلبات الموظفيين"
@@ -344,6 +359,12 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: hr_employee_requests
+#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request__activity_type_icon
+#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request_type__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: hr_employee_requests
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.hr_hr_employee_request_form_view
 msgid "Full Approve"
 msgstr "تام الموافقه"
@@ -375,12 +396,13 @@ msgid "HR Employee Request Type Line"
 msgstr "سطر نوع طلب الموظف"
 
 #. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee__id
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__id
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line__id
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__id
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type_line__id
 msgid "ID"
-msgstr ""
+msgstr "المُعرف"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__activity_exception_icon
@@ -409,9 +431,7 @@ msgstr ""
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request__message_has_error
-#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request__message_has_sms_error
 #: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request_type__message_has_error
-#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request_type__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -427,6 +447,7 @@ msgid "Job Position"
 msgstr "الوظيفه"
 
 #. module: hr_employee_requests
+#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee____last_update
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request____last_update
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_line____last_update
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type____last_update
@@ -583,6 +604,7 @@ msgstr "أنواع الطلبات"
 
 #. module: hr_employee_requests
 #: model:ir.ui.menu,name:hr_employee_requests.menu_hr_employee_requests
+#: model_terms:ir.ui.view,arch_db:hr_employee_requests.view_employee_form_inherit
 msgid "Requests"
 msgstr "طلبات الموظفيين"
 
@@ -591,12 +613,6 @@ msgstr "طلبات الموظفيين"
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__activity_user_id
 msgid "Responsible User"
 msgstr "المسؤل"
-
-#. module: hr_employee_requests
-#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__message_has_sms_error
-#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__second_approve_group
@@ -627,19 +643,19 @@ msgstr "إظهار بادج التأكيد"
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__req_date_end
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__req_date_end
 msgid "Show/Required Date End?"
-msgstr "إظهار حقل إلى تاريخ/إلزام إدخاله"
+msgstr "إظهار حقل إلى تاريخ/إلزام إدخاله؟"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__req_date_start
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__req_date_start
 msgid "Show/Required Date Start?"
-msgstr "إظهار حقل من تاريخ/إلزام إدخاله"
+msgstr "إظهار حقل من تاريخ/إلزام إدخاله؟"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__req_request_details
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__req_request_details
 msgid "Show/Required Request Details?"
-msgstr "إظهار التفاصيل تاريخ/إلزام إدخاله"
+msgstr "إظهار التفاصيل تاريخ/إلزام إدخاله؟"
 
 #. module: hr_employee_requests
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__date_start
@@ -701,18 +717,6 @@ msgstr "الرسائل غير مقروءة"
 #: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "عداد الرسائل الغير مقرؤة"
-
-#. module: hr_employee_requests
-#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request__website_message_ids
-#: model:ir.model.fields,field_description:hr_employee_requests.field_hr_employee_request_type__website_message_ids
-msgid "Website Messages"
-msgstr ""
-
-#. module: hr_employee_requests
-#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request__website_message_ids
-#: model:ir.model.fields,help:hr_employee_requests.field_hr_employee_request_type__website_message_ids
-msgid "Website communication history"
-msgstr ""
 
 #. module: hr_employee_requests
 #: model_terms:ir.ui.view,arch_db:hr_employee_requests.request_type_cleared_report_doc

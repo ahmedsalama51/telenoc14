@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_administrative_decisions_type,access_administrative_decisions_type,model_administrative_decisions_type,,1,1,1,1
+access_hr_administrative_decisions,access_hr_administrative_decisions,model_hr_administrative_decisions,,1,1,1,1

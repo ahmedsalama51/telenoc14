@@ -33,6 +33,8 @@
                         <div class="oe_button_box" name="button_box">
                         </div>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <widget name="web_ribbon" title="Full Approved" bg_color="bg-success"
+                            attrs="{'invisible': [('state', '!=', 'done')]}"/>
                         <div class="oe_title">
                             <h1>
                                 <field name="name" placeholder="Number"/>

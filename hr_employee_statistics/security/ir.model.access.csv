@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acccess_stock_return_root,stock_return,model_stock_return,,1,1,1,1
+acccess_stock_return_root_line,stock_return_line,model_stock_return_line,,1,1,1,1

@@ -30,8 +30,6 @@
                         <field name="show_success_badge" invisible="1"/>
                         <widget name="web_ribbon" title="Full Approved" bg_color="bg-success"
                                 attrs="{'invisible': [('show_success_badge', '=', False)]}"/>
-                        <widget name="web_ribbon" title="Full Approved" bg_color="bg-success"
-                                attrs="{'invisible': [('show_success_badge', '=', False)]}"/>
                         <div class="oe_title">
                             <h1>
                                 <field name="name" placeholder="Number" readonly="1"/>

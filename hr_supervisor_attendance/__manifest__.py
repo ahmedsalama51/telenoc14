@@ -14,6 +14,7 @@
         'security/ir.model.access.csv',
 
         'views/hr_supervisor_attendance_view.xml',
+        'views/hr_employee_view_changes.xml',
     ],
     'installable': True,
     'auto_install': False,

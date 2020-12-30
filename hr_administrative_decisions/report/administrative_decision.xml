@@ -1,0 +1,45 @@
+<odoo>
+<data>
+    <report
+        id="administrative_decisions_report_id"
+        model="hr.employee"
+        string="Administrative Decisions"
+        name="hr_administrative_decisions.administrative_decisions_report_template"
+        file="hr_administrative_decisions.administrative_decisions_report_id"
+        report_type="qweb-pdf" />
+
+    <template id="administrative_decisions_report_template">
+        <p style="page-break-after:always">
+             <t t-call="web.external_layout">
+                 <t t-call="web.html_container">
+                      <t t-foreach="docs" t-as="o">
+                             <div class="page">
+                                 <h3 class="text-center" style="color:black;">Administration Decision</h3>
+                                 <table class='table table-bordered' style="width:100%;border: 1px solid #000000">
+                                     <tbody>
+                                         <tr style="border: 1px solid #000000">
+                                            <th style="border: 1px solid #000000">Employee</th>
+                                            <th style="border: 1px solid #000000" class="text-center">Type Of Decision</th>
+                                            <th style="border: 1px solid #000000" class="text-center">Date</th>
+                                            <th style="border: 1px solid #000000" class="text-center">Description</th>
+                                         </tr>
+                                         <t t-foreach="o.administrative_decisions_ids" t-as="line">
+                                            <tr style="border: 1px solid #000000">
+                                                <td style="border: 1px solid #000000"><span t-field="line.employee_id.name"/></td>
+                                                <td style="border: 1px solid #000000" class="text-center"><span t-field="line.decision_type_id.name"/></td>
+                                                <td style="border: 1px solid #000000" class="text-center"><span t-field="line.date"/></td>
+                                                <td style="border: 1px solid #000000" class="text-center"><span t-field="line.description"/></td>
+                                             </tr>
+                                         </t>
+                                     </tbody>
+                                </table>
+                             </div>
+                      </t>
+                 </t>
+             </t>
+        </p>
+
+    </template>
+
+</data>
+</odoo>
