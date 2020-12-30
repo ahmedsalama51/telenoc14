@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Filters-->
+    <record id="hr_employee_statistics_wizard_view" model="ir.ui.view">
+        <field name="name">hr.employee.statistics.wizard.form</field>
+        <field name="model">hr.employee.statistics.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Period">
+                            <field name="date_month"/>
+                            <field name="date_year"/>
+                        </group>
+                        <group string="Dates">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group string="Employee Filters">
+                            <field name="department_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="load_lines" string="Generate" icon="fa-load" type="object"
+                            default_focus="1" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Report Action -->
+    <record id="action_hr_employee_statistics_wizard" model="ir.actions.act_window">
+        <field name="name">Product Card</field>
+        <field name="res_model">hr.employee.statistics.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="hr_employee_statistics_wizard_view"/>
+    </record>
+
+
+    <menuitem
+            name="Add Employee Statistics"
+            action="action_hr_employee_statistics_wizard"
+            id="menu_action_hr_employee_statistics_wizard"
+            parent="hr_employee_statistics.menu_hr_employee_statistic_root"
+            sequence="1"
+            groups=""
+    />
+
+
+</odoo>

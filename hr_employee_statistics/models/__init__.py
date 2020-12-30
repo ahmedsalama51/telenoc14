@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# from . import
+from . import hr_employee_statistics
 
 
 

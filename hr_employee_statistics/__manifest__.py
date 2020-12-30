@@ -9,12 +9,13 @@
     'depends': ['hr_administrative_decisions', 'hr_supervisor_attendance'],
     'website': 'http://www.telenoc.org',
     'data': [
-        # 'data/',
+        'security/ir.model.access.csv',
         
-        # 'security/',
-        # 'security/ir.model.access.csv',
-
-        # 'views/',
+        'data/hr_employee_statistics_data.xml',
+        
+        'views/hr_employee_statistics_view.xml',
+        
+        'wizard/hr_employee_statistics_wizard_view.xml',
     ],
     'installable': True,
     'auto_install': False,

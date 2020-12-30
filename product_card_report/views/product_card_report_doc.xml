@@ -35,38 +35,38 @@
                         <div class="col-1"/>
                     </div>
                     <br/>
-                    <table class="table table-condensed">
+                    <table class="table table-condensed table-sm">
                         <thead>
-                            <tr class="table-active text-center" style="border: 1px solid black">
-                                <th style="border: 1px solid black">Code</th>
-                                <th style="border: 1px solid black">Name</th>
-                                <th style="border: 1px solid black">IN/Out</th>
-                                <th style="border: 1px solid black">Starting Balance</th>
-                                <th style="border: 1px solid black">Cost</th>
-                                <th style="border: 1px solid black">Starting Value</th>
+                            <tr class="table-active text-center" style="border: 1px solid black;font-size:16px;">
+                                <th style="border: 1px solid black;font-size:16px;">Code</th>
+                                <th style="border: 1px solid black;font-size:16px;">Name</th>
+                                <th style="border: 1px solid black;font-size:16px;">IN/Out</th>
+                                <th style="border: 1px solid black;font-size:16px;">Starting Balance</th>
+                                <th style="border: 1px solid black;font-size:16px;">Cost</th>
+                                <th style="border: 1px solid black;font-size:16px;">Starting Value</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="text-center">
-                                <td style="border: 1px solid black">
+                                <td style="border: 1px solid black;font-size:16px;">
                                     <span style="color:darkblue" t-esc="data['product'].code"/>
                                 </td>
-                                <td style="border: 1px solid black" calss="text-left">
+                                <td style="border: 1px solid black;font-size:16px;" calss="text-left">
                                     <span style="color:darkblue" t-esc="data['product'].display_name"/>
                                 </td>
-                                <td style="border: 1px solid black">
+                                <td style="border: 1px solid black;font-size:16px;">
                                     <span style="color:green" t-esc="totals['total_in_qty']"/>
                                     <span style="color:darkblue">/</span>
                                     <span style="color:red" t-esc="totals['total_out_qty']"/>
                                 </td>
-                                <td style="border: 1px solid black">
+                                <td style="border: 1px solid black;font-size:16px;">
                                     <span style="color:darkblue" t-esc="totals['start_balance']"/>
                                 </td>
-                                <td style="border: 1px solid black">
+                                <td style="border: 1px solid black;font-size:16px;">
                                     <span style="color:darkblue" t-esc="totals['current_cost']"/>
                                     <span style="color:darkblue" t-esc="symbol"/>
                                 </td>
-                                <td style="border: 1px solid black">
+                                <td style="border: 1px solid black;font-size:16px;">
                                     <span style="color:darkblue" t-esc="totals['start_value']"/>
                                     <span style="color:darkblue" t-esc="symbol"/>
                                 </td>
@@ -76,18 +76,18 @@
                     <!-- MAin View row-->
                     <h3>Details:</h3>
                     <t t-if="data['get_move_lines']">
-                        <table class="table table-condensed table-border">
+                        <table class="table table-condensed table-border table-sm">
                             <thead>
                                 <tr class="table-active text-center">
-                                    <th style="border: 1px solid black">Date</th>
-                                    <th style="border: 1px solid black">Ref</th>
-                                    <th style="border: 1px solid black">Type</th>
-                                    <th style="border: 1px solid black">Location</th>
-                                    <th style="border: 1px solid black">Cost</th>
-                                    <th style="border: 1px solid black">In</th>
-                                    <th style="border: 1px solid black">Out</th>
-                                    <th style="border: 1px solid black">Balance</th>
-                                    <th style="border: 1px solid black">Value</th>
+                                    <th style="border: 1px solid black;font-size:16px;">Date</th>
+                                    <th style="border: 1px solid black;font-size:16px;">Ref</th>
+                                    <th style="border: 1px solid black;font-size:16px;">Type</th>
+                                    <th style="border: 1px solid black;font-size:16px;">Location</th>
+                                    <th style="border: 1px solid black;font-size:16px;">Cost</th>
+                                    <th style="border: 1px solid black;font-size:16px;">In</th>
+                                    <th style="border: 1px solid black;font-size:16px;">Out</th>
+                                    <th style="border: 1px solid black;font-size:16px;">Balance</th>
+                                    <th style="border: 1px solid black;font-size:16px;">Value</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,26 +100,26 @@
                                     </t>
                                     <tr t-att-style="row_style">
 
-                                        <td style="border: 1px solid black"><span t-esc="move['date']"/></td>
-                                        <td style="border: 1px solid black"><span t-esc="move['number']"/></td>
-                                        <td style="border: 1px solid black"><span t-esc="move['type']"/></td>
-                                        <td style="border: 1px solid black"><span t-esc="move['location']"/></td>
-                                         <td style="border: 1px solid black">
+                                        <td style="border: 1px solid black;font-size:16px;"><span t-esc="move['date']"/></td>
+                                        <td style="border: 1px solid black;font-size:16px;"><span t-esc="move['number']"/></td>
+                                        <td style="border: 1px solid black;font-size:16px;"><span t-esc="move['type']"/></td>
+                                        <td style="border: 1px solid black;font-size:16px;"><span t-esc="move['location']"/></td>
+                                         <td style="border: 1px solid black;font-size:16px;">
                                             <span t-esc="move['price_unit']"/>
                                             <span t-esc="symbol"/>
                                         </td>
-                                        <td style="border: 1px solid black">
+                                        <td style="border: 1px solid black;font-size:16px;">
                                             <span t-esc="move['debit']"/>
                                             <t t-set="total_debit" t-value="total_debit+move['debit']"/>
                                         </td>
-                                        <td style="border: 1px solid black">
+                                        <td style="border: 1px solid black;font-size:16px;">
                                             <span t-esc="move['credit']"/>
                                             <t t-set="total_credit" t-value="total_credit+move['credit']"/>
                                         </td>
-                                        <td style="border: 1px solid black">
+                                        <td style="border: 1px solid black;font-size:16px;">
                                             <span t-esc="move['balance']"/>
                                         </td>
-                                        <td style="border: 1px solid black">
+                                        <td style="border: 1px solid black;font-size:16px;">
                                             <span t-esc="move['value']"/>
                                             <span t-esc="symbol"/>
                                         </td>
@@ -130,20 +130,20 @@
                             </tbody>
                             <ttail>
                                 <tr style="text-align:center;">
-                                    <th colspan="5" class="table-active" style="border: 1px solid black">
+                                    <th colspan="5" class="table-active" style="border: 1px solid black;font-size:16px;">
                                         <span  style="color:darkblue">Final Amounts</span>
                                     </th>
-                                    <th class="table-active" style="border: 1px solid black">
+                                    <th class="table-active" style="border: 1px solid black;font-size:16px;">
                                         <span style="color:darkblue" t-esc="total_debit"/>
                                     </th>
-                                    <th class="table-active" style="border: 1px solid black">
+                                    <th class="table-active" style="border: 1px solid black;font-size:16px;">
                                         <span style="color:darkblue" t-esc="total_credit"/>
                                     </th>
                                     <t t-set="final_balance" t-value="totals['start_balance'] + total_debit - total_credit"/>
-                                    <th class="table-active" style="border: 1px solid black">
+                                    <th class="table-active" style="border: 1px solid black;font-size:16px;">
                                         <span  style="color:darkblue" t-esc="final_balance"/>
                                     </th>
-                                    <th class="table-active" style="border: 1px solid black;color:darkblue">
+                                    <th class="table-active" style="border: 1px solid black;color:darkblue;font-size:16px;">
                                         <span t-esc="data['get_move_lines'][-1]['value']"/>
                                         <span t-esc="symbol"/>
                                     </th>

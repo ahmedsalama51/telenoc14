@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Root Menu-->
+        <menuitem id="menu_hr_employee_statistic_root"
+                  name="Employee Statistics"
+                  parent="hr.menu_hr_root"
+                  sequence="6"/>
+        <!--Statistics-->
+        <record id="hr_employee_statistics_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.statistics.form.view</field>
+            <field name="model">hr.employee.statistics</field>
+            <field name="arch" type="xml">
+                <form string="Employee Statistics">
+                    <header>
+                        <button string="Set To Draft" name="action_draft" groups="hr.group_hr_manager"
+                                states="cancel" type="object" class="oe_highlight"/>
+                        <button string="Confirm" name="action_done" groups="hr.group_hr_manager"
+                                states="draft" type="object" class="oe_highlight"/>
+                        <button string="Cancel" name="action_cancel" groups="hr.group_hr_manager"
+                                states="draft" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <widget name="web_ribbon" title="Full Approved" bg_color="bg-success"
+                                attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Statistics..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="active" invisible="1"/>
+                                <field name="department_id"/>
+                            </group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Lines" name="lines">
+                                <button string="Load Lines" name="load_lines" groups="hr.group_hr_manager"
+                                        states="draft" type="object" class="btn-info"/>
+                                <field name="line_ids">
+                                    <tree create="0" edit="0" delete="0" decoration-success="state == 'done'"
+                                          decoration-muted="state == 'cancel'">
+                                        <field name="employee_id"/>
+                                        <field name="absent_value"/>
+                                        <field name="overtime"/>
+                                        <field name="date_from" optional="hide"/>
+                                        <field name="date_to" optional="hide"/>
+                                        <field name="state" optional="hide"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="hr_employee_statistics_tree_view" model="ir.ui.view">
+            <field name="name">hr.employee.statistics.tree.view</field>
+            <field name="model">hr.employee.statistics</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Statistics"
+                      decoration-success="state == 'done'"
+                      decoration-muted="state == 'cancel'">
+                    <field name="name"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="department_id"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_employee_statistics_search_view" model="ir.ui.view">
+            <field name="name">hr.employee.statistics.search.view</field>
+            <field name="model">hr.employee.statistics</field>
+            <field name="arch" type="xml">
+                <search string="Employee Statistics">
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <separator/>
+                    <filter string="Date From" name="date_from" date="date_from"/>
+                    <filter string="Date To" name="date_to" date="date_to"/>
+                    <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
+                    <group expand="0" string="Group By...">
+                        <!-- <filter name="group_by_employee" string="Employee" context="{'group_by':'employee_id'}"/>-->
+                        <filter name="group_by_department_id" string="Department" context="{'group_by':'department_id'}"/>
+                        <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter name="group_date_from" string="Date From" context="{'group_by':'date_from'}"/>
+                        <filter name="group_date_to" string="Date To" context="{'group_by':'date_to'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="hr_employee_statistics_action" model="ir.actions.act_window">
+            <field name="name">Employee Statistics</field>
+            <field name="res_model">hr.employee.statistics</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_hr_employee_statistics"
+                  name="Employee Statistics"
+                  action="hr_employee_statistics_action"
+                  parent="menu_hr_employee_statistic_root" sequence="2"/>
+        <!--Lines-->
+        <record id="hr_employee_statistics_line_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.statistics.line.form.view</field>
+            <field name="model">hr.employee.statistics.line</field>
+            <field name="arch" type="xml">
+                <form string="Employee Statistics Line">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <widget name="web_ribbon" title="Full Approved" bg_color="bg-success"
+                                attrs="{'invisible': [('state', '!=', 'done')]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="employee_id" placeholder="Employee..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="active" invisible="1"/>
+                                <field name="absent_value"/>
+                                <field name="overtime"/>
+                            </group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="hr_employee_statistics_line_tree_view" model="ir.ui.view">
+            <field name="name">hr.employee.statistics.line.tree.view</field>
+            <field name="model">hr.employee.statistics.line</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Statistics Line"
+                      decoration-success="state == 'done'"
+                      decoration-muted="state == 'cancel'">
+                    <field name="statistics_id" readonly="1"/>
+                    <field name="employee_id"/>
+                    <field name="absent_value"/>
+                    <field name="overtime"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="hr_employee_statistics_line_search_view" model="ir.ui.view">
+            <field name="name">hr.employee.statistics.line.search.view</field>
+            <field name="model">hr.employee.statistics.line</field>
+            <field name="arch" type="xml">
+                <search string="Employee Statistics Line">
+                    <field name="employee_id"/>
+                    <separator/>
+                    <filter string="Date From" name="date_from" date="date_from"/>
+                    <filter string="Date To" name="date_to" date="date_to"/>
+                    <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter name="group_by_employee" string="Employee" context="{'group_by':'employee_id'}"/>
+                        <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter name="group_date_from" string="Date From" context="{'group_by':'date_from'}"/>
+                        <filter name="group_date_to" string="Date To" context="{'group_by':'date_to'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="hr_employee_statistics_line_action" model="ir.actions.act_window">
+            <field name="name">Employee Statistics Lines</field>
+            <field name="res_model">hr.employee.statistics.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_hr_employee_statistics_line"
+                  name="Employee Statistics Line"
+                  action="hr_employee_statistics_line_action"
+                  parent="menu_hr_employee_statistic_root" sequence="3"/>
+
+
+    </data>
+</odoo>

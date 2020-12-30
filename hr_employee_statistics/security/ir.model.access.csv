@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acccess_stock_return_root,stock_return,model_stock_return,,1,1,1,1
-acccess_stock_return_root_line,stock_return_line,model_stock_return_line,,1,1,1,1
+acccess_hr_employee_statistics_wizard,hr_employee_statistics_wizard,model_hr_employee_statistics_wizard,,1,1,1,1
+acccess_hr_employee_statistics,hr_employee_statistics,model_hr_employee_statistics,hr.group_hr_user,1,0,0,0
+acccess_hr_employee_statistics_manager,hr_employee_statistics_manager,model_hr_employee_statistics,hr.group_hr_manager,1,1,1,1
+acccess_hr_employee_statistics_line,hr_employee_statistics_line,model_hr_employee_statistics_line,hr.group_hr_user,1,0,0,0
+acccess_hr_employee_statistics_line_manager,hr_employee_statistics_line_manager,model_hr_employee_statistics_line,hr.group_hr_manager,1,1,1,1
