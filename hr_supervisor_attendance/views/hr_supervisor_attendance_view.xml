@@ -49,7 +49,8 @@
                                     <field name="employee_id" force_save="1"
                                            attrs="{'readonly':['|',('edit_ability','=',False),('state','!=','draft')]}"/>
                                     <button type="object" name="load_supervisor_employees" class="btn btn-info"
-                                            string="Re-Load Employees" icon="fa-refresh"
+                                            string="Load Employees" icon="fa-refresh"
+                                            confirm="In case of no departments selected, System will load all active Employees(have contracts)"
                                             attrs="{'invisible':['|',('state','!=','draft'),('edit_ability','=',False)]}"/>
                                 </div>
                                 <label for="absent_count"/>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="statistics_hr_supervisor_attendance_form_view_inherit" model="ir.ui.view">
+            <field name="name">statisticshr.supervisor.attendance.form.view.inherit</field>
+            <field name="model">hr.supervisor.attendance</field>
+            <field name="inherit_id" ref="hr_supervisor_attendance.hr_supervisor_attendance_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']//tree" position="inside">
+                    <field name="statistics_line_id" optional="hide" readonly="1" width="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="statistics_hr_supervisor_attendance_line_form_view_inherit" model="ir.ui.view">
+            <field name="name">statisticshr.supervisor.attendance.line.form.view.inherit</field>
+            <field name="model">hr.supervisor.attendance.line</field>
+            <field name="inherit_id" ref="hr_supervisor_attendance.hr_supervisor_attendance_line_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='overtime']" position="after">
+                    <field name="statistics_line_id" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="statistics_hr_supervisor_attendance_line_tree_view_inherit" model="ir.ui.view">
+            <field name="name">statisticshr.supervisor.attendance.line.tree.view.inherit</field>
+            <field name="model">hr.supervisor.attendance.line</field>
+            <field name="inherit_id" ref="hr_supervisor_attendance.hr_supervisor_attendance_line_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='overtime']" position="after">
+                    <field name="statistics_line_id" optional="hide" readonly="1" width="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

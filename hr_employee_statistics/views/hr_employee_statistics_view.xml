@@ -35,14 +35,21 @@
                         <group>
                             <group>
                                 <field name="active" invisible="1"/>
-                                <field name="department_id"/>
+                                <label for="department_ids"/>
+                                <div class="o_row">
+                                    <field name="department_ids" widget="many2many_tags"/>
+                                    <button string="Load Department Emps." name="load_dep_emp" groups="hr.group_hr_manager"
+                                            states="draft" type="object" class="btn-warning"/>
+                                </div>
                             </group>
                             <group>
                                 <field name="date_from"/>
                                 <field name="date_to"/>
                                 <field name="company_id" groups="base.group_multi_company"/>
                             </group>
+                            <field name="employee_ids"/>
                         </group>
+
                         <notebook>
                             <page string="Lines" name="lines">
                                 <button string="Load Lines" name="load_lines" groups="hr.group_hr_manager"
@@ -52,7 +59,7 @@
                                           decoration-muted="state == 'cancel'">
                                         <field name="employee_id"/>
                                         <field name="absent_value"/>
-                                        <field name="overtime"/>
+                                        <field name="overtime" widget="float_time"/>
                                         <field name="date_from" optional="hide"/>
                                         <field name="date_to" optional="hide"/>
                                         <field name="state" optional="hide"/>
@@ -79,7 +86,7 @@
                     <field name="name"/>
                     <field name="date_from"/>
                     <field name="date_to"/>
-                    <field name="department_id"/>
+                    <field name="department_ids" optional="hide"/>
                     <field name="company_id" groups="base.group_multi_company" optional="hide"/>
                     <field name="state"/>
                 </tree>
@@ -92,14 +99,14 @@
                 <search string="Employee Statistics">
                     <field name="name"/>
                     <field name="employee_id"/>
-                    <field name="department_id"/>
+                    <!--                    <field name="department_id"/>-->
                     <separator/>
                     <filter string="Date From" name="date_from" date="date_from"/>
                     <filter string="Date To" name="date_to" date="date_to"/>
                     <filter string="Archived" name="archived" domain="[('active','=',False)]"/>
                     <group expand="0" string="Group By...">
                         <!-- <filter name="group_by_employee" string="Employee" context="{'group_by':'employee_id'}"/>-->
-                        <filter name="group_by_department_id" string="Department" context="{'group_by':'department_id'}"/>
+                        <!--                        <filter name="group_by_department_id" string="Department" context="{'group_by':'department_id'}"/>-->
                         <filter name="group_by_state" string="Status" context="{'group_by':'state'}"/>
                         <separator/>
                         <filter name="group_date_from" string="Date From" context="{'group_by':'date_from'}"/>
@@ -141,7 +148,7 @@
                             <group>
                                 <field name="active" invisible="1"/>
                                 <field name="absent_value"/>
-                                <field name="overtime"/>
+                                <field name="overtime" widget="float_time"/>
                             </group>
                             <group>
                                 <field name="date_from"/>
@@ -149,6 +156,7 @@
                                 <field name="company_id" groups="base.group_multi_company"/>
                             </group>
                         </group>
+                        <field name="attend_line_ids" readonly="1"/>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
@@ -168,7 +176,7 @@
                     <field name="statistics_id" readonly="1"/>
                     <field name="employee_id"/>
                     <field name="absent_value"/>
-                    <field name="overtime"/>
+                    <field name="overtime" widget="float_time"/>
                     <field name="date_from"/>
                     <field name="date_to"/>
                     <field name="company_id" groups="base.group_multi_company" optional="hide"/>

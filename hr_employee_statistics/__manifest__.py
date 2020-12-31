@@ -14,6 +14,7 @@
         'data/hr_employee_statistics_data.xml',
         
         'views/hr_employee_statistics_view.xml',
+        'views/hr_supervisor_attendance_view_changes.xml',
         
         'wizard/hr_employee_statistics_wizard_view.xml',
     ],
