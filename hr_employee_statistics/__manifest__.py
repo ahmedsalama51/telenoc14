@@ -2,7 +2,7 @@
 {
     'name': 'Employee Statistics',
     'summary': 'New object for Employee Statistics',
-    'version': '0.2',
+    'version': '1.3',
     'license': "AGPL-3",
     'author': 'Telenoc, Ahmed Salama',
     'category': 'Human Resources/Employee',

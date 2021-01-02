@@ -9,7 +9,7 @@
     'author': "Magdy, Ahmed Salama ,Helcon",
     'website': "https://telenoc.org",
     'category': 'Human Resources',
-    'version': '0.3',
+    'version': '1.4',
     'depends': ['hr', 'hr_payroll'],
     'data': [
         'data/administrative_decisions_data.xml',
