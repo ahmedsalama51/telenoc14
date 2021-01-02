@@ -14,7 +14,7 @@
                 <form string="Employee Statistics">
                     <header>
                         <button string="Set To Draft" name="action_draft" groups="hr.group_hr_manager"
-                                states="cancel" type="object" class="oe_highlight"/>
+                                states="cancel,done" type="object" class="oe_highlight"/>
                         <button string="Confirm" name="action_done" groups="hr.group_hr_manager"
                                 states="draft" type="object" class="oe_highlight"/>
                         <button string="Cancel" name="action_cancel" groups="hr.group_hr_manager"
@@ -58,8 +58,11 @@
                                     <tree create="0" edit="0" delete="0" decoration-success="state == 'done'"
                                           decoration-muted="state == 'cancel'">
                                         <field name="employee_id"/>
-                                        <field name="absent_value"/>
-                                        <field name="overtime" widget="float_time"/>
+                                        <field name="absent_value" sum="absent_value"/>
+                                        <field name="overtime" widget="float_time" sum="overtime"/>
+                                        <field name="decision_payslip_increase" sum="increase"/>
+                                        <field name="decision_payslip_decrease" sum="decrease"/>
+                                        <field name="full_wage"/>
                                         <field name="date_from" optional="hide"/>
                                         <field name="date_to" optional="hide"/>
                                         <field name="state" optional="hide"/>
@@ -149,6 +152,9 @@
                                 <field name="active" invisible="1"/>
                                 <field name="absent_value"/>
                                 <field name="overtime" widget="float_time"/>
+                                <field name="decision_payslip_increase"/>
+                                <field name="decision_payslip_decrease"/>
+                                <field name="full_wage"/>
                             </group>
                             <group>
                                 <field name="date_from"/>
@@ -175,8 +181,11 @@
                       decoration-muted="state == 'cancel'">
                     <field name="statistics_id" readonly="1"/>
                     <field name="employee_id"/>
-                    <field name="absent_value"/>
-                    <field name="overtime" widget="float_time"/>
+                    <field name="absent_value" sum="absent_value"/>
+                    <field name="overtime" widget="float_time" sum="overtime"/>
+                    <field name="decision_payslip_increase" sum="increase"/>
+                    <field name="decision_payslip_decrease" sum="decrease"/>
+                    <field name="full_wage"/>
                     <field name="date_from"/>
                     <field name="date_to"/>
                     <field name="company_id" groups="base.group_multi_company" optional="hide"/>
@@ -208,6 +217,7 @@
             <field name="name">Employee Statistics Lines</field>
             <field name="res_model">hr.employee.statistics.line</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_group_by_employee':1}</field>
         </record>
         <menuitem id="menu_hr_employee_statistics_line"
                   name="Employee Statistics Line"

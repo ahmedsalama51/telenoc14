@@ -2,7 +2,7 @@
 {
     'name': 'Employee Statistics',
     'summary': 'New object for Employee Statistics',
-    'version': '0.1',
+    'version': '0.2',
     'license': "AGPL-3",
     'author': 'Telenoc, Ahmed Salama',
     'category': 'Human Resources/Employee',
@@ -15,6 +15,7 @@
         
         'views/hr_employee_statistics_view.xml',
         'views/hr_supervisor_attendance_view_changes.xml',
+        'views/hr_payslip_view_changes.xml',
         
         'wizard/hr_employee_statistics_wizard_view.xml',
     ],

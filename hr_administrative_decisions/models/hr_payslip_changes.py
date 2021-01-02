@@ -22,12 +22,12 @@ class HrPayslipInherit(models.Model):
 			                                        filtered(lambda l: l.decision_type_id.payroll_type == 'payslip_increase'))
 			payslip.decision_payslip_decrease = sum(d.amount for d in decisions.
 			                                        filtered(lambda l: l.decision_type_id.payroll_type == 'payslip_decrease'))
-			payslip.full_wage = payslip.contract_id.wage + sum(p.amount for p
-			                                                   in self.env['hr.administrative.decisions'].search([
-				('employee_id', '=', self.employee_id.id),
-				('date', '<=', self.date_from),
-				('decision_type_id.payroll_type', '=', 'appraisal'),
-				('state', '=', 'second_approve')]))
+			payslip.full_wage = payslip.contract_id.wage + \
+			                    sum(p.amount for p in self.env['hr.administrative.decisions'].search([
+				                    ('employee_id', '=', self.employee_id.id),
+				                    ('date', '<=', self.date_from),
+				                    ('decision_type_id.payroll_type', '=', 'appraisal'),
+				                    ('state', '=', 'second_approve')]))
 	
 	def calc_admin_decision_payslip_increase(self):
 		"""

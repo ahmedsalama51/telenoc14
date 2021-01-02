@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-31 09:26+0000\n"
-"PO-Revision-Date: 2020-12-31 11:35+0200\n"
+"POT-Creation-Date: 2021-01-02 09:54+0000\n"
+"PO-Revision-Date: 2021-01-02 11:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -169,6 +169,7 @@ msgstr ""
 
 #. module: hr_employee_statistics
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__absent_value
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_payslip__absent_value
 msgid "Absent Value"
 msgstr "قيمة الغياب"
 
@@ -212,6 +213,23 @@ msgstr ""
 #: model:ir.ui.menu,name:hr_employee_statistics.menu_action_hr_employee_statistics_wizard
 msgid "Add Employee Statistics"
 msgstr "إضافة كشف الحركة الشهرى للموظفين"
+
+#. module: hr_employee_statistics
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__decision_payslip_decrease
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_payslip__decision_payslip_decrease
+msgid "Admin Decision Decrease"
+msgstr "قرار إداري بالزيادة"
+
+#. module: hr_employee_statistics
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__decision_payslip_increase
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_payslip__decision_payslip_increase
+msgid "Admin Decision Increase"
+msgstr "قرار إداري بالخصم"
+
+#. module: hr_employee_statistics
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.emp_statistics_view_hr_payslip_form_inherit
+msgid "Administrative Decisions"
+msgstr "القرارات الإدارية"
 
 #. module: hr_employee_statistics
 #: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_form_view
@@ -315,6 +333,8 @@ msgstr "الأقسام"
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics__display_name
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__display_name
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_wizard__display_name
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_payslip__display_name
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_salary_rule__display_name
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_supervisor_attendance_line__display_name
 msgid "Display Name"
 msgstr "الإسم"
@@ -407,6 +427,12 @@ msgid "Full Approved"
 msgstr "تامة الموافقه"
 
 #. module: hr_employee_statistics
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__full_wage
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_payslip__full_wage
+msgid "Full Wage"
+msgstr "الأجر الكامل"
+
+#. module: hr_employee_statistics
 #: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_wizard_view
 msgid "Generate"
 msgstr "أنشئ"
@@ -441,9 +467,11 @@ msgstr "موظف سجل حضور الموظفين"
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics__id
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__id
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_wizard__id
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_payslip__id
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_salary_rule__id
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_supervisor_attendance_line__id
 msgid "ID"
-msgstr ""
+msgstr "المُعرف"
 
 #. module: hr_employee_statistics
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics__activity_exception_icon
@@ -483,6 +511,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics____last_update
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line____last_update
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_wizard____last_update
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_payslip____last_update
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_salary_rule____last_update
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_supervisor_attendance_line____last_update
 msgid "Last Modified on"
 msgstr "آخر تعديل في"
@@ -533,7 +563,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics__message_ids
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "الرسائل"
 
 #. module: hr_employee_statistics
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_wizard__date_month
@@ -596,8 +626,14 @@ msgstr ""
 
 #. module: hr_employee_statistics
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__overtime
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_payslip__overtime
 msgid "Overtime"
-msgstr ""
+msgstr "ساعات الإضافي"
+
+#. module: hr_employee_statistics
+#: model:ir.model,name:hr_employee_statistics.model_hr_payslip
+msgid "Pay Slip"
+msgstr "إيصال المرتب"
 
 #. module: hr_employee_statistics
 #: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_wizard_view
@@ -610,6 +646,11 @@ msgid "Product Card"
 msgstr "كارته الصنف"
 
 #. module: hr_employee_statistics
+#: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_salary_rule__amount_python_compute
+msgid "Python Code"
+msgstr "كود بايثون"
+
+#. module: hr_employee_statistics
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics__activity_user_id
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__activity_user_id
 msgid "Responsible User"
@@ -619,7 +660,12 @@ msgstr "المسؤل"
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics__message_has_sms_error
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "خطأ في استلام رسائل الجوال"
+
+#. module: hr_employee_statistics
+#: model:ir.model,name:hr_employee_statistics.model_hr_salary_rule
+msgid "Salary Rule"
+msgstr "قاعدة المرتب"
 
 #. module: hr_employee_statistics
 #: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_form_view
@@ -665,6 +711,11 @@ msgid ""
 msgstr ""
 
 #. module: hr_employee_statistics
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.emp_statistics_view_hr_payslip_form_inherit
+msgid "Supervisor Attendance"
+msgstr "سجل حضور المشرفين"
+
+#. module: hr_employee_statistics
 #: model:ir.model.fields,help:hr_employee_statistics.field_hr_employee_statistics__activity_exception_decoration
 #: model:ir.model.fields,help:hr_employee_statistics.field_hr_employee_statistics_line__activity_exception_decoration
 msgid "Type of the exception activity on record."
@@ -674,13 +725,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics__message_unread
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "الرسائل غير مقروءة"
 
 #. module: hr_employee_statistics
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics__message_unread_counter
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_line__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "عداد الرسائل الغير مقرؤة"
 
 #. module: hr_employee_statistics
 #: model:ir.model.fields,field_description:hr_employee_statistics.field_hr_employee_statistics_wizard__date_year
@@ -688,9 +739,33 @@ msgid "Year"
 msgstr "السنه"
 
 #. module: hr_employee_statistics
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_form_view
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_line_tree_view
+msgid "absent_value"
+msgstr "قيمة الغياب"
+
+#. module: hr_employee_statistics
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_form_view
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_line_tree_view
+msgid "decrease"
+msgstr "خصم"
+
+#. module: hr_employee_statistics
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_form_view
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_line_tree_view
+msgid "increase"
+msgstr "زيادة"
+
+#. module: hr_employee_statistics
 #: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_wizard_view
 msgid "or"
 msgstr "أو"
+
+#. module: hr_employee_statistics
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_form_view
+#: model_terms:ir.ui.view,arch_db:hr_employee_statistics.hr_employee_statistics_line_tree_view
+msgid "overtime"
+msgstr "ساعات الإضافي"
 
 #. module: hr_employee_statistics
 #: model:ir.model.fields.selection,name:hr_employee_statistics.selection__hr_employee_statistics_wizard__date_month__4

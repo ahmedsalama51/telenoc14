@@ -6,7 +6,7 @@
     'license': "AGPL-3",
     'author': 'Telenoc, Ahmed Salama',
     'category': 'Human Resources/Attendances',
-    'depends': ['hr', 'hr_attendance'],
+    'depends': ['hr', 'hr_attendance', 'hr_payroll'],
     'website': 'http://www.telenoc.org',
     'data': [
         'data/hr_supervisor_attendance_data.xml',

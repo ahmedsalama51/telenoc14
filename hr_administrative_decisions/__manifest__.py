@@ -18,7 +18,6 @@
         
         'views/administrative_decisions_view.xml',
         'views/hr_employee.xml',
-        'views/hr_payslip_view_changes.xml',
         
         'report/administrative_decision.xml',
     ],

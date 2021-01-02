@@ -57,7 +57,7 @@ class HrEmployeeStatistics(models.Model):
 		for rec in self:
 			rec.state = 'done'
 			for line in rec.line_ids:
-				line.state = 'draft'
+				line.state = 'done'
 	
 	def action_cancel(self):
 		"""
@@ -66,7 +66,7 @@ class HrEmployeeStatistics(models.Model):
 		for rec in self:
 			rec.state = 'cancel'
 			for line in rec.line_ids:
-				line.state = 'draft'
+				line.state = 'cancel'
 				line.attend_line_ids = [(5, 0)]
 	
 	def action_draft(self):
@@ -102,6 +102,11 @@ class HrEmployeeStatistics(models.Model):
 					                                       ('date', '<=', st.date_to),
 					                                       ('statistics_line_id', '=', False),
 					                                       ('state', '=', 'done')])
+					decisions = self.env['hr.administrative.decisions'].search(
+						[('employee_id', '=', emp.id),
+						 ('date', '>=', st.date_from),
+						 ('date', '<=', st.date_to),
+						 ('state', '=', 'second_approve')])
 					# if attend_lines:
 					# 	print("==============\nEMPLOYEE:: ", emp.name)
 					# 	print("LINES: ", attend_lines)
@@ -115,6 +120,10 @@ class HrEmployeeStatistics(models.Model):
 						'overtime': sum(atl.overtime for atl in attend_lines),
 						'absent_value': sum(atl.absent_value for atl in attend_lines),
 						'attend_line_ids': [(6, 0, attend_lines.ids)],
+						'decision_payslip_increase': sum(d.amount for d in decisions.
+						                                 filtered(lambda l: l.decision_type_id.payroll_type == 'payslip_increase')),
+						'decision_payslip_decrease': sum(d.amount for d in decisions.
+						                                 filtered(lambda l: l.decision_type_id.payroll_type == 'payslip_decrease')),
 					})
 			else:
 				raise Warning(_("No Employees selected to use!!!"))
@@ -142,6 +151,11 @@ class HrEmployeeStatisticsLine(models.Model):
 	                              states={'draft': [('readonly', False)]}, tracking=True)
 	overtime = fields.Float("Overtime", readonly=True,
 	                        states={'draft': [('readonly', False)]}, tracking=True)
+	decision_payslip_increase = fields.Float("Admin Decision Increase", readonly=True,
+	                                         states={'draft': [('readonly', False)]}, tracking=True)
+	decision_payslip_decrease = fields.Float("Admin Decision Decrease", readonly=True,
+	                                         states={'draft': [('readonly', False)]}, tracking=True)
+	full_wage = fields.Float("Full Wage", compute='calc_admin_decisions')
 	state = fields.Selection(_STATES, "State", default='draft', tracking=True)
 	attend_line_ids = fields.One2many('hr.supervisor.attendance.line', 'statistics_line_id', string="Attendance")
 	
@@ -166,5 +180,15 @@ class HrEmployeeStatisticsLine(models.Model):
 				if line.date_to:
 					if any(el.date_from <= line.date_to <= el.date_to for el in employee_lines):
 						raise Warning(_("Date To: %s Collapse with pre statistics" % line.date_to))
+	
+	@api.onchange('date_from', 'employee_id')
+	def calc_admin_decisions(self):
+		for rec in self:
+			rec.full_wage = rec.employee_id.contract_id.wage + \
+			                sum(p.amount for p in self.env['hr.administrative.decisions'].search([
+				                ('employee_id', '=', rec.employee_id.id),
+				                ('date', '<=', rec.date_from),
+				                ('decision_type_id.payroll_type', '=', 'appraisal'),
+				                ('state', '=', 'second_approve')]))
 
 # Ahmed Salama Code End.
