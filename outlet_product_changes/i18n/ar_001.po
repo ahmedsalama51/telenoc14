@@ -1,0 +1,819 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* outlet_product_changes
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-03 06:49+0000\n"
+"PO-Revision-Date: 2021-01-03 08:52+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: ar\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1980
+msgid "1980"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1981
+msgid "1981"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1982
+msgid "1982"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1983
+msgid "1983"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1984
+msgid "1984"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1985
+msgid "1985"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1986
+msgid "1986"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1987
+msgid "1987"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1988
+msgid "1988"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1989
+msgid "1989"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1990
+msgid "1990"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1991
+msgid "1991"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1992
+msgid "1992"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1993
+msgid "1993"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1994
+msgid "1994"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1995
+msgid "1995"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1996
+msgid "1996"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1997
+msgid "1997"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1998
+msgid "1998"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__1999
+msgid "1999"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2000
+msgid "2000"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2001
+msgid "2001"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2002
+msgid "2002"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2003
+msgid "2003"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2004
+msgid "2004"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2005
+msgid "2005"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2006
+msgid "2006"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2007
+msgid "2007"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2008
+msgid "2008"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2009
+msgid "2009"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2010
+msgid "2010"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2011
+msgid "2011"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2012
+msgid "2012"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2013
+msgid "2013"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2014
+msgid "2014"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2015
+msgid "2015"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2016
+msgid "2016"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2017
+msgid "2017"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2018
+msgid "2018"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2019
+msgid "2019"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2020
+msgid "2020"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2021
+msgid "2021"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2022
+msgid "2022"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2023
+msgid "2023"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2024
+msgid "2024"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2025
+msgid "2025"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2026
+msgid "2026"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2027
+msgid "2027"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2028
+msgid "2028"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2029
+msgid "2029"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2030
+msgid "2030"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2031
+msgid "2031"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2032
+msgid "2032"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2033
+msgid "2033"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2034
+msgid "2034"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2035
+msgid "2035"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2036
+msgid "2036"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2037
+msgid "2037"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2038
+msgid "2038"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2039
+msgid "2039"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2040
+msgid "2040"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2041
+msgid "2041"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2042
+msgid "2042"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2043
+msgid "2043"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2044
+msgid "2044"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2045
+msgid "2045"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2046
+msgid "2046"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2047
+msgid "2047"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2048
+msgid "2048"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2049
+msgid "2049"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2050
+msgid "2050"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2051
+msgid "2051"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2052
+msgid "2052"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2053
+msgid "2053"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2054
+msgid "2054"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2055
+msgid "2055"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2056
+msgid "2056"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2057
+msgid "2057"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2058
+msgid "2058"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2059
+msgid "2059"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2060
+msgid "2060"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2061
+msgid "2061"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2062
+msgid "2062"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2063
+msgid "2063"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2064
+msgid "2064"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2065
+msgid "2065"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2066
+msgid "2066"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2067
+msgid "2067"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2068
+msgid "2068"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2069
+msgid "2069"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2070
+msgid "2070"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2071
+msgid "2071"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2072
+msgid "2072"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2073
+msgid "2073"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2074
+msgid "2074"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2075
+msgid "2075"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2076
+msgid "2076"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2077
+msgid "2077"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2078
+msgid "2078"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2079
+msgid "2079"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2080
+msgid "2080"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2081
+msgid "2081"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2082
+msgid "2082"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2083
+msgid "2083"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2084
+msgid "2084"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2085
+msgid "2085"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2086
+msgid "2086"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2087
+msgid "2087"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2088
+msgid "2088"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2089
+msgid "2089"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2090
+msgid "2090"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2091
+msgid "2091"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2092
+msgid "2092"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2093
+msgid "2093"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2094
+msgid "2094"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2095
+msgid "2095"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2096
+msgid "2096"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2097
+msgid "2097"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2098
+msgid "2098"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2099
+msgid "2099"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields.selection,name:outlet_product_changes.selection__product_template__oe_year__2100
+msgid "2100"
+msgstr ""
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_brand__name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_product__oe_brand_id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__oe_brand_id
+#: model_terms:ir.ui.view,arch_db:outlet_product_changes.telenoc_product_template_search_view_inherit
+msgid "Brand"
+msgstr "الماركة"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_brand__code
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_color__code
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_department__code
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_group__code
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_season__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_color__name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_product__oe_color_id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__oe_color_id
+#: model_terms:ir.ui.view,arch_db:outlet_product_changes.telenoc_product_template_search_view_inherit
+msgid "Color"
+msgstr "اللون"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_product__oe_Country_id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__oe_Country_id
+#: model_terms:ir.ui.view,arch_db:outlet_product_changes.telenoc_product_template_search_view_inherit
+msgid "Country"
+msgstr "الدولة"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_brand__create_uid
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_color__create_uid
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_department__create_uid
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_group__create_uid
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_season__create_uid
+msgid "Created by"
+msgstr "إنشي بواسطه"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_brand__create_date
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_color__create_date
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_department__create_date
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_group__create_date
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_season__create_date
+msgid "Created on"
+msgstr "انشئ فى"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_department__name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_product__oe_department_id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__oe_department_id
+#: model_terms:ir.ui.view,arch_db:outlet_product_changes.telenoc_product_template_search_view_inherit
+msgid "Department"
+msgstr "القسم"
+
+#. module: outlet_product_changes
+#: model_terms:ir.ui.view,arch_db:outlet_product_changes.telenoc_product_template_only_form_view_inherit
+msgid "Details"
+msgstr "التفاصيل"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_brand__display_name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_color__display_name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_department__display_name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_group__display_name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_season__display_name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: outlet_product_changes
+#: model:product.color,name:outlet_product_changes.product_color_GAMLY
+msgid "GAMLY"
+msgstr "جملي"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_group__name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_product__oe_group_id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__oe_group_id
+#: model_terms:ir.ui.view,arch_db:outlet_product_changes.telenoc_product_template_search_view_inherit
+msgid "Group"
+msgstr "مجموعه"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_brand__id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_color__id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_department__id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_group__id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_season__id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_brand____last_update
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_color____last_update
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_department____last_update
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_group____last_update
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_season____last_update
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_brand__write_uid
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_color__write_uid
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_department__write_uid
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_group__write_uid
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_season__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_brand__write_date
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_color__write_date
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_department__write_date
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_group__write_date
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_season__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: outlet_product_changes
+#: model:product.color,name:outlet_product_changes.product_color_Off_WHITE
+msgid "Off WHITE"
+msgstr "أوف ويت"
+
+#. module: outlet_product_changes
+#: model:ir.model,name:outlet_product_changes.model_product_brand
+msgid "Product Brand"
+msgstr "ماركة المنتج"
+
+#. module: outlet_product_changes
+#: model:ir.model,name:outlet_product_changes.model_product_color
+msgid "Product Color"
+msgstr "لون المنتج"
+
+#. module: outlet_product_changes
+#: model:ir.model,name:outlet_product_changes.model_product_department
+msgid "Product Department"
+msgstr "قسم المنتج"
+
+#. module: outlet_product_changes
+#: model:ir.model,name:outlet_product_changes.model_product_group
+msgid "Product Group"
+msgstr "مجموعه المنتج"
+
+#. module: outlet_product_changes
+#: model:ir.model,name:outlet_product_changes.model_product_season
+msgid "Product Season"
+msgstr "موسم المنتج"
+
+#. module: outlet_product_changes
+#: model:ir.model,name:outlet_product_changes.model_product_template
+msgid "Product Template"
+msgstr "قالب المنتج"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_product__oe_season_id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_season__name
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__oe_season_id
+#: model_terms:ir.ui.view,arch_db:outlet_product_changes.telenoc_product_template_search_view_inherit
+msgid "Season"
+msgstr "الموسم"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_product__oe_vendor_id
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__oe_vendor_id
+#: model_terms:ir.ui.view,arch_db:outlet_product_changes.telenoc_product_template_search_view_inherit
+msgid "Vendor"
+msgstr "المورد"
+
+#. module: outlet_product_changes
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_product__oe_year
+#: model:ir.model.fields,field_description:outlet_product_changes.field_product_template__oe_year
+#: model_terms:ir.ui.view,arch_db:outlet_product_changes.telenoc_product_template_search_view_inherit
+msgid "Year"
+msgstr "الموديل"
+
+#. module: outlet_product_changes
+#: model:product.color,name:outlet_product_changes.product_color_black
+msgid "black"
+msgstr "أسود"
+
+#. module: outlet_product_changes
+#: model:product.color,name:outlet_product_changes.product_color_red
+msgid "red"
+msgstr "أحمر"
+
+#. module: outlet_product_changes
+#: model:product.color,name:outlet_product_changes.product_color_white
+msgid "white"
+msgstr "أبيض"

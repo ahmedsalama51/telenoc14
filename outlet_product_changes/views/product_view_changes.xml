@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="telenoc_product_template_only_form_view_inherit" model="ir.ui.view">
+            <field name="name">telenoc.product.template.product.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook//page" position="after">
+                    <page string="Details" name="details">
+                        <group>
+                            <group>
+                                <field name="oe_color_id"/>
+                                <field name="oe_brand_id"/>
+                                <field name="oe_department_id"/>
+                                <field name="oe_season_id"/>
+                            </group>
+                            <group>
+                                <field name="oe_group_id"/>
+                                <field name="oe_vendor_id"/>
+                                <field name="oe_Country_id"/>
+                                <field name="oe_year"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="telenoc_product_template_search_view_inherit" model="ir.ui.view">
+            <field name="name">telenoc.product.template.search.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='categ_id']" position="after">
+                    <separator/>
+                    <filter string="Vendor" name="group_vendor" context="{'group_by':'oe_vendor_id'}"/>
+                    <filter string="Country" name="group_country" context="{'group_by':'oe_Country_id'}"/>
+                    <filter string="Year" name="group_year" context="{'group_by':'oe_year'}"/>
+                    <filter string="Color" name="group_color" context="{'group_by':'oe_color_id'}"/>
+                    <filter string="Brand" name="group_brand" context="{'group_by':'oe_brand_id'}"/>
+                    <filter string="Brand" name="group_brand" context="{'group_by':'oe_brand_id'}"/>
+                    <filter string="Department" name="group_dep" context="{'group_by':'oe_department_id'}"/>
+                    <filter string="Season" name="group_season" context="{'group_by':'oe_season_id'}"/>
+                    <filter string="Group" name="group_oe_group" context="{'group_by':'oe_group_id'}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

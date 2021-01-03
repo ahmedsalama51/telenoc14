@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Colors-->
+        <record id="product_color_white" model="product.color">
+            <field name="name">white</field>
+            <field name="code">01</field>
+        </record>
+        <record id="product_color_black" model="product.color">
+            <field name="name">black</field>
+            <field name="code">02</field>
+        </record>
+        <record id="product_color_red" model="product.color">
+            <field name="name">red</field>
+            <field name="code">03</field>
+        </record>
+        <record id="product_color_Off_WHITE" model="product.color">
+            <field name="name">Off WHITE</field>
+            <field name="code">04</field>
+        </record>
+        <record id="product_color_GAMLY" model="product.color">
+            <field name="name">GAMLY</field>
+            <field name="code">05</field>
+        </record>
+        <!-- Brands-->
+        <record id="product_brand_general" model="product.brand">
+            <field name="name">GENERAL BRAND</field>
+            <field name="code">00</field>
+        </record>
+        <record id="product_brand_sh_ds" model="product.brand">
+            <field name="name">SH DS</field>
+            <field name="code">01</field>
+        </record>
+        <record id="product_brand_GALIANO" model="product.brand">
+            <field name="name">GALIANO</field>
+            <field name="code">02</field>
+        </record>
+        <record id="product_brand_dg" model="product.brand">
+            <field name="name">D@G</field>
+            <field name="code">04</field>
+        </record>
+        <record id="product_brand_MISSONI" model="product.brand">
+            <field name="name">MISSONI</field>
+            <field name="code">05</field>
+        </record>
+        <!-- Departments-->
+        <record id="product_department_general" model="product.department">
+            <field name="name">GENERAL DEPARTMENT</field>
+            <field name="code">00</field>
+        </record>
+        <record id="product_department_boy" model="product.department">
+            <field name="name">BOY</field>
+            <field name="code">01</field>
+        </record>
+        <record id="product_department_girl" model="product.department">
+            <field name="name">GIRL</field>
+            <field name="code">02</field>
+        </record>
+        <record id="product_department_baby_boy" model="product.department">
+            <field name="name">BABY BOY</field>
+            <field name="code">03</field>
+        </record>
+        <record id="product_department_baby_girl" model="product.department">
+            <field name="name">BABY GIRL</field>
+            <field name="code">04</field>
+        </record>
+        <record id="product_department_boy_shoes" model="product.department">
+            <field name="name">Boy SHOES</field>
+            <field name="code">05</field>
+        </record>
+        <record id="product_department_girl_shoes" model="product.department">
+            <field name="name">GIRL SHOES</field>
+            <field name="code">06</field>
+        </record>
+        <record id="product_department_women_shoes" model="product.department">
+            <field name="name">Woman SHOES</field>
+            <field name="code">07</field>
+        </record>
+        <record id="product_department_baby_acc" model="product.department">
+            <field name="name">BABY ACCESSORIES</field>
+            <field name="code">08</field>
+        </record>
+        <record id="product_department_women" model="product.department">
+            <field name="name">WOMEN</field>
+            <field name="code">09</field>
+        </record>
+        <record id="product_department_man" model="product.department">
+            <field name="name">MAN</field>
+            <field name="code">13</field>
+        </record>
+        <record id="product_department_PERFUMES" model="product.department">
+            <field name="name">PERFUMES</field>
+            <field name="code">22</field>
+        </record>
+        <record id="product_department_UNISEX" model="product.department">
+            <field name="name">UNISEX</field>
+            <field name="code">8</field>
+        </record>
+        <!-- Seasons-->
+        <record id="product_season_general" model="product.season">
+            <field name="name">GENERAL SEASON</field>
+            <field name="code">00</field>
+        </record>
+        <record id="product_season_summer" model="product.season">
+            <field name="name">SUMMER</field>
+            <field name="code">01</field>
+        </record>
+        <record id="product_season_winter" model="product.season">
+            <field name="name">WINTER</field>
+            <field name="code">02</field>
+        </record>
+        <!-- Group-->
+        <record id="product_group_general" model="product.group">
+            <field name="name">GENERAL GROUP</field>
+            <field name="code">00</field>
+        </record>
+        <record id="product_group_sweater" model="product.group">
+            <field name="name">SWATER</field>
+            <field name="code">01</field>
+        </record>
+        <record id="product_group_dress" model="product.group">
+            <field name="name">DRESS</field>
+            <field name="code">02</field>
+        </record>
+        <record id="product_group_jacket" model="product.group">
+            <field name="name">JACKET</field>
+            <field name="code">03</field>
+        </record>
+        <record id="product_group_CARDGAN" model="product.group">
+            <field name="name">CARDGAN</field>
+            <field name="code">04</field>
+        </record>
+        <record id="product_group_BLOUSE" model="product.group">
+            <field name="name">BLOUSE</field>
+            <field name="code">05</field>
+        </record>
+    </data>
+</odoo>
