@@ -2,7 +2,7 @@
 {
     'name': 'Sales Restrictions',
     'summary': 'New Features for product module',
-    'version': '1.1',
+    'version': '1.2',
     'license': "AGPL-3",
     'author': 'Telenoc, Ahmed Salama',
     'category': 'Sales',
