@@ -10,13 +10,13 @@
                 <xpath expr="//field[@name='line_ids']" position="before">
                     <group name='emp_statistics'>
                         <group string="Administrative Decisions">
-                            <field name="decision_payslip_increase" force_store="1"/>
-                            <field name="decision_payslip_decrease"  force_store="1"/>
-                            <field name="full_wage" force_store="1"/>
+                            <field name="decision_payslip_increase" force_save="1"/>
+                            <field name="decision_payslip_decrease"  force_save="1"/>
+                            <field name="full_wage" force_save="1"/>
                         </group>
                         <group string="Supervisor Attendance">
-                            <field name="absent_value" force_store="1"/>
-                            <field name="overtime" force_store="1"/>
+                            <field name="absent_value" force_save="1"/>
+                            <field name="overtime" force_save="1"/>
                         </group>
                     </group>
                 </xpath>

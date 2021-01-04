@@ -12,17 +12,43 @@
                 <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="attributes">
                     <attribute name="width">105px</attribute>
                 </xpath>
-                <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="before">
-                    <field name="moq"/>
-                    <field name="special_price_1" optional="show"/>
-                    <field name="special_price_2" optional="show"/>
-                    <field name="customs" optional="show"/>
-                    <field name="lc_cf" optional="show"/>
-                    <field name="lc_lf" optional="show"/>
-                    <field name="lc_dhl" optional="show"/>
-                    <field name="production_cost" optional="show"/>
-                    <field name="alu_add_cost" optional="show"/>
-                    <field name="ratio_fisher" optional="show"/>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom_qty']" position="attributes">
+                    <attribute name="string">Order Qty (PCS)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="after">
+                    <field name="special_price_1" optional="hide" readonly="1" force_save="1"/>
+                    <field name="special_price_2" optional="hide" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='discount']" position="replace"/>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="replace">
+                    <field name="pec_weight" optional="hide" readonly="1" force_save="1"/>
+                    <field name="price_from" optional="show" width="65px"
+                           attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                    <field name="price_unit" readonly="1" force_save="1"/>
+                    <field name="moq" optional="show" readonly="1" force_save="1"/>
+                    <field name="price_piece_usd" optional="show"/>
+                    <field name="total_cost" optional="show"/>
+                    <field name="price_piece_sar" optional="show"/>
+                    <field name="customs" optional="show" readonly="1" force_save="1"/>
+                    <field name="freight" optional="show" width="65px"
+                           attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                    <field name="lc_cf" optional="hide" readonly="1" force_save="1"/>
+                    <field name="lc_lf" optional="hide" readonly="1" force_save="1"/>
+                    <field name="lc_dhl_ec" optional="hide" readonly="1" force_save="1"/>
+                    <field name="lc_dhl_ex" optional="hide" readonly="1" force_save="1"/>
+                    <field name="landed_cost" optional="show" readonly="1" force_save="1"/>
+                    <field name="production_cost" optional="show" readonly="1" force_save="1"/>
+                    <field name="alu_add_cost" optional="show" readonly="1" force_save="1"/>
+                    <field name="landed_cost_sar" optional="show"/>
+                    <field name="selling_price" optional="show" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                    <field name="bat_margin_1" optional="show"/>
+                    <field name="landed_cost_margin" optional="show" />
+                    <field name="total_selling_price" optional="show"/>
+                    <field name="bat_margin_2" optional="show"/>
+                    <field name="discount" string="Overall Discount %" optional="show"
+                           attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                    <field name="final_margin" optional="show" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                    <field name="ratio_fisher" optional="show" readonly="1" force_save="1"/>
                 </xpath>
             </field>
         </record>

@@ -63,7 +63,7 @@
                                         <field name="price_description" optional="show" width="3"/>
                                         <field name="product_uom_category_id" invisible="1"/>
                                         <field name="company_id" invisible="1"/>
-                                        <field name="location_id" optional="hide" readonly="1" force_store="1"  width="2"/>
+                                        <field name="location_id" optional="hide" readonly="1" force_save="1"  width="2"/>
                                         <field name="state" optional="hide" width="1"/>
                                         <field name="note" optional="show" width="1"/>
                                     </tree>
@@ -191,7 +191,7 @@
                                         <field name="price_description" optional="show" width="3"/>
                                         <field name="product_uom_category_id" invisible="1"/>
                                         <field name="company_id" invisible="1"/>
-                                        <field name="location_id" optional="hide" readonly="1" force_store="1"  width="2"/>
+                                        <field name="location_id" optional="hide" readonly="1" force_save="1"  width="2"/>
                                         <field name="state" optional="hide" width="1"/>
                                         <field name="note" optional="show" width="1"/>
                                     </tree>
