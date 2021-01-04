@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="telenoc_view_order_form_inherit" model="ir.ui.view">
+            <field name="name">telenoc.sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//tree//field[@name='product_id']" position="attributes">
+                    <attribute name="width">105px</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="attributes">
+                    <attribute name="width">105px</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="before">
+                    <field name="moq"/>
+                    <field name="special_price_1" optional="show"/>
+                    <field name="special_price_2" optional="show"/>
+                    <field name="customs" optional="show"/>
+                    <field name="lc_cf" optional="show"/>
+                    <field name="lc_lf" optional="show"/>
+                    <field name="lc_dhl" optional="show"/>
+                    <field name="production_cost" optional="show"/>
+                    <field name="alu_add_cost" optional="show"/>
+                    <field name="ratio_fisher" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

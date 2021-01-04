@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="telenoc_product_template_only_form_view_inherit" model="ir.ui.view">
+            <field name="name">telenoc.product.template.product.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//group" position="after">
+                    <group name="fisher" string="Fisher">
+                        <group>
+                            <field name="moq"/>
+                            <field name="special_price_1"/>
+                            <field name="special_price_2"/>
+                            <field name="customs"/>
+                        </group>
+                        <group>
+                            <field name="lc_cf"/>
+                            <field name="lc_lf"/>
+                            <field name="lc_dhl"/>
+                            <field name="production_cost"/>
+                            <field name="alu_add_cost"/>
+                            <field name="ratio_fisher"/>
+                        </group>
+                    </group>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
