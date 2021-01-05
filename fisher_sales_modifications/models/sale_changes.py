@@ -12,53 +12,95 @@ FREIGHT = [('cf', 'CF'),
            ('ex', 'DHL ex')]
 
 
+class SaleOrderInherit(models.Model):
+	_inherit = 'sale.order'
+	
+	final_margin = fields.Float("Final Margin(%)", digits='Product Price', compute='_amount_all',
+	                            help="Total Margins", readonly=True, store=True)
+	
+	@api.depends('order_line.price_total', 'order_line.price_subtotal',
+	             'order_line.selling_price')
+	def _amount_all(self):
+		"""
+		Compute the total amounts of the SO.
+		"""
+		for order in self:
+			amount_untaxed = amount_tax = total_discount = 0.0
+			for line in order.order_line:
+				amount_untaxed += line.price_subtotal
+				amount_tax += line.price_tax
+			order.update({
+				'amount_untaxed': amount_untaxed,
+				'amount_tax': amount_tax,
+				'amount_total': amount_untaxed + amount_tax,
+			})
+
+
 class SaleOrderLineInherit(models.Model):
 	_inherit = 'sale.order.line'
 	
 	pec_weight = fields.Float("Weight/pc kg", digits='Product Unit of Measure', help="Loaded from product static")
 	moq = fields.Float("MOQ (pcs per box)", digits='Product Unit of Measure', help="Loaded from product static")
-	special_price_1 = fields.Float('Very Special Price', digits='Product Price', help="Loaded from product static")
-	special_price_2 = fields.Float('Special Price 2', digits='Product Price', help="Loaded from product static")
+	special_price_1 = fields.Monetary('Very Special Price', digits='Product Price', help="Loaded from product static")
+	special_price_2 = fields.Monetary('Special Price 2', digits='Product Price', help="Loaded from product static")
 	customs = fields.Float('Customs(%)', digits='Product Price', help="Loaded from product static")
+	price_from = fields.Selection(PRICES, "Price", required=True, default='pricelist')
+	selling_price = fields.Monetary('Selling Price to customer SR/PC', digits='Product Price')
 	
 	ratio_fisher = fields.Float('Ratio fischer/BAT', digits='Product Price', )
-	# Prices
-	price_from = fields.Selection(PRICES, "Price", required=True, default='pricelist')
-	total_cost = fields.Float("Total cost (USD)", digits='Product Price', compute='_compute_amount',
-	                          help="Price * Order Qty (PCS)")
-	price_piece_usd = fields.Float("Price unit per piece (USD/pcs)", digits='Product Price', compute='_compute_amount',
-	                               help="Unit price / MOQ (pcs per box)")
-	price_piece_sar = fields.Float("Price unit per piece (SAR/pcs)", digits='Product Price', compute='_compute_amount',
-	                               help="Price unit per piece (USD/pcs) * 3.75")
-	
 	freight = fields.Selection(FREIGHT, "Freight", required=True, default='cf')
 	lc_cf = fields.Float('LC CF(5%)', digits='Product Price', help="Loaded from product static")
 	lc_lf = fields.Float('LC LF(15%)', digits='Product Price', help="Loaded from product static")
 	lc_dhl_ec = fields.Float('LC DHL ec (6.85USD/kg)', digits='Product Price', help="Loaded from product static")
 	lc_dhl_ex = fields.Float('LC DHL ex (8.01USD/kg)', digits='Product Price', help="Loaded from product static")
 	
-	landed_cost = fields.Float('landed Cost (SAR/pcs)', digits='Product Price', help="Loaded from product static")
-	production_cost = fields.Float('Production cost (SAR/pcs)', digits='Product Price', help="Loaded from product static")
-	alu_add_cost = fields.Float('Aluminum Additional Customs duty (SAR/pcs)', digits='Product Price'
-	                            , help="Loaded from product static")
-	landed_cost_sar = fields.Float("Landed Cost Price (SAR/pcs)", digits='Product Price', compute='_compute_amount',
-	                               help="(Price unit per piece (SAR/pcs) * (1 + Customs(%)))"
-	                                    " + landed Cost (SAR/pcs) + Aluminum Additional Customs duty (SAR/pcs)")
-	
-	selling_price = fields.Float('Selling Price to customer SR/PC', digits='Product Price')
-	bat_margin_1 = fields.Float("BAT Margin(%)", digits='Product Price', compute='_compute_amount',
+	landed_cost = fields.Monetary('landed Cost (SAR/pcs)', digits='Product Price', help="Loaded from product static")
+	production_cost = fields.Monetary('Production cost (SAR/pcs)', digits='Product Price',
+	                                  help="Loaded from product static")
+	alu_add_cost = fields.Monetary('Aluminum Additional Customs duty (SAR/pcs)', digits='Product Price'
+	                               , help="Loaded from product static")
+	# Prices
+	total_cost = fields.Monetary("Total cost (USD)", digits='Product Price', compute='_compute_amount'
+	                             , readonly=True, store=True, help="Price * Order Qty (PCS)")
+	price_piece_usd = fields.Monetary("Price unit per piece (USD/pcs)", digits='Product Price',
+	                                  compute='_compute_amount', readonly=True, store=True,
+	                                  help="Unit price / MOQ (pcs per box)")
+	price_piece_sar = fields.Monetary("Price unit per piece (SAR/pcs)", digits='Product Price',
+	                                  compute='_compute_amount', readonly=True, store=True,
+	                                  help="Price unit per piece (USD/pcs) * 3.75")
+	landed_cost_sar = fields.Monetary("Landed Cost Price (SAR/pcs)", digits='Product Price', compute='_compute_amount',
+	                                  readonly=True, store=True, help="(Price unit per piece (SAR/pcs) * (1 + Customs(%)))"
+	                                       " + landed Cost (SAR/pcs) + Aluminum Additional Customs duty (SAR/pcs)")
+	bat_margin_1 = fields.Float("BAT Margin(%)", digits='Product Price', compute='_compute_amount'
+	                            , readonly=True, store=True,
 	                            help="(Selling Price to customer SR/PC - Landed Cost Price (SAR/pcs)) "
 	                                 "/ Landed Cost Price (SAR/pcs)")
 	landed_cost_margin = fields.Float("Total Cost  Price (landing cost without margin to BAT)",
-	                                  digits='Product Price', compute='_compute_amount',
+	                                  digits='Product Price', compute='_compute_amount', readonly=True, store=True,
 	                                  help="Landed Cost Price (SAR/pcs) * Order Qty (PCS)")
-	total_selling_price = fields.Float("Total Selling Price",
-	                                   digits='Product Price', compute='_compute_amount',
-	                                   help="Selling Price to customer SR/PC * Order Qty (PCS)")
-	bat_margin_2 = fields.Float("BAT Margin(%)", digits='Product Price', compute='_compute_amount',
-	                                   help="(Total Selling Price - Total Cost  Price (landing cost without margin to BAT))"
-	                                        "/Total Cost  Price (landing cost without margin to BAT)")
-	final_margin = fields.Float("Final Margin(%)", digits='Product Price',)
+	total_selling_price = fields.Monetary("Total Selling Price", readonly=True, store=True,
+	                                      digits='Product Price', compute='_compute_amount',
+	                                      help="Selling Price to customer SR/PC * Order Qty (PCS)")
+	bat_margin_2 = fields.Float("BAT Margin(%)", digits='Product Price', compute='_compute_amount'
+	                            , readonly=True, store=True, help="(Total Selling Price - Total Cost "
+	                                 "Price (landing cost without margin to BAT))"
+	                                 "/Total Cost  Price (landing cost without margin to BAT)")
+	final_margin = fields.Float("Final Margin(%)", digits='Product Price', compute='_compute_amount',
+	                            help="BAT Margin - Overall Discount (%)", readonly=True, store=True)
+	final_selling_price = fields.Monetary('Final Selling Price to customer SR/PC', digits='Product Price',
+	                                      compute='_compute_amount', readonly=True, store=True,
+	                                      help="Landed Cost Price (SAR/pcs) *(1+ sum(Final Margin(%)))")
+	bat_margin_3 = fields.Float('BAT Margin', digits='Product Price', compute='_compute_amount', readonly=True, store=True,
+	                            help="(Final Selling Price to customer SR/PC - Landed Cost Price (SAR/pcs))"
+	                                 "/Landed Cost Price (SAR/pcs)")
+	final_cost_price = fields.Monetary('Total Cost Price (landing cost without margin to BAT)', digits='Product Price',
+	                                   readonly=True, store=True, compute='_compute_amount',
+	                                   help="Landed Cost Price (SAR/pcs) * Order Qty (PCS)")
+	price_subtotal = fields.Monetary('Total Selling Price', compute='_compute_amount', readonly=True, store=True,
+	                                 help="Final Selling Price to customer SR/PC * Order Qty (PCS)")
+	final_bat_margin = fields.Float('Final BAT Margin', digits='Product Price', compute='_compute_amount', readonly=True, store=True,
+	                                help="(Total Selling Price - Total Cost  Price (landing cost without margin to BAT))"
+	                                     "/Total Cost  Price (landing cost without margin to BAT)")
 	
 	@api.onchange('price_from')
 	def price_from_change(self):
@@ -90,7 +132,8 @@ class SaleOrderLineInherit(models.Model):
 		return res
 	
 	@api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id',
-	             'customs', 'landed_cost', 'alu_add_cost', 'selling_price')
+	             'customs', 'landed_cost', 'alu_add_cost', 'selling_price',
+	             'freight', 'price_from')
 	def _compute_amount(self):
 		"""
 		Compute the amounts of the SO line.
@@ -107,10 +150,19 @@ class SaleOrderLineInherit(models.Model):
 			landed_cost_margin = landed_cost_sar * line.product_uom_qty
 			total_selling_price = line.selling_price * line.product_uom_qty
 			bat_margin_2 = landed_cost_margin and (total_selling_price - landed_cost_margin)/landed_cost_margin or 0.0
+			final_margin = line.discount - bat_margin_2
+			total_final_margin = sum(l.final_margin for l in line.order_id.order_line)
+			final_selling_price = landed_cost_sar * (1 + total_final_margin)
+			bat_margin_3 = landed_cost_sar and (final_selling_price - landed_cost_sar)/landed_cost_sar or 0.0
+			final_cost_price = landed_cost_sar * line.product_uom_qty
+			price_subtotal = final_selling_price * line.product_uom_qty
+			final_bat_margin = final_cost_price and (price_subtotal - final_cost_price)/final_cost_price or 0.0
 			line.update({
 				'price_tax': sum(t.get('amount', 0.0) for t in taxes.get('taxes', [])),
-				'price_total': taxes['total_included'],
-				'price_subtotal': taxes['total_excluded'],
+				# 'price_total': taxes['total_included'],
+				# 'price_subtotal': taxes['total_excluded'],
+				'price_total': price_subtotal,
+				'price_subtotal': price_subtotal,
 				'total_cost': total_cost,
 				'price_piece_usd': price_per_piece_usd,
 				'price_piece_sar': price_per_piece_sar,
@@ -119,6 +171,11 @@ class SaleOrderLineInherit(models.Model):
 				'landed_cost_margin': landed_cost_margin,
 				'total_selling_price': total_selling_price,
 				'bat_margin_2': bat_margin_2,
+				'final_margin': final_margin,
+				'final_selling_price': final_selling_price,
+				'bat_margin_3': bat_margin_3,
+				'final_cost_price': final_cost_price,
+				'final_bat_margin': final_bat_margin,
 			})
 			if self.env.context.get('import_file', False) and not self.env.user.user_has_groups(
 					'account.group_account_manager'):

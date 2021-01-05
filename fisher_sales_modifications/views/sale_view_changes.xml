@@ -20,15 +20,22 @@
                     <field name="special_price_2" optional="hide" readonly="1" force_save="1"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']//tree//field[@name='discount']" position="replace"/>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='tax_id']" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='price_subtotal']" position="attributes">
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+
                 <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="replace">
                     <field name="pec_weight" optional="hide" readonly="1" force_save="1"/>
                     <field name="price_from" optional="show" width="65px"
                            attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
-                    <field name="price_unit" readonly="1" force_save="1"/>
+                    <field name="price_unit" readonly="1" force_save="1" widget="monetary"/>
                     <field name="moq" optional="show" readonly="1" force_save="1"/>
-                    <field name="price_piece_usd" optional="show"/>
-                    <field name="total_cost" optional="show"/>
-                    <field name="price_piece_sar" optional="show"/>
+                    <field name="price_piece_usd" optional="show" widget="monetary"/>
+                    <field name="total_cost" optional="show" widget="monetary"/>
+                    <field name="price_piece_sar" optional="show" widget="monetary"/>
                     <field name="customs" optional="show" readonly="1" force_save="1"/>
                     <field name="freight" optional="show" width="65px"
                            attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
@@ -37,18 +44,26 @@
                     <field name="lc_dhl_ec" optional="hide" readonly="1" force_save="1"/>
                     <field name="lc_dhl_ex" optional="hide" readonly="1" force_save="1"/>
                     <field name="landed_cost" optional="show" readonly="1" force_save="1"/>
-                    <field name="production_cost" optional="show" readonly="1" force_save="1"/>
-                    <field name="alu_add_cost" optional="show" readonly="1" force_save="1"/>
-                    <field name="landed_cost_sar" optional="show"/>
-                    <field name="selling_price" optional="show" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                    <field name="production_cost" optional="show" readonly="1" force_save="1" widget="monetary"/>
+                    <field name="alu_add_cost" optional="show" readonly="1" force_save="1" widget="monetary"/>
+                    <field name="landed_cost_sar" optional="show" widget="monetary"/>
+                    <field name="selling_price" optional="show" widget="monetary" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
                     <field name="bat_margin_1" optional="show"/>
                     <field name="landed_cost_margin" optional="show" />
-                    <field name="total_selling_price" optional="show"/>
+                    <field name="total_selling_price" optional="show" widget="monetary"/>
                     <field name="bat_margin_2" optional="show"/>
-                    <field name="discount" string="Overall Discount %" optional="show"
+                    <field name="discount" string="Overall Discount (%)" optional="show"
                            attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
-                    <field name="final_margin" optional="show" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
-                    <field name="ratio_fisher" optional="show" readonly="1" force_save="1"/>
+                    <field name="final_margin" optional="show"/>
+                    <field name="bat_margin_3" optional="show"/>
+                    <field name="final_cost_price" optional="show" widget="monetary"/>
+                    <field name="ratio_fisher" optional="hide" readonly="1" force_save="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='price_subtotal']" position="after">
+                    <field name="final_bat_margin" optional="show"/>
+                </xpath>
+                <xpath expr="//field[@name='amount_tax']" position="replace">
+                    <!--                <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>-->
                 </xpath>
             </field>
         </record>
