@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom_qty']" position="after">
                     <field name="qty_available"/>
+                    <field name="qty_weight" readonly="1" force_save="1"/>
                 </xpath>
             </field>
         </record>
